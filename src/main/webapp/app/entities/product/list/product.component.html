@@ -1,0 +1,229 @@
+<div>
+  <h2 id="page-heading" data-cy="ProductHeading">
+    <span jhiTranslate="inventoryManagementApp.product.home.title">Products</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="inventoryManagementApp.product.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-product"
+        [routerLink]="['/product/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="inventoryManagementApp.product.home.createLabel"> Create a new Product </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="products?.length === 0">
+    <span jhiTranslate="inventoryManagementApp.product.home.notFound">No products found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="products && products.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="shortName">
+            <span jhiTranslate="inventoryManagementApp.product.shortName">Short Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="chemicalFormula">
+            <span jhiTranslate="inventoryManagementApp.product.chemicalFormula">Chemical Formula</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="hsnNo">
+            <span jhiTranslate="inventoryManagementApp.product.hsnNo">Hsn No</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="materialImage">
+            <span jhiTranslate="inventoryManagementApp.product.materialImage">Material Image</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isDeleted">
+            <span jhiTranslate="inventoryManagementApp.product.isDeleted">Is Deleted</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isActive">
+            <span jhiTranslate="inventoryManagementApp.product.isActive">Is Active</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="productName">
+            <span jhiTranslate="inventoryManagementApp.product.productName">Product Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="alertUnits">
+            <span jhiTranslate="inventoryManagementApp.product.alertUnits">Alert Units</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="casNumber">
+            <span jhiTranslate="inventoryManagementApp.product.casNumber">Cas Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="catlogNumber">
+            <span jhiTranslate="inventoryManagementApp.product.catlogNumber">Catlog Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="molecularWt">
+            <span jhiTranslate="inventoryManagementApp.product.molecularWt">Molecular Wt</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="molecularFormula">
+            <span jhiTranslate="inventoryManagementApp.product.molecularFormula">Molecular Formula</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="chemicalName">
+            <span jhiTranslate="inventoryManagementApp.product.chemicalName">Chemical Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="structureImg">
+            <span jhiTranslate="inventoryManagementApp.product.structureImg">Structure Img</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <span jhiTranslate="inventoryManagementApp.product.description">Description</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="qrCode">
+            <span jhiTranslate="inventoryManagementApp.product.qrCode">Qr Code</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="barCode">
+            <span jhiTranslate="inventoryManagementApp.product.barCode">Bar Code</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="gstPercentage">
+            <span jhiTranslate="inventoryManagementApp.product.gstPercentage">Gst Percentage</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="productType">
+            <span jhiTranslate="inventoryManagementApp.product.productType">Product Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="inventoryManagementApp.product.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="inventoryManagementApp.product.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <span jhiTranslate="inventoryManagementApp.product.freeField1">Free Field 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <span jhiTranslate="inventoryManagementApp.product.freeField2">Free Field 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="categories.id">
+            <span jhiTranslate="inventoryManagementApp.product.categories">Categories</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="unit.id">
+            <span jhiTranslate="inventoryManagementApp.product.unit">Unit</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="securityUser.login">
+            <span jhiTranslate="inventoryManagementApp.product.securityUser">Security User</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="purchaseQuotationDetails.id">
+            <span jhiTranslate="inventoryManagementApp.product.purchaseQuotationDetails">Purchase Quotation Details</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/product', product.id, 'view']">{{ product.id }}</a>
+          </td>
+          <td>{{ product.shortName }}</td>
+          <td>{{ product.chemicalFormula }}</td>
+          <td>{{ product.hsnNo }}</td>
+          <td>
+            <a
+              *ngIf="product.materialImage"
+              (click)="openFile(product.materialImage, product.materialImageContentType)"
+              jhiTranslate="entity.action.open"
+              >open</a
+            >
+            <span *ngIf="product.materialImage">{{ product.materialImageContentType }}, {{ byteSize(product.materialImage) }}</span>
+          </td>
+          <td>{{ product.isDeleted }}</td>
+          <td>{{ product.isActive }}</td>
+          <td>{{ product.productName }}</td>
+          <td>{{ product.alertUnits }}</td>
+          <td>{{ product.casNumber }}</td>
+          <td>{{ product.catlogNumber }}</td>
+          <td>{{ product.molecularWt }}</td>
+          <td>{{ product.molecularFormula }}</td>
+          <td>{{ product.chemicalName }}</td>
+          <td>{{ product.structureImg }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.qrCode }}</td>
+          <td>{{ product.barCode }}</td>
+          <td>{{ product.gstPercentage }}</td>
+          <td jhiTranslate="{{ 'inventoryManagementApp.ProductType.' + product.productType }}">{{ product.productType }}</td>
+          <td>{{ product.lastModified }}</td>
+          <td>{{ product.lastModifiedBy }}</td>
+          <td>{{ product.freeField1 }}</td>
+          <td>{{ product.freeField2 }}</td>
+          <td>
+            <div *ngIf="product.categories">
+              <a [routerLink]="['/categories', product.categories?.id, 'view']">{{ product.categories?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="product.unit">
+              <a [routerLink]="['/unit', product.unit?.id, 'view']">{{ product.unit?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="product.securityUser">
+              <a [routerLink]="['/security-user', product.securityUser?.id, 'view']">{{ product.securityUser?.login }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="product.purchaseQuotationDetails">
+              <a [routerLink]="['/purchase-quotation-details', product.purchaseQuotationDetails?.id, 'view']">{{
+                product.purchaseQuotationDetails?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/product', product.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/product', product.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(product)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="products && products.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

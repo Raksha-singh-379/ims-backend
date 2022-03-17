@@ -1,0 +1,32 @@
+{
+  "inventoryManagementApp": {
+    "consumptionDetails": {
+      "home": {
+        "title": "Consumption Details",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Consumption Details",
+        "createOrEditLabel": "Create or edit a Consumption Details",
+        "notFound": "No Consumption Details found"
+      },
+      "created": "A new Consumption Details is created with identifier {{ param }}",
+      "updated": "A Consumption Details is updated with identifier {{ param }}",
+      "deleted": "A Consumption Details is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Consumption Details {{ id }}?"
+      },
+      "detail": {
+        "title": "Consumption Details"
+      },
+      "id": "ID",
+      "comsumptionDate": "Comsumption Date",
+      "qtyConsumed": "Qty Consumed",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "securityUser": "Security User",
+      "project": "Project",
+      "productInventory": "Product Inventory"
+    }
+  }
+}

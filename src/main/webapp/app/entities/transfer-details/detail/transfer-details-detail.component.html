@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="transferDetails">
+      <h2 data-cy="transferDetailsDetailsHeading">
+        <span jhiTranslate="inventoryManagementApp.transferDetails.detail.title">Transfer Details</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ transferDetails.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transferDetails.approvalDate">Approval Date</span></dt>
+        <dd>
+          <span>{{ transferDetails.approvalDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transferDetails.qty">Qty</span></dt>
+        <dd>
+          <span>{{ transferDetails.qty }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transferDetails.comment">Comment</span></dt>
+        <dd>
+          <span>{{ transferDetails.comment }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transferDetails.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ transferDetails.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transferDetails.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ transferDetails.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transferDetails.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ transferDetails.lastModified }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transferDetails.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ transferDetails.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transferDetails.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ transferDetails.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transferDetails.isActive">Is Active</span></dt>
+        <dd>
+          <span>{{ transferDetails.isActive }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transferDetails.product">Product</span></dt>
+        <dd>
+          <div *ngIf="transferDetails.product">
+            <a [routerLink]="['/product', transferDetails.product?.id, 'view']">{{ transferDetails.product?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transferDetails.transfer">Transfer</span></dt>
+        <dd>
+          <div *ngIf="transferDetails.transfer">
+            <a [routerLink]="['/transfer', transferDetails.transfer?.id, 'view']">{{ transferDetails.transfer?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/transfer-details', transferDetails.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

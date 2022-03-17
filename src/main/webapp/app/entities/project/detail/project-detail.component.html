@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="project">
+      <h2 data-cy="projectDetailsHeading"><span jhiTranslate="inventoryManagementApp.project.detail.title">Project</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ project.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.project.projectName">Project Name</span></dt>
+        <dd>
+          <span>{{ project.projectName }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.project.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ project.startDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.project.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ project.endDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.project.departmentName">Department Name</span></dt>
+        <dd>
+          <span>{{ project.departmentName }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.project.budget">Budget</span></dt>
+        <dd>
+          <span>{{ project.budget }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.project.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ project.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.project.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ project.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.project.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ project.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.project.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ project.lastModified }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.project.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ project.lastModifiedBy }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/project', project.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

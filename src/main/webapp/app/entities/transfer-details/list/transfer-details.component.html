@@ -1,0 +1,147 @@
+<div>
+  <h2 id="page-heading" data-cy="TransferDetailsHeading">
+    <span jhiTranslate="inventoryManagementApp.transferDetails.home.title">Transfer Details</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="inventoryManagementApp.transferDetails.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-transfer-details"
+        [routerLink]="['/transfer-details/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="inventoryManagementApp.transferDetails.home.createLabel"> Create a new Transfer Details </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="transferDetails?.length === 0">
+    <span jhiTranslate="inventoryManagementApp.transferDetails.home.notFound">No transferDetails found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="transferDetails && transferDetails.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="approvalDate">
+            <span jhiTranslate="inventoryManagementApp.transferDetails.approvalDate">Approval Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="qty">
+            <span jhiTranslate="inventoryManagementApp.transferDetails.qty">Qty</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="comment">
+            <span jhiTranslate="inventoryManagementApp.transferDetails.comment">Comment</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <span jhiTranslate="inventoryManagementApp.transferDetails.freeField1">Free Field 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <span jhiTranslate="inventoryManagementApp.transferDetails.freeField2">Free Field 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="inventoryManagementApp.transferDetails.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="inventoryManagementApp.transferDetails.lastModifiedBy">Last Modified By</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isDeleted">
+            <span jhiTranslate="inventoryManagementApp.transferDetails.isDeleted">Is Deleted</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isActive">
+            <span jhiTranslate="inventoryManagementApp.transferDetails.isActive">Is Active</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="product.id">
+            <span jhiTranslate="inventoryManagementApp.transferDetails.product">Product</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="transfer.id">
+            <span jhiTranslate="inventoryManagementApp.transferDetails.transfer">Transfer</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transferDetails of transferDetails; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/transfer-details', transferDetails.id, 'view']">{{ transferDetails.id }}</a>
+          </td>
+          <td>{{ transferDetails.approvalDate | formatMediumDatetime }}</td>
+          <td>{{ transferDetails.qty }}</td>
+          <td>{{ transferDetails.comment }}</td>
+          <td>{{ transferDetails.freeField1 }}</td>
+          <td>{{ transferDetails.freeField2 }}</td>
+          <td>{{ transferDetails.lastModified }}</td>
+          <td>{{ transferDetails.lastModifiedBy }}</td>
+          <td>{{ transferDetails.isDeleted }}</td>
+          <td>{{ transferDetails.isActive }}</td>
+          <td>
+            <div *ngIf="transferDetails.product">
+              <a [routerLink]="['/product', transferDetails.product?.id, 'view']">{{ transferDetails.product?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="transferDetails.transfer">
+              <a [routerLink]="['/transfer', transferDetails.transfer?.id, 'view']">{{ transferDetails.transfer?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/transfer-details', transferDetails.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/transfer-details', transferDetails.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(transferDetails)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="transferDetails && transferDetails.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

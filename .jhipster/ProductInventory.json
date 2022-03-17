@@ -1,0 +1,105 @@
+{
+  "applications": "*",
+  "changelogDate": "20220317074046",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "product_inventory",
+  "fields": [
+    {
+      "fieldName": "inwardOutwardDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "inwardQty",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "outwardQty",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "totalQuanity",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pricePerUnit",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "lotNo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "expiryDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "inventoryTypeId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isDeleted",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "isActive",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "ProductInventory",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "consumptionDetails",
+      "otherEntityRelationshipName": "productInventory",
+      "relationshipName": "consumptionDetails",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "productName",
+      "otherEntityName": "product",
+      "otherEntityRelationshipName": "productInventory",
+      "relationshipName": "product",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "productTransaction",
+      "otherEntityRelationshipName": "productInventory",
+      "relationshipName": "productTransaction",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "securityUser",
+      "otherEntityRelationshipName": "productInventory",
+      "relationshipName": "securityUser",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "wareHouse",
+      "otherEntityRelationshipName": "productInventory",
+      "relationshipName": "wareHouse",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

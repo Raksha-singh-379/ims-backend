@@ -1,0 +1,11 @@
+{
+  "inventoryManagementApp": {
+    "NotificationType": {
+      "null": "",
+      "APPROVAL": "Apporoval",
+      "REQUEST": "Request",
+      "ALERT": "Alert",
+      "TRANSFER": "Transfer"
+    }
+  }
+}

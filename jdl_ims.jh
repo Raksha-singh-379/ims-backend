@@ -1,0 +1,391 @@
+entity Product {
+   shortName String
+   chemicalFormula String
+   hsnNo String
+   materialImage Blob
+   isDeleted Boolean
+   isActive Boolean
+   //Above fields are added as RawMaterialMaster contains these fields
+   productName String
+   alertUnits String 
+   casNumber String 
+   catlogNumber String 
+   molecularWt Double
+   molecularFormula String
+   chemicalName String
+   structureImg String
+   description String
+   qrCode String
+   barCode String
+   gstPercentage Double
+   productType ProductType
+   lastModified String 
+   lastModifiedBy String 
+   freeField1 String
+   freeField2 String
+}
+
+entity Categories {
+    categoryName String
+    categoryDescription String
+    freeField1 String
+    lastModified String
+    lastModifiedBy String
+    isDeleted Boolean
+    isActive Boolean
+}
+
+entity Unit {
+    unitName String
+    shortName String
+    freeField1 String
+    lastModified String
+    lastModifiedBy String
+    isDeleted Boolean
+    isActive Boolean
+}
+
+entity WareHouse {
+    whName String
+    address String
+    pincode Integer
+    city String
+    state String
+    country String
+    GSTDetails String
+    managerName String
+    managerEmail String
+    managerContact String
+    contact String
+    isDeleted Boolean
+    isActive Boolean
+    wareHouseId Long
+    lastModified String 
+    lastModifiedBy String 
+}
+
+entity ProductInventory{
+    inwardOutwardDate Instant
+    inwardQty String //all inwards will be captured here
+    outwardQty String
+    totalQuanity String
+    pricePerUnit Long
+    lotNo String
+    expiryDate Instant
+    inventoryTypeId String
+    freeField1 String
+    freeField2 String
+    lastModified String
+    lastModifiedBy String
+    isDeleted Boolean
+    isActive Boolean
+}
+
+entity Project{
+    projectName String 
+    startDate Instant
+    endDate Instant
+    departmentName String
+    budget String
+    freeField1 String
+    freeField2 String
+    freeField3 String
+    lastModified String
+    lastModifiedBy String
+}
+entity ConsumptionDetails{
+    comsumptionDate Instant
+    qtyConsumed Double
+    freeField1 String
+    freeField2 String
+    lastModified String
+    lastModifiedBy String
+    }
+    
+entity ProductTransaction {
+	 refrenceId Long// this will be id from different table may be transferid in case of transfer OR comsuptiondetails id in case of consumption "Shall we do it manually?"
+	//Security USer ID who performed this action MAPPING required for this
+	transactionType TransactionType
+	transactionStatus Status
+	transactionDate String
+    description String
+	freeField1 String
+    freeField2 String
+    lastModified String 
+	lastModifiedBy String 
+}
+
+entity PurchaseQuotation {
+  refrenceNumber String // this will be unique refrence number for PO qutqtion and Invoice
+   totalPOAmount Double
+   totalGSTAmount Double
+   expectedDeliveryDate Instant
+   poDate Instant
+   orderType OrderType
+   orderStatus Status
+   termsAndCondition String
+   notes String
+   lastModified String 
+   lastModifiedBy String 
+   freeField1 String
+   freeField2 String
+}
+
+entity PurchaseQuotationDetails{
+  qtyordered Double
+  gstTaxPercentage Integer
+  pricePerUnit Double
+  totalPrice Double
+  discount Double
+  lastModified String 
+  lastModifiedBy String 
+  freeField1 String
+  freeField2 String
+}
+
+entity GoodsRecived {
+  grDate Instant
+  qtyOrdered Double
+  qtyRecieved Double
+  manufacturingDate Instant
+  expiryDate Instant
+  lotNo String
+  freeField1 String
+  freeField2 String
+  freeField3 String
+}
+
+entity Transfer{
+   tranferDate Instant
+   comment String
+   status Status
+   sourceWareHouse String
+   destinationWareHouse String
+   freeField1 String
+   lastModified String
+   lastModifiedBy String
+  }
+ 
+  entity TransferDetails{
+   approvalDate Instant
+    qty Double
+    comment String
+    freeField1 String
+    freeField2 String
+    lastModified String
+    lastModifiedBy String
+    isDeleted Boolean
+    isActive Boolean
+  }
+ 
+  entity TransferDetailsApprovals{
+    approvalDate Instant
+    qtyRequested Double
+    qtyApproved Double
+    comment String
+    freeField1 String
+    lastModified String
+    lastModifiedBy String
+    isDeleted Boolean
+    isActive Boolean
+  }
+ 
+   entity TransferRecieved{
+    transferDate Instant
+    qtyTransfered Double
+    qtyReceived Double
+    comment String
+    freeField1 String
+    lastModified String
+    lastModifiedBy String
+    isDeleted Boolean
+    isActive Boolean
+  }
+
+entity SecurityUser {
+    firstName String
+    lastName String
+    designation String
+    businessTitle String
+    login String required unique
+    passwordHash String required
+	email String unique
+    imageUrl String
+    activated Boolean required
+    langKey String
+    activationKey String
+    resetKey String
+    resetDate Instant
+	mobileNo String
+	oneTimePassword String
+	otpExpiryTime Instant
+    lastModified String
+	lastModifiedBy String
+}
+
+entity Notification {
+	massage String required 
+	notificationType NotificationType
+    title String
+    isActionRequired Boolean
+    isRead Boolean
+    freeField1 String
+    freeField2 String
+    lastModified String 
+	lastModifiedBy String 
+}
+
+entity ClientDetails {
+	clientName String required 
+	mobileNo String
+    email String 
+    billingAddress String
+    companyName String
+    companyContactNo String
+    website String
+    gstinNumber String unique
+    description String
+    clientType ClientType
+    isactivated Boolean
+    freeField1 String
+    lastModified String 
+	lastModifiedBy String 
+}
+
+entity SecurityRole {
+	name String required unique
+	description String
+    lastModified String 
+	lastModifiedBy String 
+}
+
+entity SecurityPermission {
+	name String required unique
+	description String
+    lastModified String 
+	lastModifiedBy String 
+}
+
+enum Status {
+    REQUESTED(Requested),
+    APPROVED(Approved),
+    CANCELED(Canceled),
+    RECEIVED(Received),
+    COMPLETED(Completed)
+}
+
+entity UserAccess {
+    level AccessLevel
+    accessId Long
+    lastModified String 
+	lastModifiedBy String 
+}
+
+enum AccessLevel {
+    ROOT(Root),
+    LAB(Lab),
+    SECTION(Section)
+}
+
+enum ProductType{
+	RAWMATERIAL(RawMaterial),
+    PRODUCT(Product),
+    BOTH(Both),
+    OTHER(Other)
+}
+
+enum NotificationType{
+	APPROVAL(Apporoval),
+    REQUEST(Request),
+    ALERT(Alert),
+    TRANSFER(Transfer)
+}
+enum OrderType{
+	PURCHASE_ORDER(PurchaseOrder),
+    PRODUCT_QUATATION(ProductQuatation)
+    TAX_INVOICE(TaxInvoice)
+}
+enum TransactionType{
+OUTWARDS_CONSUMPTION(Outward_Consumption),
+INWARD_STOCKS(Inward_Stocks),
+TRANSFER_STOCKS(Transfer_Stocks),
+OTHER(Other)
+}
+
+enum ClientType{
+	SUPPLIER(Supplier),
+    CONSUMER(Consumer),
+    BOTH(Both),
+    OTHER(Other)
+}
+
+relationship ManyToOne {
+    Product{categories} to Categories 
+    Product{unit} to Unit 
+}
+
+relationship OneToMany {
+  Product to TransferDetails{product}
+  ProductInventory{consumptionDetails} to ConsumptionDetails{productInventory}
+}
+
+relationship OneToMany {
+	PurchaseQuotation to PurchaseQuotationDetails{purchaseQuotation}
+    PurchaseQuotation to GoodsRecived{purchaseQuotation}
+    PurchaseQuotationDetails to Product {purchaseQuotationDetails}  
+}
+
+relationship OneToMany{
+    Transfer to TransferDetails{transfer}
+    Transfer to TransferRecieved{transfer}
+    Transfer to TransferDetailsApprovals{transfer}
+    Transfer to TransferRecieved{transfer}
+}
+
+relationship ManyToOne {  
+  Product{securityUser(login)} to SecurityUser
+  ProductInventory{product(productName)} to Product
+  ProductInventory{productTransaction} to ProductTransaction
+  ProductInventory{securityUser(login)} to SecurityUser
+  ProductInventory{wareHouse} to WareHouse
+  ConsumptionDetails{securityUser(login)} to SecurityUser
+  ConsumptionDetails{project(name)} to Project
+  PurchaseQuotation{securityUser(login)} to SecurityUser
+  PurchaseQuotation{project} to Project
+  PurchaseQuotation{clientDetails} to ClientDetails
+}
+
+relationship ManyToOne {
+    UserAccess{securityUser(login)} to SecurityUser 
+    ProductTransaction{securityUser(login)} to SecurityUser
+    ProductTransaction{wareHouse(whName)} to WareHouse
+    Transfer{securityUser(login)} to SecurityUser
+    Transfer{wareHouse(whName)} to WareHouse
+    TransferDetailsApprovals{securityUser(login)} to SecurityUser
+    TransferRecieved{securityUser(login)} to SecurityUser
+    Notification{securityUser(login)} to SecurityUser
+    Notification{wareHouse(whName)} to WareHouse
+    
+}
+
+
+relationship ManyToMany {
+  SecurityRole{securityPermission(name)} to SecurityPermission{securityRole(name)},
+  SecurityUser{securityPermission(name)} to SecurityPermission{securityUser(login)},
+  SecurityUser{securityRole(name)} to SecurityRole{securityUser(login)}
+  SecurityUser{wareHouse(whName)} to WareHouse{securityUser(login)}
+}
+
+// Set pagination options
+paginate * with infinite-scroll
+paginate * with pagination
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service * with serviceClass
+
+filter *
+// Set an angular suffix
+// angularSuffix * with tvg

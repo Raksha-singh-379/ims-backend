@@ -1,0 +1,82 @@
+{
+  "applications": "*",
+  "changelogDate": "20220317074053",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "transfer",
+  "fields": [
+    {
+      "fieldName": "tranferDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "comment",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Status",
+      "fieldValues": "REQUESTED (Requested),APPROVED (Approved),CANCELED (Canceled),RECEIVED (Received),COMPLETED (Completed)"
+    },
+    {
+      "fieldName": "sourceWareHouse",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "destinationWareHouse",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Transfer",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "transferDetails",
+      "otherEntityRelationshipName": "transfer",
+      "relationshipName": "transferDetails",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "transferRecieved",
+      "otherEntityRelationshipName": "transfer",
+      "relationshipName": "transferRecieved",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "transferDetailsApprovals",
+      "otherEntityRelationshipName": "transfer",
+      "relationshipName": "transferDetailsApprovals",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "securityUser",
+      "otherEntityRelationshipName": "transfer",
+      "relationshipName": "securityUser",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "whName",
+      "otherEntityName": "wareHouse",
+      "otherEntityRelationshipName": "transfer",
+      "relationshipName": "wareHouse",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

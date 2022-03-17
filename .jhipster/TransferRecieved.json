@@ -1,0 +1,66 @@
+{
+  "applications": "*",
+  "changelogDate": "20220317074056",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "transfer_recieved",
+  "fields": [
+    {
+      "fieldName": "transferDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "qtyTransfered",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "qtyReceived",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "comment",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isDeleted",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "isActive",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "TransferRecieved",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "securityUser",
+      "otherEntityRelationshipName": "transferRecieved",
+      "relationshipName": "securityUser",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "transfer",
+      "otherEntityRelationshipName": "transferRecieved",
+      "relationshipName": "transfer",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

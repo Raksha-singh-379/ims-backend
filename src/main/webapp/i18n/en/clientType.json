@@ -1,0 +1,11 @@
+{
+  "inventoryManagementApp": {
+    "ClientType": {
+      "null": "",
+      "SUPPLIER": "Supplier",
+      "CONSUMER": "Consumer",
+      "BOTH": "Both",
+      "OTHER": "Other"
+    }
+  }
+}

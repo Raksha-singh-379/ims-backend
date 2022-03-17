@@ -1,0 +1,188 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-purchase-quotation-details-heading"
+        data-cy="PurchaseQuotationDetailsCreateUpdateHeading"
+        jhiTranslate="inventoryManagementApp.purchaseQuotationDetails.home.createOrEditLabel"
+      >
+        Create or edit a Purchase Quotation Details
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.purchaseQuotationDetails.qtyordered" for="field_qtyordered"
+            >Qtyordered</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="qtyordered"
+            id="field_qtyordered"
+            data-cy="qtyordered"
+            formControlName="qtyordered"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="inventoryManagementApp.purchaseQuotationDetails.gstTaxPercentage"
+            for="field_gstTaxPercentage"
+            >Gst Tax Percentage</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="gstTaxPercentage"
+            id="field_gstTaxPercentage"
+            data-cy="gstTaxPercentage"
+            formControlName="gstTaxPercentage"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.purchaseQuotationDetails.pricePerUnit" for="field_pricePerUnit"
+            >Price Per Unit</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="pricePerUnit"
+            id="field_pricePerUnit"
+            data-cy="pricePerUnit"
+            formControlName="pricePerUnit"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.purchaseQuotationDetails.totalPrice" for="field_totalPrice"
+            >Total Price</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="totalPrice"
+            id="field_totalPrice"
+            data-cy="totalPrice"
+            formControlName="totalPrice"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.purchaseQuotationDetails.discount" for="field_discount"
+            >Discount</label
+          >
+          <input type="number" class="form-control" name="discount" id="field_discount" data-cy="discount" formControlName="discount" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.purchaseQuotationDetails.lastModified" for="field_lastModified"
+            >Last Modified</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="lastModified"
+            id="field_lastModified"
+            data-cy="lastModified"
+            formControlName="lastModified"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.purchaseQuotationDetails.lastModifiedBy" for="field_lastModifiedBy"
+            >Last Modified By</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.purchaseQuotationDetails.freeField1" for="field_freeField1"
+            >Free Field 1</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField1"
+            id="field_freeField1"
+            data-cy="freeField1"
+            formControlName="freeField1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.purchaseQuotationDetails.freeField2" for="field_freeField2"
+            >Free Field 2</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField2"
+            id="field_freeField2"
+            data-cy="freeField2"
+            formControlName="freeField2"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="inventoryManagementApp.purchaseQuotationDetails.purchaseQuotation"
+            for="field_purchaseQuotation"
+            >Purchase Quotation</label
+          >
+          <select
+            class="form-control"
+            id="field_purchaseQuotation"
+            data-cy="purchaseQuotation"
+            name="purchaseQuotation"
+            formControlName="purchaseQuotation"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                purchaseQuotationOption.id === editForm.get('purchaseQuotation')!.value?.id
+                  ? editForm.get('purchaseQuotation')!.value
+                  : purchaseQuotationOption
+              "
+              *ngFor="let purchaseQuotationOption of purchaseQuotationsSharedCollection; trackBy: trackPurchaseQuotationById"
+            >
+              {{ purchaseQuotationOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

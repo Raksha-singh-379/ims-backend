@@ -1,0 +1,30 @@
+{
+  "inventoryManagementApp": {
+    "unit": {
+      "home": {
+        "title": "Units",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Unit",
+        "createOrEditLabel": "Create or edit a Unit",
+        "notFound": "No Units found"
+      },
+      "created": "A new Unit is created with identifier {{ param }}",
+      "updated": "A Unit is updated with identifier {{ param }}",
+      "deleted": "A Unit is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Unit {{ id }}?"
+      },
+      "detail": {
+        "title": "Unit"
+      },
+      "id": "ID",
+      "unitName": "Unit Name",
+      "shortName": "Short Name",
+      "freeField1": "Free Field 1",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "isDeleted": "Is Deleted",
+      "isActive": "Is Active"
+    }
+  }
+}

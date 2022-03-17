@@ -1,0 +1,59 @@
+{
+  "applications": "*",
+  "changelogDate": "20220317074052",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "goods_recived",
+  "fields": [
+    {
+      "fieldName": "grDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "qtyOrdered",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "qtyRecieved",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "manufacturingDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "expiryDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lotNo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField3",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "GoodsRecived",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "purchaseQuotation",
+      "otherEntityRelationshipName": "goodsRecived",
+      "relationshipName": "purchaseQuotation",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

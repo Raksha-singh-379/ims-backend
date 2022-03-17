@@ -1,0 +1,34 @@
+{
+  "inventoryManagementApp": {
+    "notification": {
+      "home": {
+        "title": "Notifications",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Notification",
+        "createOrEditLabel": "Create or edit a Notification",
+        "notFound": "No Notifications found"
+      },
+      "created": "A new Notification is created with identifier {{ param }}",
+      "updated": "A Notification is updated with identifier {{ param }}",
+      "deleted": "A Notification is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Notification {{ id }}?"
+      },
+      "detail": {
+        "title": "Notification"
+      },
+      "id": "ID",
+      "massage": "Massage",
+      "notificationType": "Notification Type",
+      "title": "Title",
+      "isActionRequired": "Is Action Required",
+      "isRead": "Is Read",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "securityUser": "Security User",
+      "wareHouse": "Ware House"
+    }
+  }
+}

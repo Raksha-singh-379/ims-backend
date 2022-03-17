@@ -1,0 +1,80 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="notification">
+      <h2 data-cy="notificationDetailsHeading">
+        <span jhiTranslate="inventoryManagementApp.notification.detail.title">Notification</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ notification.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.notification.massage">Massage</span></dt>
+        <dd>
+          <span>{{ notification.massage }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.notification.notificationType">Notification Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'inventoryManagementApp.NotificationType.' + notification.notificationType }}">{{
+            notification.notificationType
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.notification.title">Title</span></dt>
+        <dd>
+          <span>{{ notification.title }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.notification.isActionRequired">Is Action Required</span></dt>
+        <dd>
+          <span>{{ notification.isActionRequired }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.notification.isRead">Is Read</span></dt>
+        <dd>
+          <span>{{ notification.isRead }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.notification.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ notification.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.notification.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ notification.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.notification.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ notification.lastModified }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.notification.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ notification.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.notification.securityUser">Security User</span></dt>
+        <dd>
+          <div *ngIf="notification.securityUser">
+            <a [routerLink]="['/security-user', notification.securityUser?.id, 'view']">{{ notification.securityUser?.login }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.notification.wareHouse">Ware House</span></dt>
+        <dd>
+          <div *ngIf="notification.wareHouse">
+            <a [routerLink]="['/ware-house', notification.wareHouse?.id, 'view']">{{ notification.wareHouse?.whName }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/notification', notification.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

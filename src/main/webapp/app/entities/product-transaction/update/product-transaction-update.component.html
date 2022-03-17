@@ -1,0 +1,204 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-product-transaction-heading"
+        data-cy="ProductTransactionCreateUpdateHeading"
+        jhiTranslate="inventoryManagementApp.productTransaction.home.createOrEditLabel"
+      >
+        Create or edit a Product Transaction
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.productTransaction.refrenceId" for="field_refrenceId"
+            >Refrence Id</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="refrenceId"
+            id="field_refrenceId"
+            data-cy="refrenceId"
+            formControlName="refrenceId"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.productTransaction.transactionType" for="field_transactionType"
+            >Transaction Type</label
+          >
+          <select
+            class="form-control"
+            name="transactionType"
+            formControlName="transactionType"
+            id="field_transactionType"
+            data-cy="transactionType"
+          >
+            <option [ngValue]="null">{{ 'inventoryManagementApp.TransactionType.null' | translate }}</option>
+            <option *ngFor="let transactionType of transactionTypeValues" [value]="transactionType">
+              {{ 'inventoryManagementApp.TransactionType.' + transactionType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.productTransaction.transactionStatus" for="field_transactionStatus"
+            >Transaction Status</label
+          >
+          <select
+            class="form-control"
+            name="transactionStatus"
+            formControlName="transactionStatus"
+            id="field_transactionStatus"
+            data-cy="transactionStatus"
+          >
+            <option [ngValue]="null">{{ 'inventoryManagementApp.Status.null' | translate }}</option>
+            <option *ngFor="let status of statusValues" [value]="status">
+              {{ 'inventoryManagementApp.Status.' + status | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.productTransaction.transactionDate" for="field_transactionDate"
+            >Transaction Date</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="transactionDate"
+            id="field_transactionDate"
+            data-cy="transactionDate"
+            formControlName="transactionDate"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.productTransaction.description" for="field_description"
+            >Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.productTransaction.freeField1" for="field_freeField1"
+            >Free Field 1</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField1"
+            id="field_freeField1"
+            data-cy="freeField1"
+            formControlName="freeField1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.productTransaction.freeField2" for="field_freeField2"
+            >Free Field 2</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField2"
+            id="field_freeField2"
+            data-cy="freeField2"
+            formControlName="freeField2"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.productTransaction.lastModified" for="field_lastModified"
+            >Last Modified</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="lastModified"
+            id="field_lastModified"
+            data-cy="lastModified"
+            formControlName="lastModified"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.productTransaction.lastModifiedBy" for="field_lastModifiedBy"
+            >Last Modified By</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.productTransaction.securityUser" for="field_securityUser"
+            >Security User</label
+          >
+          <select class="form-control" id="field_securityUser" data-cy="securityUser" name="securityUser" formControlName="securityUser">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                securityUserOption.id === editForm.get('securityUser')!.value?.id ? editForm.get('securityUser')!.value : securityUserOption
+              "
+              *ngFor="let securityUserOption of securityUsersSharedCollection; trackBy: trackSecurityUserById"
+            >
+              {{ securityUserOption.login }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.productTransaction.wareHouse" for="field_wareHouse"
+            >Ware House</label
+          >
+          <select class="form-control" id="field_wareHouse" data-cy="wareHouse" name="wareHouse" formControlName="wareHouse">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="wareHouseOption.id === editForm.get('wareHouse')!.value?.id ? editForm.get('wareHouse')!.value : wareHouseOption"
+              *ngFor="let wareHouseOption of wareHousesSharedCollection; trackBy: trackWareHouseById"
+            >
+              {{ wareHouseOption.whName }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

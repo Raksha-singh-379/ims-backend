@@ -1,0 +1,41 @@
+{
+  "inventoryManagementApp": {
+    "purchaseQuotation": {
+      "home": {
+        "title": "Purchase Quotations",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Purchase Quotation",
+        "createOrEditLabel": "Create or edit a Purchase Quotation",
+        "notFound": "No Purchase Quotations found"
+      },
+      "created": "A new Purchase Quotation is created with identifier {{ param }}",
+      "updated": "A Purchase Quotation is updated with identifier {{ param }}",
+      "deleted": "A Purchase Quotation is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Purchase Quotation {{ id }}?"
+      },
+      "detail": {
+        "title": "Purchase Quotation"
+      },
+      "id": "ID",
+      "refrenceNumber": "Refrence Number",
+      "totalPOAmount": "Total PO Amount",
+      "totalGSTAmount": "Total GST Amount",
+      "expectedDeliveryDate": "Expected Delivery Date",
+      "poDate": "Po Date",
+      "orderType": "Order Type",
+      "orderStatus": "Order Status",
+      "termsAndCondition": "Terms And Condition",
+      "notes": "Notes",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "purchaseQuotationDetails": "Purchase Quotation Details",
+      "goodsRecived": "Goods Recived",
+      "securityUser": "Security User",
+      "project": "Project",
+      "clientDetails": "Client Details"
+    }
+  }
+}

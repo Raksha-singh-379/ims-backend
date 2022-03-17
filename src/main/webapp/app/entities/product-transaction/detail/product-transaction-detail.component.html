@@ -1,0 +1,84 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="productTransaction">
+      <h2 data-cy="productTransactionDetailsHeading">
+        <span jhiTranslate="inventoryManagementApp.productTransaction.detail.title">Product Transaction</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ productTransaction.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productTransaction.refrenceId">Refrence Id</span></dt>
+        <dd>
+          <span>{{ productTransaction.refrenceId }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productTransaction.transactionType">Transaction Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'inventoryManagementApp.TransactionType.' + productTransaction.transactionType }}">{{
+            productTransaction.transactionType
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productTransaction.transactionStatus">Transaction Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'inventoryManagementApp.Status.' + productTransaction.transactionStatus }}">{{
+            productTransaction.transactionStatus
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productTransaction.transactionDate">Transaction Date</span></dt>
+        <dd>
+          <span>{{ productTransaction.transactionDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productTransaction.description">Description</span></dt>
+        <dd>
+          <span>{{ productTransaction.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productTransaction.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ productTransaction.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productTransaction.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ productTransaction.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productTransaction.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ productTransaction.lastModified }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productTransaction.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ productTransaction.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productTransaction.securityUser">Security User</span></dt>
+        <dd>
+          <div *ngIf="productTransaction.securityUser">
+            <a [routerLink]="['/security-user', productTransaction.securityUser?.id, 'view']">{{
+              productTransaction.securityUser?.login
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productTransaction.wareHouse">Ware House</span></dt>
+        <dd>
+          <div *ngIf="productTransaction.wareHouse">
+            <a [routerLink]="['/ware-house', productTransaction.wareHouse?.id, 'view']">{{ productTransaction.wareHouse?.whName }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/product-transaction', productTransaction.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

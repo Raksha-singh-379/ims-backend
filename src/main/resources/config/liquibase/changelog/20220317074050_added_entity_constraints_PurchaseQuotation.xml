@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity PurchaseQuotation.
+    -->
+    <changeSet id="20220317074050-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="security_user_id"
+                                 baseTableName="purchase_quotation"
+                                 constraintName="fk_purchase_quotation__security_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="security_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="project_id"
+                                 baseTableName="purchase_quotation"
+                                 constraintName="fk_purchase_quotation__project_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project"/>
+
+        <addForeignKeyConstraint baseColumnNames="client_details_id"
+                                 baseTableName="purchase_quotation"
+                                 constraintName="fk_purchase_quotation__client_details_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="client_details"/>
+    </changeSet>
+</databaseChangeLog>

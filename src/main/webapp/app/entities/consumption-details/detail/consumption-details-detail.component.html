@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="consumptionDetails">
+      <h2 data-cy="consumptionDetailsDetailsHeading">
+        <span jhiTranslate="inventoryManagementApp.consumptionDetails.detail.title">Consumption Details</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ consumptionDetails.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.consumptionDetails.comsumptionDate">Comsumption Date</span></dt>
+        <dd>
+          <span>{{ consumptionDetails.comsumptionDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.consumptionDetails.qtyConsumed">Qty Consumed</span></dt>
+        <dd>
+          <span>{{ consumptionDetails.qtyConsumed }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.consumptionDetails.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ consumptionDetails.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.consumptionDetails.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ consumptionDetails.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.consumptionDetails.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ consumptionDetails.lastModified }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.consumptionDetails.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ consumptionDetails.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.consumptionDetails.securityUser">Security User</span></dt>
+        <dd>
+          <div *ngIf="consumptionDetails.securityUser">
+            <a [routerLink]="['/security-user', consumptionDetails.securityUser?.id, 'view']">{{
+              consumptionDetails.securityUser?.login
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.consumptionDetails.project">Project</span></dt>
+        <dd>
+          <div *ngIf="consumptionDetails.project">
+            <a [routerLink]="['/project', consumptionDetails.project?.id, 'view']">{{ consumptionDetails.project?.name }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.consumptionDetails.productInventory">Product Inventory</span></dt>
+        <dd>
+          <div *ngIf="consumptionDetails.productInventory">
+            <a [routerLink]="['/product-inventory', consumptionDetails.productInventory?.id, 'view']">{{
+              consumptionDetails.productInventory?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/consumption-details', consumptionDetails.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

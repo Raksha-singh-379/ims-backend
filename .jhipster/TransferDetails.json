@@ -1,0 +1,65 @@
+{
+  "applications": "*",
+  "changelogDate": "20220317074054",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "transfer_details",
+  "fields": [
+    {
+      "fieldName": "approvalDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "qty",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "comment",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isDeleted",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "isActive",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "TransferDetails",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "product",
+      "otherEntityRelationshipName": "transferDetails",
+      "relationshipName": "product",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "transfer",
+      "otherEntityRelationshipName": "transferDetails",
+      "relationshipName": "transfer",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

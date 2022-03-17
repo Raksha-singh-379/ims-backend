@@ -1,0 +1,217 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-client-details-heading"
+        data-cy="ClientDetailsCreateUpdateHeading"
+        jhiTranslate="inventoryManagementApp.clientDetails.home.createOrEditLabel"
+      >
+        Create or edit a Client Details
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.clientName" for="field_clientName"
+            >Client Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="clientName"
+            id="field_clientName"
+            data-cy="clientName"
+            formControlName="clientName"
+          />
+          <div *ngIf="editForm.get('clientName')!.invalid && (editForm.get('clientName')!.dirty || editForm.get('clientName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('clientName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.mobileNo" for="field_mobileNo">Mobile No</label>
+          <input type="text" class="form-control" name="mobileNo" id="field_mobileNo" data-cy="mobileNo" formControlName="mobileNo" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.email" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.billingAddress" for="field_billingAddress"
+            >Billing Address</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="billingAddress"
+            id="field_billingAddress"
+            data-cy="billingAddress"
+            formControlName="billingAddress"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.companyName" for="field_companyName"
+            >Company Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="companyName"
+            id="field_companyName"
+            data-cy="companyName"
+            formControlName="companyName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.companyContactNo" for="field_companyContactNo"
+            >Company Contact No</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="companyContactNo"
+            id="field_companyContactNo"
+            data-cy="companyContactNo"
+            formControlName="companyContactNo"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.website" for="field_website">Website</label>
+          <input type="text" class="form-control" name="website" id="field_website" data-cy="website" formControlName="website" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.gstinNumber" for="field_gstinNumber"
+            >Gstin Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="gstinNumber"
+            id="field_gstinNumber"
+            data-cy="gstinNumber"
+            formControlName="gstinNumber"
+          />
+          <div
+            *ngIf="editForm.get('gstinNumber')!.invalid && (editForm.get('gstinNumber')!.dirty || editForm.get('gstinNumber')!.touched)"
+          ></div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.description" for="field_description"
+            >Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.clientType" for="field_clientType"
+            >Client Type</label
+          >
+          <select class="form-control" name="clientType" formControlName="clientType" id="field_clientType" data-cy="clientType">
+            <option [ngValue]="null">{{ 'inventoryManagementApp.ClientType.null' | translate }}</option>
+            <option *ngFor="let clientType of clientTypeValues" [value]="clientType">
+              {{ 'inventoryManagementApp.ClientType.' + clientType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.isactivated" for="field_isactivated"
+            >Isactivated</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isactivated"
+            id="field_isactivated"
+            data-cy="isactivated"
+            formControlName="isactivated"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.freeField1" for="field_freeField1"
+            >Free Field 1</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField1"
+            id="field_freeField1"
+            data-cy="freeField1"
+            formControlName="freeField1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.lastModified" for="field_lastModified"
+            >Last Modified</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="lastModified"
+            id="field_lastModified"
+            data-cy="lastModified"
+            formControlName="lastModified"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.lastModifiedBy" for="field_lastModifiedBy"
+            >Last Modified By</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

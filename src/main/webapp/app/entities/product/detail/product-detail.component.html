@@ -1,0 +1,149 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="product">
+      <h2 data-cy="productDetailsHeading"><span jhiTranslate="inventoryManagementApp.product.detail.title">Product</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ product.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.shortName">Short Name</span></dt>
+        <dd>
+          <span>{{ product.shortName }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.chemicalFormula">Chemical Formula</span></dt>
+        <dd>
+          <span>{{ product.chemicalFormula }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.hsnNo">Hsn No</span></dt>
+        <dd>
+          <span>{{ product.hsnNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.materialImage">Material Image</span></dt>
+        <dd>
+          <div *ngIf="product.materialImage">
+            <a (click)="openFile(product.materialImage, product.materialImageContentType)" jhiTranslate="entity.action.open">open</a>
+            {{ product.materialImageContentType }}, {{ byteSize(product.materialImage) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ product.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.isActive">Is Active</span></dt>
+        <dd>
+          <span>{{ product.isActive }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.productName">Product Name</span></dt>
+        <dd>
+          <span>{{ product.productName }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.alertUnits">Alert Units</span></dt>
+        <dd>
+          <span>{{ product.alertUnits }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.casNumber">Cas Number</span></dt>
+        <dd>
+          <span>{{ product.casNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.catlogNumber">Catlog Number</span></dt>
+        <dd>
+          <span>{{ product.catlogNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.molecularWt">Molecular Wt</span></dt>
+        <dd>
+          <span>{{ product.molecularWt }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.molecularFormula">Molecular Formula</span></dt>
+        <dd>
+          <span>{{ product.molecularFormula }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.chemicalName">Chemical Name</span></dt>
+        <dd>
+          <span>{{ product.chemicalName }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.structureImg">Structure Img</span></dt>
+        <dd>
+          <span>{{ product.structureImg }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.description">Description</span></dt>
+        <dd>
+          <span>{{ product.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.qrCode">Qr Code</span></dt>
+        <dd>
+          <span>{{ product.qrCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.barCode">Bar Code</span></dt>
+        <dd>
+          <span>{{ product.barCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.gstPercentage">Gst Percentage</span></dt>
+        <dd>
+          <span>{{ product.gstPercentage }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.productType">Product Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'inventoryManagementApp.ProductType.' + product.productType }}">{{ product.productType }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ product.lastModified }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ product.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ product.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ product.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.categories">Categories</span></dt>
+        <dd>
+          <div *ngIf="product.categories">
+            <a [routerLink]="['/categories', product.categories?.id, 'view']">{{ product.categories?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.unit">Unit</span></dt>
+        <dd>
+          <div *ngIf="product.unit">
+            <a [routerLink]="['/unit', product.unit?.id, 'view']">{{ product.unit?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.securityUser">Security User</span></dt>
+        <dd>
+          <div *ngIf="product.securityUser">
+            <a [routerLink]="['/security-user', product.securityUser?.id, 'view']">{{ product.securityUser?.login }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.product.purchaseQuotationDetails">Purchase Quotation Details</span></dt>
+        <dd>
+          <div *ngIf="product.purchaseQuotationDetails">
+            <a [routerLink]="['/purchase-quotation-details', product.purchaseQuotationDetails?.id, 'view']">{{
+              product.purchaseQuotationDetails?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/product', product.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

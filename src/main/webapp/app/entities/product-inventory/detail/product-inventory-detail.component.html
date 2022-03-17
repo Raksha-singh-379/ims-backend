@@ -1,0 +1,112 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="productInventory">
+      <h2 data-cy="productInventoryDetailsHeading">
+        <span jhiTranslate="inventoryManagementApp.productInventory.detail.title">Product Inventory</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ productInventory.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productInventory.inwardOutwardDate">Inward Outward Date</span></dt>
+        <dd>
+          <span>{{ productInventory.inwardOutwardDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productInventory.inwardQty">Inward Qty</span></dt>
+        <dd>
+          <span>{{ productInventory.inwardQty }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productInventory.outwardQty">Outward Qty</span></dt>
+        <dd>
+          <span>{{ productInventory.outwardQty }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productInventory.totalQuanity">Total Quanity</span></dt>
+        <dd>
+          <span>{{ productInventory.totalQuanity }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productInventory.pricePerUnit">Price Per Unit</span></dt>
+        <dd>
+          <span>{{ productInventory.pricePerUnit }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productInventory.lotNo">Lot No</span></dt>
+        <dd>
+          <span>{{ productInventory.lotNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productInventory.expiryDate">Expiry Date</span></dt>
+        <dd>
+          <span>{{ productInventory.expiryDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productInventory.inventoryTypeId">Inventory Type Id</span></dt>
+        <dd>
+          <span>{{ productInventory.inventoryTypeId }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productInventory.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ productInventory.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productInventory.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ productInventory.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productInventory.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ productInventory.lastModified }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productInventory.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ productInventory.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productInventory.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ productInventory.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productInventory.isActive">Is Active</span></dt>
+        <dd>
+          <span>{{ productInventory.isActive }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productInventory.product">Product</span></dt>
+        <dd>
+          <div *ngIf="productInventory.product">
+            <a [routerLink]="['/product', productInventory.product?.id, 'view']">{{ productInventory.product?.productName }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productInventory.productTransaction">Product Transaction</span></dt>
+        <dd>
+          <div *ngIf="productInventory.productTransaction">
+            <a [routerLink]="['/product-transaction', productInventory.productTransaction?.id, 'view']">{{
+              productInventory.productTransaction?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productInventory.securityUser">Security User</span></dt>
+        <dd>
+          <div *ngIf="productInventory.securityUser">
+            <a [routerLink]="['/security-user', productInventory.securityUser?.id, 'view']">{{ productInventory.securityUser?.login }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.productInventory.wareHouse">Ware House</span></dt>
+        <dd>
+          <div *ngIf="productInventory.wareHouse">
+            <a [routerLink]="['/ware-house', productInventory.wareHouse?.id, 'view']">{{ productInventory.wareHouse?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/product-inventory', productInventory.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
