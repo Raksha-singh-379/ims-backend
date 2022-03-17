@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="transfer">
+      <h2 data-cy="transferDetailsHeading"><span jhiTranslate="inventoryManagementApp.transfer.detail.title">Transfer</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ transfer.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transfer.tranferDate">Tranfer Date</span></dt>
+        <dd>
+          <span>{{ transfer.tranferDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transfer.comment">Comment</span></dt>
+        <dd>
+          <span>{{ transfer.comment }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transfer.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'inventoryManagementApp.Status.' + transfer.status }}">{{ transfer.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transfer.sourceWareHouse">Source Ware House</span></dt>
+        <dd>
+          <span>{{ transfer.sourceWareHouse }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transfer.destinationWareHouse">Destination Ware House</span></dt>
+        <dd>
+          <span>{{ transfer.destinationWareHouse }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transfer.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ transfer.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transfer.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ transfer.lastModified }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transfer.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ transfer.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transfer.securityUser">Security User</span></dt>
+        <dd>
+          <div *ngIf="transfer.securityUser">
+            <a [routerLink]="['/security-user', transfer.securityUser?.id, 'view']">{{ transfer.securityUser?.login }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.transfer.wareHouse">Ware House</span></dt>
+        <dd>
+          <div *ngIf="transfer.wareHouse">
+            <a [routerLink]="['/ware-house', transfer.wareHouse?.id, 'view']">{{ transfer.wareHouse?.whName }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/transfer', transfer.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

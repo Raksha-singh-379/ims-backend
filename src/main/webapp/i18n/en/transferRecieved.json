@@ -1,0 +1,34 @@
+{
+  "inventoryManagementApp": {
+    "transferRecieved": {
+      "home": {
+        "title": "Transfer Recieveds",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Transfer Recieved",
+        "createOrEditLabel": "Create or edit a Transfer Recieved",
+        "notFound": "No Transfer Recieveds found"
+      },
+      "created": "A new Transfer Recieved is created with identifier {{ param }}",
+      "updated": "A Transfer Recieved is updated with identifier {{ param }}",
+      "deleted": "A Transfer Recieved is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Transfer Recieved {{ id }}?"
+      },
+      "detail": {
+        "title": "Transfer Recieved"
+      },
+      "id": "ID",
+      "transferDate": "Transfer Date",
+      "qtyTransfered": "Qty Transfered",
+      "qtyReceived": "Qty Received",
+      "comment": "Comment",
+      "freeField1": "Free Field 1",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "isDeleted": "Is Deleted",
+      "isActive": "Is Active",
+      "securityUser": "Security User",
+      "transfer": "Transfer"
+    }
+  }
+}

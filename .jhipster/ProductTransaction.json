@@ -1,0 +1,69 @@
+{
+  "applications": "*",
+  "changelogDate": "20220317074049",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "product_transaction",
+  "fields": [
+    {
+      "fieldName": "refrenceId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "transactionType",
+      "fieldType": "TransactionType",
+      "fieldValues": "OUTWARDS_CONSUMPTION (Outward_Consumption),INWARD_STOCKS (Inward_Stocks),TRANSFER_STOCKS (Transfer_Stocks),OTHER (Other)"
+    },
+    {
+      "fieldName": "transactionStatus",
+      "fieldType": "Status",
+      "fieldValues": "REQUESTED (Requested),APPROVED (Approved),CANCELED (Canceled),RECEIVED (Received),COMPLETED (Completed)"
+    },
+    {
+      "fieldName": "transactionDate",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "ProductTransaction",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "securityUser",
+      "otherEntityRelationshipName": "productTransaction",
+      "relationshipName": "securityUser",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "whName",
+      "otherEntityName": "wareHouse",
+      "otherEntityRelationshipName": "productTransaction",
+      "relationshipName": "wareHouse",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

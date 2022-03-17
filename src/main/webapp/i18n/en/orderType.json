@@ -1,0 +1,10 @@
+{
+  "inventoryManagementApp": {
+    "OrderType": {
+      "null": "",
+      "PURCHASE_ORDER": "PurchaseOrder",
+      "PRODUCT_QUATATION": "ProductQuatation",
+      "TAX_INVOICE": "TaxInvoice"
+    }
+  }
+}

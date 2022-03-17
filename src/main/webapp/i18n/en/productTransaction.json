@@ -1,0 +1,34 @@
+{
+  "inventoryManagementApp": {
+    "productTransaction": {
+      "home": {
+        "title": "Product Transactions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Product Transaction",
+        "createOrEditLabel": "Create or edit a Product Transaction",
+        "notFound": "No Product Transactions found"
+      },
+      "created": "A new Product Transaction is created with identifier {{ param }}",
+      "updated": "A Product Transaction is updated with identifier {{ param }}",
+      "deleted": "A Product Transaction is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Product Transaction {{ id }}?"
+      },
+      "detail": {
+        "title": "Product Transaction"
+      },
+      "id": "ID",
+      "refrenceId": "Refrence Id",
+      "transactionType": "Transaction Type",
+      "transactionStatus": "Transaction Status",
+      "transactionDate": "Transaction Date",
+      "description": "Description",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "securityUser": "Security User",
+      "wareHouse": "Ware House"
+    }
+  }
+}

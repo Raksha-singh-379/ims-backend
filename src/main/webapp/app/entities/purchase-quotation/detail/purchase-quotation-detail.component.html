@@ -1,0 +1,104 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="purchaseQuotation">
+      <h2 data-cy="purchaseQuotationDetailsHeading">
+        <span jhiTranslate="inventoryManagementApp.purchaseQuotation.detail.title">Purchase Quotation</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ purchaseQuotation.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.purchaseQuotation.refrenceNumber">Refrence Number</span></dt>
+        <dd>
+          <span>{{ purchaseQuotation.refrenceNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.purchaseQuotation.totalPOAmount">Total PO Amount</span></dt>
+        <dd>
+          <span>{{ purchaseQuotation.totalPOAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.purchaseQuotation.totalGSTAmount">Total GST Amount</span></dt>
+        <dd>
+          <span>{{ purchaseQuotation.totalGSTAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.purchaseQuotation.expectedDeliveryDate">Expected Delivery Date</span></dt>
+        <dd>
+          <span>{{ purchaseQuotation.expectedDeliveryDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.purchaseQuotation.poDate">Po Date</span></dt>
+        <dd>
+          <span>{{ purchaseQuotation.poDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.purchaseQuotation.orderType">Order Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'inventoryManagementApp.OrderType.' + purchaseQuotation.orderType }}">{{
+            purchaseQuotation.orderType
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.purchaseQuotation.orderStatus">Order Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'inventoryManagementApp.Status.' + purchaseQuotation.orderStatus }}">{{
+            purchaseQuotation.orderStatus
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.purchaseQuotation.termsAndCondition">Terms And Condition</span></dt>
+        <dd>
+          <span>{{ purchaseQuotation.termsAndCondition }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.purchaseQuotation.notes">Notes</span></dt>
+        <dd>
+          <span>{{ purchaseQuotation.notes }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.purchaseQuotation.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ purchaseQuotation.lastModified }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.purchaseQuotation.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ purchaseQuotation.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.purchaseQuotation.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ purchaseQuotation.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.purchaseQuotation.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ purchaseQuotation.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.purchaseQuotation.securityUser">Security User</span></dt>
+        <dd>
+          <div *ngIf="purchaseQuotation.securityUser">
+            <a [routerLink]="['/security-user', purchaseQuotation.securityUser?.id, 'view']">{{ purchaseQuotation.securityUser?.login }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.purchaseQuotation.project">Project</span></dt>
+        <dd>
+          <div *ngIf="purchaseQuotation.project">
+            <a [routerLink]="['/project', purchaseQuotation.project?.id, 'view']">{{ purchaseQuotation.project?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.purchaseQuotation.clientDetails">Client Details</span></dt>
+        <dd>
+          <div *ngIf="purchaseQuotation.clientDetails">
+            <a [routerLink]="['/client-details', purchaseQuotation.clientDetails?.id, 'view']">{{ purchaseQuotation.clientDetails?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/purchase-quotation', purchaseQuotation.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

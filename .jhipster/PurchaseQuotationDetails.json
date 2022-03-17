@@ -1,0 +1,65 @@
+{
+  "applications": "*",
+  "changelogDate": "20220317074051",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "purchase_quotation_details",
+  "fields": [
+    {
+      "fieldName": "qtyordered",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "gstTaxPercentage",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "pricePerUnit",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "totalPrice",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "discount",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField2",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "PurchaseQuotationDetails",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "product",
+      "otherEntityRelationshipName": "purchaseQuotationDetails",
+      "relationshipName": "product",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "purchaseQuotation",
+      "otherEntityRelationshipName": "purchaseQuotationDetails",
+      "relationshipName": "purchaseQuotation",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

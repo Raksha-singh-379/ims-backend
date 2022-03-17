@@ -1,0 +1,151 @@
+<div>
+  <h2 id="page-heading" data-cy="ClientDetailsHeading">
+    <span jhiTranslate="inventoryManagementApp.clientDetails.home.title">Client Details</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="inventoryManagementApp.clientDetails.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-client-details"
+        [routerLink]="['/client-details/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="inventoryManagementApp.clientDetails.home.createLabel"> Create a new Client Details </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="clientDetails?.length === 0">
+    <span jhiTranslate="inventoryManagementApp.clientDetails.home.notFound">No clientDetails found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="clientDetails && clientDetails.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="clientName">
+            <span jhiTranslate="inventoryManagementApp.clientDetails.clientName">Client Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="mobileNo">
+            <span jhiTranslate="inventoryManagementApp.clientDetails.mobileNo">Mobile No</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="email">
+            <span jhiTranslate="inventoryManagementApp.clientDetails.email">Email</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="billingAddress">
+            <span jhiTranslate="inventoryManagementApp.clientDetails.billingAddress">Billing Address</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="companyName">
+            <span jhiTranslate="inventoryManagementApp.clientDetails.companyName">Company Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="companyContactNo">
+            <span jhiTranslate="inventoryManagementApp.clientDetails.companyContactNo">Company Contact No</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="website">
+            <span jhiTranslate="inventoryManagementApp.clientDetails.website">Website</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="gstinNumber">
+            <span jhiTranslate="inventoryManagementApp.clientDetails.gstinNumber">Gstin Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <span jhiTranslate="inventoryManagementApp.clientDetails.description">Description</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="clientType">
+            <span jhiTranslate="inventoryManagementApp.clientDetails.clientType">Client Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isactivated">
+            <span jhiTranslate="inventoryManagementApp.clientDetails.isactivated">Isactivated</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <span jhiTranslate="inventoryManagementApp.clientDetails.freeField1">Free Field 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="inventoryManagementApp.clientDetails.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="inventoryManagementApp.clientDetails.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let clientDetails of clientDetails; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/client-details', clientDetails.id, 'view']">{{ clientDetails.id }}</a>
+          </td>
+          <td>{{ clientDetails.clientName }}</td>
+          <td>{{ clientDetails.mobileNo }}</td>
+          <td>{{ clientDetails.email }}</td>
+          <td>{{ clientDetails.billingAddress }}</td>
+          <td>{{ clientDetails.companyName }}</td>
+          <td>{{ clientDetails.companyContactNo }}</td>
+          <td>{{ clientDetails.website }}</td>
+          <td>{{ clientDetails.gstinNumber }}</td>
+          <td>{{ clientDetails.description }}</td>
+          <td jhiTranslate="{{ 'inventoryManagementApp.ClientType.' + clientDetails.clientType }}">{{ clientDetails.clientType }}</td>
+          <td>{{ clientDetails.isactivated }}</td>
+          <td>{{ clientDetails.freeField1 }}</td>
+          <td>{{ clientDetails.lastModified }}</td>
+          <td>{{ clientDetails.lastModifiedBy }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/client-details', clientDetails.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/client-details', clientDetails.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(clientDetails)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="clientDetails && clientDetails.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+{
+  "inventoryManagementApp": {
+    "clientDetails": {
+      "home": {
+        "title": "Client Details",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Client Details",
+        "createOrEditLabel": "Create or edit a Client Details",
+        "notFound": "No Client Details found"
+      },
+      "created": "A new Client Details is created with identifier {{ param }}",
+      "updated": "A Client Details is updated with identifier {{ param }}",
+      "deleted": "A Client Details is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Client Details {{ id }}?"
+      },
+      "detail": {
+        "title": "Client Details"
+      },
+      "id": "ID",
+      "clientName": "Client Name",
+      "mobileNo": "Mobile No",
+      "email": "Email",
+      "billingAddress": "Billing Address",
+      "companyName": "Company Name",
+      "companyContactNo": "Company Contact No",
+      "website": "Website",
+      "gstinNumber": "Gstin Number",
+      "description": "Description",
+      "clientType": "Client Type",
+      "isactivated": "Isactivated",
+      "freeField1": "Free Field 1",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By"
+    }
+  }
+}

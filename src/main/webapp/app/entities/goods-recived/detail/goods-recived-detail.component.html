@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="goodsRecived">
+      <h2 data-cy="goodsRecivedDetailsHeading">
+        <span jhiTranslate="inventoryManagementApp.goodsRecived.detail.title">Goods Recived</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ goodsRecived.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.goodsRecived.grDate">Gr Date</span></dt>
+        <dd>
+          <span>{{ goodsRecived.grDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.goodsRecived.qtyOrdered">Qty Ordered</span></dt>
+        <dd>
+          <span>{{ goodsRecived.qtyOrdered }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.goodsRecived.qtyRecieved">Qty Recieved</span></dt>
+        <dd>
+          <span>{{ goodsRecived.qtyRecieved }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.goodsRecived.manufacturingDate">Manufacturing Date</span></dt>
+        <dd>
+          <span>{{ goodsRecived.manufacturingDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.goodsRecived.expiryDate">Expiry Date</span></dt>
+        <dd>
+          <span>{{ goodsRecived.expiryDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.goodsRecived.lotNo">Lot No</span></dt>
+        <dd>
+          <span>{{ goodsRecived.lotNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.goodsRecived.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ goodsRecived.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.goodsRecived.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ goodsRecived.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.goodsRecived.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ goodsRecived.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.goodsRecived.purchaseQuotation">Purchase Quotation</span></dt>
+        <dd>
+          <div *ngIf="goodsRecived.purchaseQuotation">
+            <a [routerLink]="['/purchase-quotation', goodsRecived.purchaseQuotation?.id, 'view']">{{
+              goodsRecived.purchaseQuotation?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/goods-recived', goodsRecived.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

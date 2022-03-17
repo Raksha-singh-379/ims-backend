@@ -1,0 +1,92 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="wareHouse">
+      <h2 data-cy="wareHouseDetailsHeading"><span jhiTranslate="inventoryManagementApp.wareHouse.detail.title">Ware House</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ wareHouse.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.wareHouse.whName">Wh Name</span></dt>
+        <dd>
+          <span>{{ wareHouse.whName }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.wareHouse.address">Address</span></dt>
+        <dd>
+          <span>{{ wareHouse.address }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.wareHouse.pincode">Pincode</span></dt>
+        <dd>
+          <span>{{ wareHouse.pincode }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.wareHouse.city">City</span></dt>
+        <dd>
+          <span>{{ wareHouse.city }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.wareHouse.state">State</span></dt>
+        <dd>
+          <span>{{ wareHouse.state }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.wareHouse.country">Country</span></dt>
+        <dd>
+          <span>{{ wareHouse.country }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.wareHouse.gSTDetails">G ST Details</span></dt>
+        <dd>
+          <span>{{ wareHouse.gSTDetails }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.wareHouse.managerName">Manager Name</span></dt>
+        <dd>
+          <span>{{ wareHouse.managerName }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.wareHouse.managerEmail">Manager Email</span></dt>
+        <dd>
+          <span>{{ wareHouse.managerEmail }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.wareHouse.managerContact">Manager Contact</span></dt>
+        <dd>
+          <span>{{ wareHouse.managerContact }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.wareHouse.contact">Contact</span></dt>
+        <dd>
+          <span>{{ wareHouse.contact }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.wareHouse.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ wareHouse.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.wareHouse.isActive">Is Active</span></dt>
+        <dd>
+          <span>{{ wareHouse.isActive }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.wareHouse.wareHouseId">Ware House Id</span></dt>
+        <dd>
+          <span>{{ wareHouse.wareHouseId }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.wareHouse.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ wareHouse.lastModified }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.wareHouse.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ wareHouse.lastModifiedBy }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/ware-house', wareHouse.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

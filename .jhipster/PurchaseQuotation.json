@@ -1,0 +1,102 @@
+{
+  "applications": "*",
+  "changelogDate": "20220317074050",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "purchase_quotation",
+  "fields": [
+    {
+      "fieldName": "refrenceNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "totalPOAmount",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "totalGSTAmount",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "expectedDeliveryDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "poDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "orderType",
+      "fieldType": "OrderType",
+      "fieldValues": "PURCHASE_ORDER (PurchaseOrder),PRODUCT_QUATATION (ProductQuatation),TAX_INVOICE (TaxInvoice)"
+    },
+    {
+      "fieldName": "orderStatus",
+      "fieldType": "Status",
+      "fieldValues": "REQUESTED (Requested),APPROVED (Approved),CANCELED (Canceled),RECEIVED (Received),COMPLETED (Completed)"
+    },
+    {
+      "fieldName": "termsAndCondition",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField2",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "PurchaseQuotation",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "purchaseQuotationDetails",
+      "otherEntityRelationshipName": "purchaseQuotation",
+      "relationshipName": "purchaseQuotationDetails",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "goodsRecived",
+      "otherEntityRelationshipName": "purchaseQuotation",
+      "relationshipName": "goodsRecived",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "securityUser",
+      "otherEntityRelationshipName": "purchaseQuotation",
+      "relationshipName": "securityUser",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "project",
+      "otherEntityRelationshipName": "purchaseQuotation",
+      "relationshipName": "project",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "clientDetails",
+      "otherEntityRelationshipName": "purchaseQuotation",
+      "relationshipName": "clientDetails",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

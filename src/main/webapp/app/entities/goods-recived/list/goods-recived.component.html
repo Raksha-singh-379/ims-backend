@@ -1,0 +1,142 @@
+<div>
+  <h2 id="page-heading" data-cy="GoodsRecivedHeading">
+    <span jhiTranslate="inventoryManagementApp.goodsRecived.home.title">Goods Reciveds</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="inventoryManagementApp.goodsRecived.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-goods-recived"
+        [routerLink]="['/goods-recived/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="inventoryManagementApp.goodsRecived.home.createLabel"> Create a new Goods Recived </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="goodsReciveds?.length === 0">
+    <span jhiTranslate="inventoryManagementApp.goodsRecived.home.notFound">No goodsReciveds found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="goodsReciveds && goodsReciveds.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="grDate">
+            <span jhiTranslate="inventoryManagementApp.goodsRecived.grDate">Gr Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="qtyOrdered">
+            <span jhiTranslate="inventoryManagementApp.goodsRecived.qtyOrdered">Qty Ordered</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="qtyRecieved">
+            <span jhiTranslate="inventoryManagementApp.goodsRecived.qtyRecieved">Qty Recieved</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="manufacturingDate">
+            <span jhiTranslate="inventoryManagementApp.goodsRecived.manufacturingDate">Manufacturing Date</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="expiryDate">
+            <span jhiTranslate="inventoryManagementApp.goodsRecived.expiryDate">Expiry Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lotNo">
+            <span jhiTranslate="inventoryManagementApp.goodsRecived.lotNo">Lot No</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <span jhiTranslate="inventoryManagementApp.goodsRecived.freeField1">Free Field 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <span jhiTranslate="inventoryManagementApp.goodsRecived.freeField2">Free Field 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField3">
+            <span jhiTranslate="inventoryManagementApp.goodsRecived.freeField3">Free Field 3</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="purchaseQuotation.id">
+            <span jhiTranslate="inventoryManagementApp.goodsRecived.purchaseQuotation">Purchase Quotation</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let goodsRecived of goodsReciveds; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/goods-recived', goodsRecived.id, 'view']">{{ goodsRecived.id }}</a>
+          </td>
+          <td>{{ goodsRecived.grDate | formatMediumDatetime }}</td>
+          <td>{{ goodsRecived.qtyOrdered }}</td>
+          <td>{{ goodsRecived.qtyRecieved }}</td>
+          <td>{{ goodsRecived.manufacturingDate | formatMediumDatetime }}</td>
+          <td>{{ goodsRecived.expiryDate | formatMediumDatetime }}</td>
+          <td>{{ goodsRecived.lotNo }}</td>
+          <td>{{ goodsRecived.freeField1 }}</td>
+          <td>{{ goodsRecived.freeField2 }}</td>
+          <td>{{ goodsRecived.freeField3 }}</td>
+          <td>
+            <div *ngIf="goodsRecived.purchaseQuotation">
+              <a [routerLink]="['/purchase-quotation', goodsRecived.purchaseQuotation?.id, 'view']">{{
+                goodsRecived.purchaseQuotation?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/goods-recived', goodsRecived.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/goods-recived', goodsRecived.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(goodsRecived)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="goodsReciveds && goodsReciveds.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

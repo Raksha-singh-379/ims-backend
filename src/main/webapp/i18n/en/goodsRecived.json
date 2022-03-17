@@ -1,0 +1,33 @@
+{
+  "inventoryManagementApp": {
+    "goodsRecived": {
+      "home": {
+        "title": "Goods Reciveds",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Goods Recived",
+        "createOrEditLabel": "Create or edit a Goods Recived",
+        "notFound": "No Goods Reciveds found"
+      },
+      "created": "A new Goods Recived is created with identifier {{ param }}",
+      "updated": "A Goods Recived is updated with identifier {{ param }}",
+      "deleted": "A Goods Recived is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Goods Recived {{ id }}?"
+      },
+      "detail": {
+        "title": "Goods Recived"
+      },
+      "id": "ID",
+      "grDate": "Gr Date",
+      "qtyOrdered": "Qty Ordered",
+      "qtyRecieved": "Qty Recieved",
+      "manufacturingDate": "Manufacturing Date",
+      "expiryDate": "Expiry Date",
+      "lotNo": "Lot No",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "purchaseQuotation": "Purchase Quotation"
+    }
+  }
+}

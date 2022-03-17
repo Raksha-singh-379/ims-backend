@@ -1,0 +1,40 @@
+{
+  "inventoryManagementApp": {
+    "wareHouse": {
+      "home": {
+        "title": "Ware Houses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Ware House",
+        "createOrEditLabel": "Create or edit a Ware House",
+        "notFound": "No Ware Houses found"
+      },
+      "created": "A new Ware House is created with identifier {{ param }}",
+      "updated": "A Ware House is updated with identifier {{ param }}",
+      "deleted": "A Ware House is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Ware House {{ id }}?"
+      },
+      "detail": {
+        "title": "Ware House"
+      },
+      "id": "ID",
+      "whName": "Wh Name",
+      "address": "Address",
+      "pincode": "Pincode",
+      "city": "City",
+      "state": "State",
+      "country": "Country",
+      "gSTDetails": "G ST Details",
+      "managerName": "Manager Name",
+      "managerEmail": "Manager Email",
+      "managerContact": "Manager Contact",
+      "contact": "Contact",
+      "isDeleted": "Is Deleted",
+      "isActive": "Is Active",
+      "wareHouseId": "Ware House Id",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "securityUser": "Security User"
+    }
+  }
+}

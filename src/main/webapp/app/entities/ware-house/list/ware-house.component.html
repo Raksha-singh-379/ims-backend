@@ -1,0 +1,158 @@
+<div>
+  <h2 id="page-heading" data-cy="WareHouseHeading">
+    <span jhiTranslate="inventoryManagementApp.wareHouse.home.title">Ware Houses</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="inventoryManagementApp.wareHouse.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-ware-house"
+        [routerLink]="['/ware-house/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="inventoryManagementApp.wareHouse.home.createLabel"> Create a new Ware House </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="wareHouses?.length === 0">
+    <span jhiTranslate="inventoryManagementApp.wareHouse.home.notFound">No wareHouses found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="wareHouses && wareHouses.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="whName">
+            <span jhiTranslate="inventoryManagementApp.wareHouse.whName">Wh Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="address">
+            <span jhiTranslate="inventoryManagementApp.wareHouse.address">Address</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="pincode">
+            <span jhiTranslate="inventoryManagementApp.wareHouse.pincode">Pincode</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="city">
+            <span jhiTranslate="inventoryManagementApp.wareHouse.city">City</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="state">
+            <span jhiTranslate="inventoryManagementApp.wareHouse.state">State</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="country">
+            <span jhiTranslate="inventoryManagementApp.wareHouse.country">Country</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="gSTDetails">
+            <span jhiTranslate="inventoryManagementApp.wareHouse.gSTDetails">G ST Details</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="managerName">
+            <span jhiTranslate="inventoryManagementApp.wareHouse.managerName">Manager Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="managerEmail">
+            <span jhiTranslate="inventoryManagementApp.wareHouse.managerEmail">Manager Email</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="managerContact">
+            <span jhiTranslate="inventoryManagementApp.wareHouse.managerContact">Manager Contact</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="contact">
+            <span jhiTranslate="inventoryManagementApp.wareHouse.contact">Contact</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isDeleted">
+            <span jhiTranslate="inventoryManagementApp.wareHouse.isDeleted">Is Deleted</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isActive">
+            <span jhiTranslate="inventoryManagementApp.wareHouse.isActive">Is Active</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="wareHouseId">
+            <span jhiTranslate="inventoryManagementApp.wareHouse.wareHouseId">Ware House Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="inventoryManagementApp.wareHouse.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="inventoryManagementApp.wareHouse.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let wareHouse of wareHouses; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/ware-house', wareHouse.id, 'view']">{{ wareHouse.id }}</a>
+          </td>
+          <td>{{ wareHouse.whName }}</td>
+          <td>{{ wareHouse.address }}</td>
+          <td>{{ wareHouse.pincode }}</td>
+          <td>{{ wareHouse.city }}</td>
+          <td>{{ wareHouse.state }}</td>
+          <td>{{ wareHouse.country }}</td>
+          <td>{{ wareHouse.gSTDetails }}</td>
+          <td>{{ wareHouse.managerName }}</td>
+          <td>{{ wareHouse.managerEmail }}</td>
+          <td>{{ wareHouse.managerContact }}</td>
+          <td>{{ wareHouse.contact }}</td>
+          <td>{{ wareHouse.isDeleted }}</td>
+          <td>{{ wareHouse.isActive }}</td>
+          <td>{{ wareHouse.wareHouseId }}</td>
+          <td>{{ wareHouse.lastModified }}</td>
+          <td>{{ wareHouse.lastModifiedBy }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/ware-house', wareHouse.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/ware-house', wareHouse.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(wareHouse)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="wareHouses && wareHouses.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

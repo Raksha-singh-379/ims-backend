@@ -1,0 +1,142 @@
+{
+  "applications": "*",
+  "changelogDate": "20220317074042",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "product",
+  "fields": [
+    {
+      "fieldName": "shortName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "chemicalFormula",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hsnNo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "materialImage",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "isDeleted",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "isActive",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "productName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "alertUnits",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "casNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "catlogNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "molecularWt",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "molecularFormula",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "chemicalName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "structureImg",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "qrCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "barCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "gstPercentage",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "productType",
+      "fieldType": "ProductType",
+      "fieldValues": "RAWMATERIAL (RawMaterial),PRODUCT (Product),BOTH (Both),OTHER (Other)"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField2",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Product",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "transferDetails",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "transferDetails",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "categories",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "categories",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "unit",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "unit",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "securityUser",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "securityUser",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "purchaseQuotationDetails",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "purchaseQuotationDetails",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

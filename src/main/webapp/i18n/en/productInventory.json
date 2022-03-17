@@ -1,0 +1,42 @@
+{
+  "inventoryManagementApp": {
+    "productInventory": {
+      "home": {
+        "title": "Product Inventories",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Product Inventory",
+        "createOrEditLabel": "Create or edit a Product Inventory",
+        "notFound": "No Product Inventories found"
+      },
+      "created": "A new Product Inventory is created with identifier {{ param }}",
+      "updated": "A Product Inventory is updated with identifier {{ param }}",
+      "deleted": "A Product Inventory is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Product Inventory {{ id }}?"
+      },
+      "detail": {
+        "title": "Product Inventory"
+      },
+      "id": "ID",
+      "inwardOutwardDate": "Inward Outward Date",
+      "inwardQty": "Inward Qty",
+      "outwardQty": "Outward Qty",
+      "totalQuanity": "Total Quanity",
+      "pricePerUnit": "Price Per Unit",
+      "lotNo": "Lot No",
+      "expiryDate": "Expiry Date",
+      "inventoryTypeId": "Inventory Type Id",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "isDeleted": "Is Deleted",
+      "isActive": "Is Active",
+      "consumptionDetails": "Consumption Details",
+      "product": "Product",
+      "productTransaction": "Product Transaction",
+      "securityUser": "Security User",
+      "wareHouse": "Ware House"
+    }
+  }
+}

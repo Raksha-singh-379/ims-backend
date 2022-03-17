@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="categories">
+      <h2 data-cy="categoriesDetailsHeading"><span jhiTranslate="inventoryManagementApp.categories.detail.title">Categories</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ categories.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.categories.categoryName">Category Name</span></dt>
+        <dd>
+          <span>{{ categories.categoryName }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.categories.categoryDescription">Category Description</span></dt>
+        <dd>
+          <span>{{ categories.categoryDescription }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.categories.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ categories.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.categories.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ categories.lastModified }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.categories.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ categories.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.categories.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ categories.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.categories.isActive">Is Active</span></dt>
+        <dd>
+          <span>{{ categories.isActive }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/categories', categories.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
