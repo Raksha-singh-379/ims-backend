@@ -44,8 +44,7 @@
       "transferDetails": "Transfer Details",
       "categories": "Categories",
       "unit": "Unit",
-      "securityUser": "Security User",
-      "purchaseQuotationDetails": "Purchase Quotation Details"
+      "securityUser": "Security User"
     }
   }
 }

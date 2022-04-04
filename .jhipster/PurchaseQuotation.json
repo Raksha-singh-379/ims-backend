@@ -75,7 +75,7 @@
     {
       "otherEntityName": "goodsRecived",
       "otherEntityRelationshipName": "purchaseQuotation",
-      "relationshipName": "goodsRecived",
+      "relationshipName": "goodsReciveds",
       "relationshipType": "one-to-many"
     },
     {
@@ -86,6 +86,7 @@
       "relationshipType": "many-to-one"
     },
     {
+      "otherEntityField": "projectName",
       "otherEntityName": "project",
       "otherEntityRelationshipName": "purchaseQuotation",
       "relationshipName": "project",

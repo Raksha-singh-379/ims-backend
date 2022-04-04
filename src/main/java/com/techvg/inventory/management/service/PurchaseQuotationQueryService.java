@@ -145,11 +145,11 @@ public class PurchaseQuotationQueryService extends QueryService<PurchaseQuotatio
                         )
                     );
             }
-            if (criteria.getGoodsRecivedId() != null) {
+            if (criteria.getGoodsRecivedsId() != null) {
                 specification =
                     specification.and(
                         buildSpecification(
-                            criteria.getGoodsRecivedId(),
+                            criteria.getGoodsRecivedsId(),
                             root -> root.join(PurchaseQuotation_.goodsReciveds, JoinType.LEFT).get(GoodsRecived_.id)
                         )
                     );

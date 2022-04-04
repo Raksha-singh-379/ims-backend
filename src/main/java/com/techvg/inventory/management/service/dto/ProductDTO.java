@@ -66,8 +66,6 @@ public class ProductDTO implements Serializable {
 
     private SecurityUserDTO securityUser;
 
-    private PurchaseQuotationDetailsDTO purchaseQuotationDetails;
-
     public Long getId() {
         return id;
     }
@@ -292,14 +290,6 @@ public class ProductDTO implements Serializable {
         this.securityUser = securityUser;
     }
 
-    public PurchaseQuotationDetailsDTO getPurchaseQuotationDetails() {
-        return purchaseQuotationDetails;
-    }
-
-    public void setPurchaseQuotationDetails(PurchaseQuotationDetailsDTO purchaseQuotationDetails) {
-        this.purchaseQuotationDetails = purchaseQuotationDetails;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -352,7 +342,6 @@ public class ProductDTO implements Serializable {
             ", categories=" + getCategories() +
             ", unit=" + getUnit() +
             ", securityUser=" + getSecurityUser() +
-            ", purchaseQuotationDetails=" + getPurchaseQuotationDetails() +
             "}";
     }
 }

@@ -56,7 +56,7 @@
           <th scope="col" jhiSortBy="securityUser.login">
             <span jhiTranslate="inventoryManagementApp.consumptionDetails.securityUser">Security User</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="project.name">
+          <th scope="col" jhiSortBy="project.projectName">
             <span jhiTranslate="inventoryManagementApp.consumptionDetails.project">Project</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="productInventory.id">
@@ -86,7 +86,7 @@
           </td>
           <td>
             <div *ngIf="consumptionDetails.project">
-              <a [routerLink]="['/project', consumptionDetails.project?.id, 'view']">{{ consumptionDetails.project?.name }}</a>
+              <a [routerLink]="['/project', consumptionDetails.project?.id, 'view']">{{ consumptionDetails.project?.projectName }}</a>
             </div>
           </td>
           <td>

@@ -27,16 +27,18 @@ public interface PurchaseQuotationRepository extends JpaRepository<PurchaseQuota
     }
 
     @Query(
-        value = "select distinct purchaseQuotation from PurchaseQuotation purchaseQuotation left join fetch purchaseQuotation.securityUser",
+        value = "select distinct purchaseQuotation from PurchaseQuotation purchaseQuotation left join fetch purchaseQuotation.securityUser left join fetch purchaseQuotation.project",
         countQuery = "select count(distinct purchaseQuotation) from PurchaseQuotation purchaseQuotation"
     )
     Page<PurchaseQuotation> findAllWithToOneRelationships(Pageable pageable);
 
-    @Query("select distinct purchaseQuotation from PurchaseQuotation purchaseQuotation left join fetch purchaseQuotation.securityUser")
+    @Query(
+        "select distinct purchaseQuotation from PurchaseQuotation purchaseQuotation left join fetch purchaseQuotation.securityUser left join fetch purchaseQuotation.project"
+    )
     List<PurchaseQuotation> findAllWithToOneRelationships();
 
     @Query(
-        "select purchaseQuotation from PurchaseQuotation purchaseQuotation left join fetch purchaseQuotation.securityUser where purchaseQuotation.id =:id"
+        "select purchaseQuotation from PurchaseQuotation purchaseQuotation left join fetch purchaseQuotation.securityUser left join fetch purchaseQuotation.project where purchaseQuotation.id =:id"
     )
     Optional<PurchaseQuotation> findOneWithToOneRelationships(@Param("id") Long id);
 }
