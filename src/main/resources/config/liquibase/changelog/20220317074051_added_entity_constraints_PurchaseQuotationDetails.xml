@@ -8,6 +8,12 @@
     -->
     <changeSet id="20220317074051-2" author="jhipster">
 
+        <addForeignKeyConstraint baseColumnNames="product_id"
+                                 baseTableName="purchase_quotation_details"
+                                 constraintName="fk_purchase_quotation_details__product_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="product"/>
+
         <addForeignKeyConstraint baseColumnNames="purchase_quotation_id"
                                  baseTableName="purchase_quotation_details"
                                  constraintName="fk_purchase_quotation_details__purchase_quotation_id"

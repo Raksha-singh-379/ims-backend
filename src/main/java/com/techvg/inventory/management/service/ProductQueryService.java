@@ -189,15 +189,6 @@ public class ProductQueryService extends QueryService<Product> {
                         )
                     );
             }
-            if (criteria.getPurchaseQuotationDetailsId() != null) {
-                specification =
-                    specification.and(
-                        buildSpecification(
-                            criteria.getPurchaseQuotationDetailsId(),
-                            root -> root.join(Product_.purchaseQuotationDetails, JoinType.LEFT).get(PurchaseQuotationDetails_.id)
-                        )
-                    );
-            }
         }
         return specification;
     }

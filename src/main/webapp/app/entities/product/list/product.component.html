@@ -111,10 +111,6 @@
           <th scope="col" jhiSortBy="securityUser.login">
             <span jhiTranslate="inventoryManagementApp.product.securityUser">Security User</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="purchaseQuotationDetails.id">
-            <span jhiTranslate="inventoryManagementApp.product.purchaseQuotationDetails">Purchase Quotation Details</span>
-            <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -167,13 +163,6 @@
           <td>
             <div *ngIf="product.securityUser">
               <a [routerLink]="['/security-user', product.securityUser?.id, 'view']">{{ product.securityUser?.login }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="product.purchaseQuotationDetails">
-              <a [routerLink]="['/purchase-quotation-details', product.purchaseQuotationDetails?.id, 'view']">{{
-                product.purchaseQuotationDetails?.id
-              }}</a>
             </div>
           </td>
           <td class="text-end">

@@ -338,37 +338,6 @@
             </option>
           </select>
         </div>
-
-        <div class="row mb-3">
-          <label
-            class="form-label"
-            jhiTranslate="inventoryManagementApp.product.purchaseQuotationDetails"
-            for="field_purchaseQuotationDetails"
-            >Purchase Quotation Details</label
-          >
-          <select
-            class="form-control"
-            id="field_purchaseQuotationDetails"
-            data-cy="purchaseQuotationDetails"
-            name="purchaseQuotationDetails"
-            formControlName="purchaseQuotationDetails"
-          >
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="
-                purchaseQuotationDetailsOption.id === editForm.get('purchaseQuotationDetails')!.value?.id
-                  ? editForm.get('purchaseQuotationDetails')!.value
-                  : purchaseQuotationDetailsOption
-              "
-              *ngFor="
-                let purchaseQuotationDetailsOption of purchaseQuotationDetailsSharedCollection;
-                trackBy: trackPurchaseQuotationDetailsById
-              "
-            >
-              {{ purchaseQuotationDetailsOption.id }}
-            </option>
-          </select>
-        </div>
       </div>
 
       <div>
