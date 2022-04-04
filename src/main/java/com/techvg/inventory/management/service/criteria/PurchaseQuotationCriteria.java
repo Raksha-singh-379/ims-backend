@@ -93,7 +93,7 @@ public class PurchaseQuotationCriteria implements Serializable, Criteria {
 
     private LongFilter purchaseQuotationDetailsId;
 
-    private LongFilter goodsRecivedId;
+    private LongFilter goodsRecivedsId;
 
     private LongFilter securityUserId;
 
@@ -121,7 +121,7 @@ public class PurchaseQuotationCriteria implements Serializable, Criteria {
         this.freeField1 = other.freeField1 == null ? null : other.freeField1.copy();
         this.freeField2 = other.freeField2 == null ? null : other.freeField2.copy();
         this.purchaseQuotationDetailsId = other.purchaseQuotationDetailsId == null ? null : other.purchaseQuotationDetailsId.copy();
-        this.goodsRecivedId = other.goodsRecivedId == null ? null : other.goodsRecivedId.copy();
+        this.goodsRecivedsId = other.goodsRecivedsId == null ? null : other.goodsRecivedsId.copy();
         this.securityUserId = other.securityUserId == null ? null : other.securityUserId.copy();
         this.projectId = other.projectId == null ? null : other.projectId.copy();
         this.clientDetailsId = other.clientDetailsId == null ? null : other.clientDetailsId.copy();
@@ -358,19 +358,19 @@ public class PurchaseQuotationCriteria implements Serializable, Criteria {
         this.purchaseQuotationDetailsId = purchaseQuotationDetailsId;
     }
 
-    public LongFilter getGoodsRecivedId() {
-        return goodsRecivedId;
+    public LongFilter getGoodsRecivedsId() {
+        return goodsRecivedsId;
     }
 
-    public LongFilter goodsRecivedId() {
-        if (goodsRecivedId == null) {
-            goodsRecivedId = new LongFilter();
+    public LongFilter goodsRecivedsId() {
+        if (goodsRecivedsId == null) {
+            goodsRecivedsId = new LongFilter();
         }
-        return goodsRecivedId;
+        return goodsRecivedsId;
     }
 
-    public void setGoodsRecivedId(LongFilter goodsRecivedId) {
-        this.goodsRecivedId = goodsRecivedId;
+    public void setGoodsRecivedsId(LongFilter goodsRecivedsId) {
+        this.goodsRecivedsId = goodsRecivedsId;
     }
 
     public LongFilter getSecurityUserId() {
@@ -451,7 +451,7 @@ public class PurchaseQuotationCriteria implements Serializable, Criteria {
             Objects.equals(freeField1, that.freeField1) &&
             Objects.equals(freeField2, that.freeField2) &&
             Objects.equals(purchaseQuotationDetailsId, that.purchaseQuotationDetailsId) &&
-            Objects.equals(goodsRecivedId, that.goodsRecivedId) &&
+            Objects.equals(goodsRecivedsId, that.goodsRecivedsId) &&
             Objects.equals(securityUserId, that.securityUserId) &&
             Objects.equals(projectId, that.projectId) &&
             Objects.equals(clientDetailsId, that.clientDetailsId) &&
@@ -477,7 +477,7 @@ public class PurchaseQuotationCriteria implements Serializable, Criteria {
             freeField1,
             freeField2,
             purchaseQuotationDetailsId,
-            goodsRecivedId,
+            goodsRecivedsId,
             securityUserId,
             projectId,
             clientDetailsId,
@@ -504,7 +504,7 @@ public class PurchaseQuotationCriteria implements Serializable, Criteria {
             (freeField1 != null ? "freeField1=" + freeField1 + ", " : "") +
             (freeField2 != null ? "freeField2=" + freeField2 + ", " : "") +
             (purchaseQuotationDetailsId != null ? "purchaseQuotationDetailsId=" + purchaseQuotationDetailsId + ", " : "") +
-            (goodsRecivedId != null ? "goodsRecivedId=" + goodsRecivedId + ", " : "") +
+            (goodsRecivedsId != null ? "goodsRecivedsId=" + goodsRecivedsId + ", " : "") +
             (securityUserId != null ? "securityUserId=" + securityUserId + ", " : "") +
             (projectId != null ? "projectId=" + projectId + ", " : "") +
             (clientDetailsId != null ? "clientDetailsId=" + clientDetailsId + ", " : "") +

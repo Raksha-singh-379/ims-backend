@@ -72,10 +72,7 @@ public class ProductInventory implements Serializable {
     private Set<ConsumptionDetails> consumptionDetails = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnoreProperties(
-        value = { "transferDetails", "categories", "unit", "securityUser", "purchaseQuotationDetails" },
-        allowSetters = true
-    )
+    @JsonIgnoreProperties(value = { "transferDetails", "categories", "unit", "securityUser" }, allowSetters = true)
     private Product product;
 
     @ManyToOne

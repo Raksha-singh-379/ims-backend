@@ -129,7 +129,7 @@ public class PurchaseQuotationDetailsQueryService extends QueryService<PurchaseQ
                     specification.and(
                         buildSpecification(
                             criteria.getProductId(),
-                            root -> root.join(PurchaseQuotationDetails_.products, JoinType.LEFT).get(Product_.id)
+                            root -> root.join(PurchaseQuotationDetails_.product, JoinType.LEFT).get(Product_.id)
                         )
                     );
             }

@@ -130,12 +130,6 @@
       "otherEntityRelationshipName": "product",
       "relationshipName": "securityUser",
       "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityName": "purchaseQuotationDetails",
-      "otherEntityRelationshipName": "product",
-      "relationshipName": "purchaseQuotationDetails",
-      "relationshipType": "many-to-one"
     }
   ],
   "service": "serviceClass"

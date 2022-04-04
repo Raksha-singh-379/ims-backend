@@ -2,7 +2,6 @@ import { ITransferDetails } from 'app/entities/transfer-details/transfer-details
 import { ICategories } from 'app/entities/categories/categories.model';
 import { IUnit } from 'app/entities/unit/unit.model';
 import { ISecurityUser } from 'app/entities/security-user/security-user.model';
-import { IPurchaseQuotationDetails } from 'app/entities/purchase-quotation-details/purchase-quotation-details.model';
 import { ProductType } from 'app/entities/enumerations/product-type.model';
 
 export interface IProduct {
@@ -35,7 +34,6 @@ export interface IProduct {
   categories?: ICategories | null;
   unit?: IUnit | null;
   securityUser?: ISecurityUser | null;
-  purchaseQuotationDetails?: IPurchaseQuotationDetails | null;
 }
 
 export class Product implements IProduct {
@@ -68,8 +66,7 @@ export class Product implements IProduct {
     public transferDetails?: ITransferDetails[] | null,
     public categories?: ICategories | null,
     public unit?: IUnit | null,
-    public securityUser?: ISecurityUser | null,
-    public purchaseQuotationDetails?: IPurchaseQuotationDetails | null
+    public securityUser?: ISecurityUser | null
   ) {
     this.isDeleted = this.isDeleted ?? false;
     this.isActive = this.isActive ?? false;

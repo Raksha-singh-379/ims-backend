@@ -81,7 +81,7 @@
         <dt><span jhiTranslate="inventoryManagementApp.purchaseQuotation.project">Project</span></dt>
         <dd>
           <div *ngIf="purchaseQuotation.project">
-            <a [routerLink]="['/project', purchaseQuotation.project?.id, 'view']">{{ purchaseQuotation.project?.id }}</a>
+            <a [routerLink]="['/project', purchaseQuotation.project?.id, 'view']">{{ purchaseQuotation.project?.projectName }}</a>
           </div>
         </dd>
         <dt><span jhiTranslate="inventoryManagementApp.purchaseQuotation.clientDetails">Client Details</span></dt>

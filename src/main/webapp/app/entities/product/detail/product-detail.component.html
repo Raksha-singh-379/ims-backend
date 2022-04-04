@@ -127,14 +127,6 @@
             <a [routerLink]="['/security-user', product.securityUser?.id, 'view']">{{ product.securityUser?.login }}</a>
           </div>
         </dd>
-        <dt><span jhiTranslate="inventoryManagementApp.product.purchaseQuotationDetails">Purchase Quotation Details</span></dt>
-        <dd>
-          <div *ngIf="product.purchaseQuotationDetails">
-            <a [routerLink]="['/purchase-quotation-details', product.purchaseQuotationDetails?.id, 'view']">{{
-              product.purchaseQuotationDetails?.id
-            }}</a>
-          </div>
-        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

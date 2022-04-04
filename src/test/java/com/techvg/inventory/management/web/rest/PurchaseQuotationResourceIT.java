@@ -1275,28 +1275,28 @@ class PurchaseQuotationResourceIT {
 
     @Test
     @Transactional
-    void getAllPurchaseQuotationsByGoodsRecivedIsEqualToSomething() throws Exception {
+    void getAllPurchaseQuotationsByGoodsRecivedsIsEqualToSomething() throws Exception {
         // Initialize the database
         purchaseQuotationRepository.saveAndFlush(purchaseQuotation);
-        GoodsRecived goodsRecived;
+        GoodsRecived goodsReciveds;
         if (TestUtil.findAll(em, GoodsRecived.class).isEmpty()) {
-            goodsRecived = GoodsRecivedResourceIT.createEntity(em);
-            em.persist(goodsRecived);
+            goodsReciveds = GoodsRecivedResourceIT.createEntity(em);
+            em.persist(goodsReciveds);
             em.flush();
         } else {
-            goodsRecived = TestUtil.findAll(em, GoodsRecived.class).get(0);
+            goodsReciveds = TestUtil.findAll(em, GoodsRecived.class).get(0);
         }
-        em.persist(goodsRecived);
+        em.persist(goodsReciveds);
         em.flush();
-        purchaseQuotation.addGoodsRecived(goodsRecived);
+        purchaseQuotation.addGoodsReciveds(goodsReciveds);
         purchaseQuotationRepository.saveAndFlush(purchaseQuotation);
-        Long goodsRecivedId = goodsRecived.getId();
+        Long goodsRecivedsId = goodsReciveds.getId();
 
-        // Get all the purchaseQuotationList where goodsRecived equals to goodsRecivedId
-        defaultPurchaseQuotationShouldBeFound("goodsRecivedId.equals=" + goodsRecivedId);
+        // Get all the purchaseQuotationList where goodsReciveds equals to goodsRecivedsId
+        defaultPurchaseQuotationShouldBeFound("goodsRecivedsId.equals=" + goodsRecivedsId);
 
-        // Get all the purchaseQuotationList where goodsRecived equals to (goodsRecivedId + 1)
-        defaultPurchaseQuotationShouldNotBeFound("goodsRecivedId.equals=" + (goodsRecivedId + 1));
+        // Get all the purchaseQuotationList where goodsReciveds equals to (goodsRecivedsId + 1)
+        defaultPurchaseQuotationShouldNotBeFound("goodsRecivedsId.equals=" + (goodsRecivedsId + 1));
     }
 
     @Test

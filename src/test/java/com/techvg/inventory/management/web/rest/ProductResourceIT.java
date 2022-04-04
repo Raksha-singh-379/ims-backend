@@ -8,7 +8,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.techvg.inventory.management.IntegrationTest;
 import com.techvg.inventory.management.domain.Categories;
 import com.techvg.inventory.management.domain.Product;
-import com.techvg.inventory.management.domain.PurchaseQuotationDetails;
 import com.techvg.inventory.management.domain.SecurityUser;
 import com.techvg.inventory.management.domain.TransferDetails;
 import com.techvg.inventory.management.domain.Unit;
@@ -2152,32 +2151,6 @@ class ProductResourceIT {
 
         // Get all the productList where securityUser equals to (securityUserId + 1)
         defaultProductShouldNotBeFound("securityUserId.equals=" + (securityUserId + 1));
-    }
-
-    @Test
-    @Transactional
-    void getAllProductsByPurchaseQuotationDetailsIsEqualToSomething() throws Exception {
-        // Initialize the database
-        productRepository.saveAndFlush(product);
-        PurchaseQuotationDetails purchaseQuotationDetails;
-        if (TestUtil.findAll(em, PurchaseQuotationDetails.class).isEmpty()) {
-            purchaseQuotationDetails = PurchaseQuotationDetailsResourceIT.createEntity(em);
-            em.persist(purchaseQuotationDetails);
-            em.flush();
-        } else {
-            purchaseQuotationDetails = TestUtil.findAll(em, PurchaseQuotationDetails.class).get(0);
-        }
-        em.persist(purchaseQuotationDetails);
-        em.flush();
-        product.setPurchaseQuotationDetails(purchaseQuotationDetails);
-        productRepository.saveAndFlush(product);
-        Long purchaseQuotationDetailsId = purchaseQuotationDetails.getId();
-
-        // Get all the productList where purchaseQuotationDetails equals to purchaseQuotationDetailsId
-        defaultProductShouldBeFound("purchaseQuotationDetailsId.equals=" + purchaseQuotationDetailsId);
-
-        // Get all the productList where purchaseQuotationDetails equals to (purchaseQuotationDetailsId + 1)
-        defaultProductShouldNotBeFound("purchaseQuotationDetailsId.equals=" + (purchaseQuotationDetailsId + 1));
     }
 
     /**

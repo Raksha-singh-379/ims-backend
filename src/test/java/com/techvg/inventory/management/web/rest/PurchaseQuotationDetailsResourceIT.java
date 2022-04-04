@@ -1096,7 +1096,7 @@ class PurchaseQuotationDetailsResourceIT {
         }
         em.persist(product);
         em.flush();
-        purchaseQuotationDetails.addProduct(product);
+        purchaseQuotationDetails.setProduct(product);
         purchaseQuotationDetailsRepository.saveAndFlush(purchaseQuotationDetails);
         Long productId = product.getId();
 

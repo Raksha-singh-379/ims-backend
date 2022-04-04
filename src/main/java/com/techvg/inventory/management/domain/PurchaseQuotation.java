@@ -69,7 +69,7 @@ public class PurchaseQuotation implements Serializable {
 
     @OneToMany(mappedBy = "purchaseQuotation")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "products", "purchaseQuotation" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "product", "purchaseQuotation" }, allowSetters = true)
     private Set<PurchaseQuotationDetails> purchaseQuotationDetails = new HashSet<>();
 
     @OneToMany(mappedBy = "purchaseQuotation")
@@ -321,13 +321,13 @@ public class PurchaseQuotation implements Serializable {
         return this;
     }
 
-    public PurchaseQuotation addGoodsRecived(GoodsRecived goodsRecived) {
+    public PurchaseQuotation addGoodsReciveds(GoodsRecived goodsRecived) {
         this.goodsReciveds.add(goodsRecived);
         goodsRecived.setPurchaseQuotation(this);
         return this;
     }
 
-    public PurchaseQuotation removeGoodsRecived(GoodsRecived goodsRecived) {
+    public PurchaseQuotation removeGoodsReciveds(GoodsRecived goodsRecived) {
         this.goodsReciveds.remove(goodsRecived);
         goodsRecived.setPurchaseQuotation(null);
         return this;

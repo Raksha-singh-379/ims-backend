@@ -51,7 +51,7 @@
         <dt><span jhiTranslate="inventoryManagementApp.consumptionDetails.project">Project</span></dt>
         <dd>
           <div *ngIf="consumptionDetails.project">
-            <a [routerLink]="['/project', consumptionDetails.project?.id, 'view']">{{ consumptionDetails.project?.name }}</a>
+            <a [routerLink]="['/project', consumptionDetails.project?.id, 'view']">{{ consumptionDetails.project?.projectName }}</a>
           </div>
         </dd>
         <dt><span jhiTranslate="inventoryManagementApp.consumptionDetails.productInventory">Product Inventory</span></dt>

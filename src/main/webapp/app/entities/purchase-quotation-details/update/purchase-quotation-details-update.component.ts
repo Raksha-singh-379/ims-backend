@@ -7,6 +7,8 @@ import { finalize, map } from 'rxjs/operators';
 
 import { IPurchaseQuotationDetails, PurchaseQuotationDetails } from '../purchase-quotation-details.model';
 import { PurchaseQuotationDetailsService } from '../service/purchase-quotation-details.service';
+import { IProduct } from 'app/entities/product/product.model';
+import { ProductService } from 'app/entities/product/service/product.service';
 import { IPurchaseQuotation } from 'app/entities/purchase-quotation/purchase-quotation.model';
 import { PurchaseQuotationService } from 'app/entities/purchase-quotation/service/purchase-quotation.service';
 
@@ -17,6 +19,7 @@ import { PurchaseQuotationService } from 'app/entities/purchase-quotation/servic
 export class PurchaseQuotationDetailsUpdateComponent implements OnInit {
   isSaving = false;
 
+  productsSharedCollection: IProduct[] = [];
   purchaseQuotationsSharedCollection: IPurchaseQuotation[] = [];
 
   editForm = this.fb.group({
@@ -30,11 +33,13 @@ export class PurchaseQuotationDetailsUpdateComponent implements OnInit {
     lastModifiedBy: [],
     freeField1: [],
     freeField2: [],
+    product: [],
     purchaseQuotation: [],
   });
 
   constructor(
     protected purchaseQuotationDetailsService: PurchaseQuotationDetailsService,
+    protected productService: ProductService,
     protected purchaseQuotationService: PurchaseQuotationService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
@@ -60,6 +65,10 @@ export class PurchaseQuotationDetailsUpdateComponent implements OnInit {
     } else {
       this.subscribeToSaveResponse(this.purchaseQuotationDetailsService.create(purchaseQuotationDetails));
     }
+  }
+
+  trackProductById(index: number, item: IProduct): number {
+    return item.id!;
   }
 
   trackPurchaseQuotationById(index: number, item: IPurchaseQuotation): number {
@@ -97,9 +106,14 @@ export class PurchaseQuotationDetailsUpdateComponent implements OnInit {
       lastModifiedBy: purchaseQuotationDetails.lastModifiedBy,
       freeField1: purchaseQuotationDetails.freeField1,
       freeField2: purchaseQuotationDetails.freeField2,
+      product: purchaseQuotationDetails.product,
       purchaseQuotation: purchaseQuotationDetails.purchaseQuotation,
     });
 
+    this.productsSharedCollection = this.productService.addProductToCollectionIfMissing(
+      this.productsSharedCollection,
+      purchaseQuotationDetails.product
+    );
     this.purchaseQuotationsSharedCollection = this.purchaseQuotationService.addPurchaseQuotationToCollectionIfMissing(
       this.purchaseQuotationsSharedCollection,
       purchaseQuotationDetails.purchaseQuotation
@@ -107,6 +121,14 @@ export class PurchaseQuotationDetailsUpdateComponent implements OnInit {
   }
 
   protected loadRelationshipsOptions(): void {
+    this.productService
+      .query()
+      .pipe(map((res: HttpResponse<IProduct[]>) => res.body ?? []))
+      .pipe(
+        map((products: IProduct[]) => this.productService.addProductToCollectionIfMissing(products, this.editForm.get('product')!.value))
+      )
+      .subscribe((products: IProduct[]) => (this.productsSharedCollection = products));
+
     this.purchaseQuotationService
       .query()
       .pipe(map((res: HttpResponse<IPurchaseQuotation[]>) => res.body ?? []))
@@ -134,6 +156,7 @@ export class PurchaseQuotationDetailsUpdateComponent implements OnInit {
       lastModifiedBy: this.editForm.get(['lastModifiedBy'])!.value,
       freeField1: this.editForm.get(['freeField1'])!.value,
       freeField2: this.editForm.get(['freeField2'])!.value,
+      product: this.editForm.get(['product'])!.value,
       purchaseQuotation: this.editForm.get(['purchaseQuotation'])!.value,
     };
   }
