@@ -218,7 +218,7 @@
               [ngValue]="projectOption.id === editForm.get('project')!.value?.id ? editForm.get('project')!.value : projectOption"
               *ngFor="let projectOption of projectsSharedCollection; trackBy: trackProjectById"
             >
-              {{ projectOption.id }}
+              {{ projectOption.projectName }}
             </option>
           </select>
         </div>

@@ -95,9 +95,6 @@
             <column name="security_user_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="purchase_quotation_details_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>

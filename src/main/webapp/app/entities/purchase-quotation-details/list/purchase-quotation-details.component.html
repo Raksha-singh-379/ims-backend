@@ -70,6 +70,9 @@
             <span jhiTranslate="inventoryManagementApp.purchaseQuotationDetails.freeField2">Free Field 2</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="product.id">
+            <span jhiTranslate="inventoryManagementApp.purchaseQuotationDetails.product">Product</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="purchaseQuotation.id">
             <span jhiTranslate="inventoryManagementApp.purchaseQuotationDetails.purchaseQuotation">Purchase Quotation</span>
             <fa-icon icon="sort"></fa-icon>
@@ -91,6 +94,11 @@
           <td>{{ purchaseQuotationDetails.lastModifiedBy }}</td>
           <td>{{ purchaseQuotationDetails.freeField1 }}</td>
           <td>{{ purchaseQuotationDetails.freeField2 }}</td>
+          <td>
+            <div *ngIf="purchaseQuotationDetails.product">
+              <a [routerLink]="['/product', purchaseQuotationDetails.product?.id, 'view']">{{ purchaseQuotationDetails.product?.id }}</a>
+            </div>
+          </td>
           <td>
             <div *ngIf="purchaseQuotationDetails.purchaseQuotation">
               <a [routerLink]="['/purchase-quotation', purchaseQuotationDetails.purchaseQuotation?.id, 'view']">{{

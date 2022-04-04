@@ -12,7 +12,7 @@ export interface IPurchaseQuotationDetails {
   lastModifiedBy?: string | null;
   freeField1?: string | null;
   freeField2?: string | null;
-  products?: IProduct[] | null;
+  product?: IProduct | null;
   purchaseQuotation?: IPurchaseQuotation | null;
 }
 
@@ -28,7 +28,7 @@ export class PurchaseQuotationDetails implements IPurchaseQuotationDetails {
     public lastModifiedBy?: string | null,
     public freeField1?: string | null,
     public freeField2?: string | null,
-    public products?: IProduct[] | null,
+    public product?: IProduct | null,
     public purchaseQuotation?: IPurchaseQuotation | null
   ) {}
 }

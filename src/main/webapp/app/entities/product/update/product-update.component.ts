@@ -16,8 +16,6 @@ import { IUnit } from 'app/entities/unit/unit.model';
 import { UnitService } from 'app/entities/unit/service/unit.service';
 import { ISecurityUser } from 'app/entities/security-user/security-user.model';
 import { SecurityUserService } from 'app/entities/security-user/service/security-user.service';
-import { IPurchaseQuotationDetails } from 'app/entities/purchase-quotation-details/purchase-quotation-details.model';
-import { PurchaseQuotationDetailsService } from 'app/entities/purchase-quotation-details/service/purchase-quotation-details.service';
 import { ProductType } from 'app/entities/enumerations/product-type.model';
 
 @Component({
@@ -31,7 +29,6 @@ export class ProductUpdateComponent implements OnInit {
   categoriesSharedCollection: ICategories[] = [];
   unitsSharedCollection: IUnit[] = [];
   securityUsersSharedCollection: ISecurityUser[] = [];
-  purchaseQuotationDetailsSharedCollection: IPurchaseQuotationDetails[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -62,7 +59,6 @@ export class ProductUpdateComponent implements OnInit {
     categories: [],
     unit: [],
     securityUser: [],
-    purchaseQuotationDetails: [],
   });
 
   constructor(
@@ -72,7 +68,6 @@ export class ProductUpdateComponent implements OnInit {
     protected categoriesService: CategoriesService,
     protected unitService: UnitService,
     protected securityUserService: SecurityUserService,
-    protected purchaseQuotationDetailsService: PurchaseQuotationDetailsService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
@@ -128,10 +123,6 @@ export class ProductUpdateComponent implements OnInit {
     return item.id!;
   }
 
-  trackPurchaseQuotationDetailsById(index: number, item: IPurchaseQuotationDetails): number {
-    return item.id!;
-  }
-
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IProduct>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),
@@ -181,7 +172,6 @@ export class ProductUpdateComponent implements OnInit {
       categories: product.categories,
       unit: product.unit,
       securityUser: product.securityUser,
-      purchaseQuotationDetails: product.purchaseQuotationDetails,
     });
 
     this.categoriesSharedCollection = this.categoriesService.addCategoriesToCollectionIfMissing(
@@ -192,10 +182,6 @@ export class ProductUpdateComponent implements OnInit {
     this.securityUsersSharedCollection = this.securityUserService.addSecurityUserToCollectionIfMissing(
       this.securityUsersSharedCollection,
       product.securityUser
-    );
-    this.purchaseQuotationDetailsSharedCollection = this.purchaseQuotationDetailsService.addPurchaseQuotationDetailsToCollectionIfMissing(
-      this.purchaseQuotationDetailsSharedCollection,
-      product.purchaseQuotationDetails
     );
   }
 
@@ -225,22 +211,6 @@ export class ProductUpdateComponent implements OnInit {
         )
       )
       .subscribe((securityUsers: ISecurityUser[]) => (this.securityUsersSharedCollection = securityUsers));
-
-    this.purchaseQuotationDetailsService
-      .query()
-      .pipe(map((res: HttpResponse<IPurchaseQuotationDetails[]>) => res.body ?? []))
-      .pipe(
-        map((purchaseQuotationDetails: IPurchaseQuotationDetails[]) =>
-          this.purchaseQuotationDetailsService.addPurchaseQuotationDetailsToCollectionIfMissing(
-            purchaseQuotationDetails,
-            this.editForm.get('purchaseQuotationDetails')!.value
-          )
-        )
-      )
-      .subscribe(
-        (purchaseQuotationDetails: IPurchaseQuotationDetails[]) =>
-          (this.purchaseQuotationDetailsSharedCollection = purchaseQuotationDetails)
-      );
   }
 
   protected createFromForm(): IProduct {
@@ -274,7 +244,6 @@ export class ProductUpdateComponent implements OnInit {
       categories: this.editForm.get(['categories'])!.value,
       unit: this.editForm.get(['unit'])!.value,
       securityUser: this.editForm.get(['securityUser'])!.value,
-      purchaseQuotationDetails: this.editForm.get(['purchaseQuotationDetails'])!.value,
     };
   }
 }

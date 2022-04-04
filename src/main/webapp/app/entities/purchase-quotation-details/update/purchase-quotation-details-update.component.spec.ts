@@ -8,6 +8,8 @@ import { of, Subject, from } from 'rxjs';
 
 import { PurchaseQuotationDetailsService } from '../service/purchase-quotation-details.service';
 import { IPurchaseQuotationDetails, PurchaseQuotationDetails } from '../purchase-quotation-details.model';
+import { IProduct } from 'app/entities/product/product.model';
+import { ProductService } from 'app/entities/product/service/product.service';
 import { IPurchaseQuotation } from 'app/entities/purchase-quotation/purchase-quotation.model';
 import { PurchaseQuotationService } from 'app/entities/purchase-quotation/service/purchase-quotation.service';
 
@@ -18,6 +20,7 @@ describe('PurchaseQuotationDetails Management Update Component', () => {
   let fixture: ComponentFixture<PurchaseQuotationDetailsUpdateComponent>;
   let activatedRoute: ActivatedRoute;
   let purchaseQuotationDetailsService: PurchaseQuotationDetailsService;
+  let productService: ProductService;
   let purchaseQuotationService: PurchaseQuotationService;
 
   beforeEach(() => {
@@ -40,12 +43,32 @@ describe('PurchaseQuotationDetails Management Update Component', () => {
     fixture = TestBed.createComponent(PurchaseQuotationDetailsUpdateComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);
     purchaseQuotationDetailsService = TestBed.inject(PurchaseQuotationDetailsService);
+    productService = TestBed.inject(ProductService);
     purchaseQuotationService = TestBed.inject(PurchaseQuotationService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
+    it('Should call Product query and add missing value', () => {
+      const purchaseQuotationDetails: IPurchaseQuotationDetails = { id: 456 };
+      const product: IProduct = { id: 73539 };
+      purchaseQuotationDetails.product = product;
+
+      const productCollection: IProduct[] = [{ id: 38447 }];
+      jest.spyOn(productService, 'query').mockReturnValue(of(new HttpResponse({ body: productCollection })));
+      const additionalProducts = [product];
+      const expectedCollection: IProduct[] = [...additionalProducts, ...productCollection];
+      jest.spyOn(productService, 'addProductToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ purchaseQuotationDetails });
+      comp.ngOnInit();
+
+      expect(productService.query).toHaveBeenCalled();
+      expect(productService.addProductToCollectionIfMissing).toHaveBeenCalledWith(productCollection, ...additionalProducts);
+      expect(comp.productsSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should call PurchaseQuotation query and add missing value', () => {
       const purchaseQuotationDetails: IPurchaseQuotationDetails = { id: 456 };
       const purchaseQuotation: IPurchaseQuotation = { id: 97167 };
@@ -70,6 +93,8 @@ describe('PurchaseQuotationDetails Management Update Component', () => {
 
     it('Should update editForm', () => {
       const purchaseQuotationDetails: IPurchaseQuotationDetails = { id: 456 };
+      const product: IProduct = { id: 4721 };
+      purchaseQuotationDetails.product = product;
       const purchaseQuotation: IPurchaseQuotation = { id: 95286 };
       purchaseQuotationDetails.purchaseQuotation = purchaseQuotation;
 
@@ -77,6 +102,7 @@ describe('PurchaseQuotationDetails Management Update Component', () => {
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(purchaseQuotationDetails));
+      expect(comp.productsSharedCollection).toContain(product);
       expect(comp.purchaseQuotationsSharedCollection).toContain(purchaseQuotation);
     });
   });
@@ -146,6 +172,14 @@ describe('PurchaseQuotationDetails Management Update Component', () => {
   });
 
   describe('Tracking relationships identifiers', () => {
+    describe('trackProductById', () => {
+      it('Should return tracked Product primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackProductById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
+    });
+
     describe('trackPurchaseQuotationById', () => {
       it('Should return tracked PurchaseQuotation primary key', () => {
         const entity = { id: 123 };
