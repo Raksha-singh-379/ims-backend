@@ -9,6 +9,7 @@ import { IClientDetails } from '../client-details.model';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { ClientDetailsService } from '../service/client-details.service';
 import { ClientDetailsDeleteDialogComponent } from '../delete/client-details-delete-dialog.component';
+import { DataUtils } from 'app/core/util/data-util.service';
 
 @Component({
   selector: 'jhi-client-details',
@@ -27,6 +28,7 @@ export class ClientDetailsComponent implements OnInit {
   constructor(
     protected clientDetailsService: ClientDetailsService,
     protected activatedRoute: ActivatedRoute,
+    protected dataUtils: DataUtils,
     protected router: Router,
     protected modalService: NgbModal
   ) {}
@@ -59,6 +61,14 @@ export class ClientDetailsComponent implements OnInit {
 
   trackId(index: number, item: IClientDetails): number {
     return item.id!;
+  }
+
+  byteSize(base64String: string): string {
+    return this.dataUtils.byteSize(base64String);
+  }
+
+  openFile(base64String: string, contentType: string | null | undefined): void {
+    return this.dataUtils.openFile(base64String, contentType);
   }
 
   delete(clientDetails: IClientDetails): void {

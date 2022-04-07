@@ -36,7 +36,7 @@
                 <constraints nullable="true" />
             </column>
             <column name="gstin_number" type="varchar(255)">
-                <constraints nullable="true" unique="true" uniqueConstraintName="ux_client_details__gstin_number" />
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_client_details__gstin_number" />
             </column>
             <column name="description" type="varchar(255)">
                 <constraints nullable="true" />
@@ -48,6 +48,48 @@
                 <constraints nullable="true" />
             </column>
             <column name="free_field_1" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="is_approved" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="name_of_beneficiary" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="account_number" type="varchar(255)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_client_details__account_number" />
+            </column>
+            <column name="bank_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="account_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="ifsc_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="gst_certificate_image" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="gst_certificate_image_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pan_card_image" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="pan_card_image_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cancelled_cheque_image" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="cancelled_cheque_image_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="ud_yog_aadhar_image" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="ud_yog_aadhar_image_content_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <column name="last_modified" type="varchar(255)">
@@ -89,6 +131,20 @@
             <column name="client_type" type="string"/>
             <column name="isactivated" type="boolean"/>
             <column name="free_field_1" type="string"/>
+            <column name="is_approved" type="boolean"/>
+            <column name="name_of_beneficiary" type="string"/>
+            <column name="account_number" type="string"/>
+            <column name="bank_name" type="string"/>
+            <column name="account_type" type="string"/>
+            <column name="ifsc_code" type="string"/>
+            <column name="gst_certificate_image" type="blob"/>
+            <column name="gst_certificate_image_content_type" type="string"/>
+            <column name="pan_card_image" type="blob"/>
+            <column name="pan_card_image_content_type" type="string"/>
+            <column name="cancelled_cheque_image" type="blob"/>
+            <column name="cancelled_cheque_image_content_type" type="string"/>
+            <column name="ud_yog_aadhar_image" type="blob"/>
+            <column name="ud_yog_aadhar_image_content_type" type="string"/>
             <column name="last_modified" type="string"/>
             <column name="last_modified_by" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->

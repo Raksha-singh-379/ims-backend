@@ -127,6 +127,25 @@ public class ClientDetailsQueryService extends QueryService<ClientDetails> {
             if (criteria.getFreeField1() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getFreeField1(), ClientDetails_.freeField1));
             }
+            if (criteria.getIsApproved() != null) {
+                specification = specification.and(buildSpecification(criteria.getIsApproved(), ClientDetails_.isApproved));
+            }
+            if (criteria.getNameOfBeneficiary() != null) {
+                specification =
+                    specification.and(buildStringSpecification(criteria.getNameOfBeneficiary(), ClientDetails_.nameOfBeneficiary));
+            }
+            if (criteria.getAccountNumber() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getAccountNumber(), ClientDetails_.accountNumber));
+            }
+            if (criteria.getBankName() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getBankName(), ClientDetails_.bankName));
+            }
+            if (criteria.getAccountType() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getAccountType(), ClientDetails_.accountType));
+            }
+            if (criteria.getIfscCode() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getIfscCode(), ClientDetails_.ifscCode));
+            }
             if (criteria.getLastModified() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getLastModified(), ClientDetails_.lastModified));
             }

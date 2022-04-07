@@ -14,8 +14,6 @@ import { IUnit } from 'app/entities/unit/unit.model';
 import { UnitService } from 'app/entities/unit/service/unit.service';
 import { ISecurityUser } from 'app/entities/security-user/security-user.model';
 import { SecurityUserService } from 'app/entities/security-user/service/security-user.service';
-import { IPurchaseQuotationDetails } from 'app/entities/purchase-quotation-details/purchase-quotation-details.model';
-import { PurchaseQuotationDetailsService } from 'app/entities/purchase-quotation-details/service/purchase-quotation-details.service';
 
 import { ProductUpdateComponent } from './product-update.component';
 
@@ -27,7 +25,6 @@ describe('Product Management Update Component', () => {
   let categoriesService: CategoriesService;
   let unitService: UnitService;
   let securityUserService: SecurityUserService;
-  let purchaseQuotationDetailsService: PurchaseQuotationDetailsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -52,7 +49,6 @@ describe('Product Management Update Component', () => {
     categoriesService = TestBed.inject(CategoriesService);
     unitService = TestBed.inject(UnitService);
     securityUserService = TestBed.inject(SecurityUserService);
-    purchaseQuotationDetailsService = TestBed.inject(PurchaseQuotationDetailsService);
 
     comp = fixture.componentInstance;
   });
@@ -118,33 +114,6 @@ describe('Product Management Update Component', () => {
       expect(comp.securityUsersSharedCollection).toEqual(expectedCollection);
     });
 
-    it('Should call PurchaseQuotationDetails query and add missing value', () => {
-      const product: IProduct = { id: 456 };
-      const purchaseQuotationDetails: IPurchaseQuotationDetails = { id: 2915 };
-      product.purchaseQuotationDetails = purchaseQuotationDetails;
-
-      const purchaseQuotationDetailsCollection: IPurchaseQuotationDetails[] = [{ id: 65901 }];
-      jest
-        .spyOn(purchaseQuotationDetailsService, 'query')
-        .mockReturnValue(of(new HttpResponse({ body: purchaseQuotationDetailsCollection })));
-      const additionalPurchaseQuotationDetails = [purchaseQuotationDetails];
-      const expectedCollection: IPurchaseQuotationDetails[] = [
-        ...additionalPurchaseQuotationDetails,
-        ...purchaseQuotationDetailsCollection,
-      ];
-      jest.spyOn(purchaseQuotationDetailsService, 'addPurchaseQuotationDetailsToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ product });
-      comp.ngOnInit();
-
-      expect(purchaseQuotationDetailsService.query).toHaveBeenCalled();
-      expect(purchaseQuotationDetailsService.addPurchaseQuotationDetailsToCollectionIfMissing).toHaveBeenCalledWith(
-        purchaseQuotationDetailsCollection,
-        ...additionalPurchaseQuotationDetails
-      );
-      expect(comp.purchaseQuotationDetailsSharedCollection).toEqual(expectedCollection);
-    });
-
     it('Should update editForm', () => {
       const product: IProduct = { id: 456 };
       const categories: ICategories = { id: 17858 };
@@ -153,8 +122,6 @@ describe('Product Management Update Component', () => {
       product.unit = unit;
       const securityUser: ISecurityUser = { id: 56495 };
       product.securityUser = securityUser;
-      const purchaseQuotationDetails: IPurchaseQuotationDetails = { id: 7746 };
-      product.purchaseQuotationDetails = purchaseQuotationDetails;
 
       activatedRoute.data = of({ product });
       comp.ngOnInit();
@@ -163,7 +130,6 @@ describe('Product Management Update Component', () => {
       expect(comp.categoriesSharedCollection).toContain(categories);
       expect(comp.unitsSharedCollection).toContain(unit);
       expect(comp.securityUsersSharedCollection).toContain(securityUser);
-      expect(comp.purchaseQuotationDetailsSharedCollection).toContain(purchaseQuotationDetails);
     });
   });
 
@@ -252,14 +218,6 @@ describe('Product Management Update Component', () => {
       it('Should return tracked SecurityUser primary key', () => {
         const entity = { id: 123 };
         const trackResult = comp.trackSecurityUserById(0, entity);
-        expect(trackResult).toEqual(entity.id);
-      });
-    });
-
-    describe('trackPurchaseQuotationDetailsById', () => {
-      it('Should return tracked PurchaseQuotationDetails primary key', () => {
-        const entity = { id: 123 };
-        const trackResult = comp.trackPurchaseQuotationDetailsById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

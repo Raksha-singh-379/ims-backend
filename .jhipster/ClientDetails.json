@@ -37,7 +37,7 @@
     {
       "fieldName": "gstinNumber",
       "fieldType": "String",
-      "fieldValidateRules": ["unique"]
+      "fieldValidateRules": ["required", "unique"]
     },
     {
       "fieldName": "description",
@@ -55,6 +55,51 @@
     {
       "fieldName": "freeField1",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "isApproved",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "nameOfBeneficiary",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "accountNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "bankName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "accountType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ifscCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "gstCertificateImage",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "panCardImage",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "cancelledChequeImage",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "udYogAadharImage",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
     },
     {
       "fieldName": "lastModified",

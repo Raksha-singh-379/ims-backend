@@ -44,7 +44,7 @@
       "relationshipType": "many-to-one"
     },
     {
-      "otherEntityField": "name",
+      "otherEntityField": "projectName",
       "otherEntityName": "project",
       "otherEntityRelationshipName": "consumptionDetails",
       "relationshipName": "project",

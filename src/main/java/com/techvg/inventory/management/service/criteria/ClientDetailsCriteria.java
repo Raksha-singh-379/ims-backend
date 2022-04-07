@@ -70,6 +70,18 @@ public class ClientDetailsCriteria implements Serializable, Criteria {
 
     private StringFilter freeField1;
 
+    private BooleanFilter isApproved;
+
+    private StringFilter nameOfBeneficiary;
+
+    private StringFilter accountNumber;
+
+    private StringFilter bankName;
+
+    private StringFilter accountType;
+
+    private StringFilter ifscCode;
+
     private StringFilter lastModified;
 
     private StringFilter lastModifiedBy;
@@ -92,6 +104,12 @@ public class ClientDetailsCriteria implements Serializable, Criteria {
         this.clientType = other.clientType == null ? null : other.clientType.copy();
         this.isactivated = other.isactivated == null ? null : other.isactivated.copy();
         this.freeField1 = other.freeField1 == null ? null : other.freeField1.copy();
+        this.isApproved = other.isApproved == null ? null : other.isApproved.copy();
+        this.nameOfBeneficiary = other.nameOfBeneficiary == null ? null : other.nameOfBeneficiary.copy();
+        this.accountNumber = other.accountNumber == null ? null : other.accountNumber.copy();
+        this.bankName = other.bankName == null ? null : other.bankName.copy();
+        this.accountType = other.accountType == null ? null : other.accountType.copy();
+        this.ifscCode = other.ifscCode == null ? null : other.ifscCode.copy();
         this.lastModified = other.lastModified == null ? null : other.lastModified.copy();
         this.lastModifiedBy = other.lastModifiedBy == null ? null : other.lastModifiedBy.copy();
         this.distinct = other.distinct;
@@ -297,6 +315,96 @@ public class ClientDetailsCriteria implements Serializable, Criteria {
         this.freeField1 = freeField1;
     }
 
+    public BooleanFilter getIsApproved() {
+        return isApproved;
+    }
+
+    public BooleanFilter isApproved() {
+        if (isApproved == null) {
+            isApproved = new BooleanFilter();
+        }
+        return isApproved;
+    }
+
+    public void setIsApproved(BooleanFilter isApproved) {
+        this.isApproved = isApproved;
+    }
+
+    public StringFilter getNameOfBeneficiary() {
+        return nameOfBeneficiary;
+    }
+
+    public StringFilter nameOfBeneficiary() {
+        if (nameOfBeneficiary == null) {
+            nameOfBeneficiary = new StringFilter();
+        }
+        return nameOfBeneficiary;
+    }
+
+    public void setNameOfBeneficiary(StringFilter nameOfBeneficiary) {
+        this.nameOfBeneficiary = nameOfBeneficiary;
+    }
+
+    public StringFilter getAccountNumber() {
+        return accountNumber;
+    }
+
+    public StringFilter accountNumber() {
+        if (accountNumber == null) {
+            accountNumber = new StringFilter();
+        }
+        return accountNumber;
+    }
+
+    public void setAccountNumber(StringFilter accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public StringFilter getBankName() {
+        return bankName;
+    }
+
+    public StringFilter bankName() {
+        if (bankName == null) {
+            bankName = new StringFilter();
+        }
+        return bankName;
+    }
+
+    public void setBankName(StringFilter bankName) {
+        this.bankName = bankName;
+    }
+
+    public StringFilter getAccountType() {
+        return accountType;
+    }
+
+    public StringFilter accountType() {
+        if (accountType == null) {
+            accountType = new StringFilter();
+        }
+        return accountType;
+    }
+
+    public void setAccountType(StringFilter accountType) {
+        this.accountType = accountType;
+    }
+
+    public StringFilter getIfscCode() {
+        return ifscCode;
+    }
+
+    public StringFilter ifscCode() {
+        if (ifscCode == null) {
+            ifscCode = new StringFilter();
+        }
+        return ifscCode;
+    }
+
+    public void setIfscCode(StringFilter ifscCode) {
+        this.ifscCode = ifscCode;
+    }
+
     public StringFilter getLastModified() {
         return lastModified;
     }
@@ -358,6 +466,12 @@ public class ClientDetailsCriteria implements Serializable, Criteria {
             Objects.equals(clientType, that.clientType) &&
             Objects.equals(isactivated, that.isactivated) &&
             Objects.equals(freeField1, that.freeField1) &&
+            Objects.equals(isApproved, that.isApproved) &&
+            Objects.equals(nameOfBeneficiary, that.nameOfBeneficiary) &&
+            Objects.equals(accountNumber, that.accountNumber) &&
+            Objects.equals(bankName, that.bankName) &&
+            Objects.equals(accountType, that.accountType) &&
+            Objects.equals(ifscCode, that.ifscCode) &&
             Objects.equals(lastModified, that.lastModified) &&
             Objects.equals(lastModifiedBy, that.lastModifiedBy) &&
             Objects.equals(distinct, that.distinct)
@@ -380,6 +494,12 @@ public class ClientDetailsCriteria implements Serializable, Criteria {
             clientType,
             isactivated,
             freeField1,
+            isApproved,
+            nameOfBeneficiary,
+            accountNumber,
+            bankName,
+            accountType,
+            ifscCode,
             lastModified,
             lastModifiedBy,
             distinct
@@ -403,6 +523,12 @@ public class ClientDetailsCriteria implements Serializable, Criteria {
             (clientType != null ? "clientType=" + clientType + ", " : "") +
             (isactivated != null ? "isactivated=" + isactivated + ", " : "") +
             (freeField1 != null ? "freeField1=" + freeField1 + ", " : "") +
+            (isApproved != null ? "isApproved=" + isApproved + ", " : "") +
+            (nameOfBeneficiary != null ? "nameOfBeneficiary=" + nameOfBeneficiary + ", " : "") +
+            (accountNumber != null ? "accountNumber=" + accountNumber + ", " : "") +
+            (bankName != null ? "bankName=" + bankName + ", " : "") +
+            (accountType != null ? "accountType=" + accountType + ", " : "") +
+            (ifscCode != null ? "ifscCode=" + ifscCode + ", " : "") +
             (lastModified != null ? "lastModified=" + lastModified + ", " : "") +
             (lastModifiedBy != null ? "lastModifiedBy=" + lastModifiedBy + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +

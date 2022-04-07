@@ -64,6 +64,72 @@
         <dd>
           <span>{{ clientDetails.freeField1 }}</span>
         </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.clientDetails.isApproved">Is Approved</span></dt>
+        <dd>
+          <span>{{ clientDetails.isApproved }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.clientDetails.nameOfBeneficiary">Name Of Beneficiary</span></dt>
+        <dd>
+          <span>{{ clientDetails.nameOfBeneficiary }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.clientDetails.accountNumber">Account Number</span></dt>
+        <dd>
+          <span>{{ clientDetails.accountNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.clientDetails.bankName">Bank Name</span></dt>
+        <dd>
+          <span>{{ clientDetails.bankName }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.clientDetails.accountType">Account Type</span></dt>
+        <dd>
+          <span>{{ clientDetails.accountType }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.clientDetails.ifscCode">Ifsc Code</span></dt>
+        <dd>
+          <span>{{ clientDetails.ifscCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.clientDetails.gstCertificateImage">Gst Certificate Image</span></dt>
+        <dd>
+          <div *ngIf="clientDetails.gstCertificateImage">
+            <a
+              (click)="openFile(clientDetails.gstCertificateImage, clientDetails.gstCertificateImageContentType)"
+              jhiTranslate="entity.action.open"
+              >open</a
+            >
+            {{ clientDetails.gstCertificateImageContentType }}, {{ byteSize(clientDetails.gstCertificateImage) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.clientDetails.panCardImage">Pan Card Image</span></dt>
+        <dd>
+          <div *ngIf="clientDetails.panCardImage">
+            <a (click)="openFile(clientDetails.panCardImage, clientDetails.panCardImageContentType)" jhiTranslate="entity.action.open"
+              >open</a
+            >
+            {{ clientDetails.panCardImageContentType }}, {{ byteSize(clientDetails.panCardImage) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.clientDetails.cancelledChequeImage">Cancelled Cheque Image</span></dt>
+        <dd>
+          <div *ngIf="clientDetails.cancelledChequeImage">
+            <a
+              (click)="openFile(clientDetails.cancelledChequeImage, clientDetails.cancelledChequeImageContentType)"
+              jhiTranslate="entity.action.open"
+              >open</a
+            >
+            {{ clientDetails.cancelledChequeImageContentType }}, {{ byteSize(clientDetails.cancelledChequeImage) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="inventoryManagementApp.clientDetails.udYogAadharImage">Ud Yog Aadhar Image</span></dt>
+        <dd>
+          <div *ngIf="clientDetails.udYogAadharImage">
+            <a
+              (click)="openFile(clientDetails.udYogAadharImage, clientDetails.udYogAadharImageContentType)"
+              jhiTranslate="entity.action.open"
+              >open</a
+            >
+            {{ clientDetails.udYogAadharImageContentType }}, {{ byteSize(clientDetails.udYogAadharImage) }}
+          </div>
+        </dd>
         <dt><span jhiTranslate="inventoryManagementApp.clientDetails.lastModified">Last Modified</span></dt>
         <dd>
           <span>{{ clientDetails.lastModified }}</span>

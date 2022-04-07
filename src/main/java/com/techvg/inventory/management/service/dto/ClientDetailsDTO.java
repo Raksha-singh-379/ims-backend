@@ -3,6 +3,7 @@ package com.techvg.inventory.management.service.dto;
 import com.techvg.inventory.management.domain.enumeration.ClientType;
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Lob;
 import javax.validation.constraints.*;
 
 /**
@@ -27,6 +28,7 @@ public class ClientDetailsDTO implements Serializable {
 
     private String website;
 
+    @NotNull
     private String gstinNumber;
 
     private String description;
@@ -37,6 +39,38 @@ public class ClientDetailsDTO implements Serializable {
 
     private String freeField1;
 
+    private Boolean isApproved;
+
+    private String nameOfBeneficiary;
+
+    @NotNull
+    private String accountNumber;
+
+    private String bankName;
+
+    private String accountType;
+
+    private String ifscCode;
+
+    @Lob
+    private byte[] gstCertificateImage;
+
+    private String gstCertificateImageContentType;
+
+    @Lob
+    private byte[] panCardImage;
+
+    private String panCardImageContentType;
+
+    @Lob
+    private byte[] cancelledChequeImage;
+
+    private String cancelledChequeImageContentType;
+
+    @Lob
+    private byte[] udYogAadharImage;
+
+    private String udYogAadharImageContentType;
     private String lastModified;
 
     private String lastModifiedBy;
@@ -145,6 +179,118 @@ public class ClientDetailsDTO implements Serializable {
         this.freeField1 = freeField1;
     }
 
+    public Boolean getIsApproved() {
+        return isApproved;
+    }
+
+    public void setIsApproved(Boolean isApproved) {
+        this.isApproved = isApproved;
+    }
+
+    public String getNameOfBeneficiary() {
+        return nameOfBeneficiary;
+    }
+
+    public void setNameOfBeneficiary(String nameOfBeneficiary) {
+        this.nameOfBeneficiary = nameOfBeneficiary;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
+    public String getIfscCode() {
+        return ifscCode;
+    }
+
+    public void setIfscCode(String ifscCode) {
+        this.ifscCode = ifscCode;
+    }
+
+    public byte[] getGstCertificateImage() {
+        return gstCertificateImage;
+    }
+
+    public void setGstCertificateImage(byte[] gstCertificateImage) {
+        this.gstCertificateImage = gstCertificateImage;
+    }
+
+    public String getGstCertificateImageContentType() {
+        return gstCertificateImageContentType;
+    }
+
+    public void setGstCertificateImageContentType(String gstCertificateImageContentType) {
+        this.gstCertificateImageContentType = gstCertificateImageContentType;
+    }
+
+    public byte[] getPanCardImage() {
+        return panCardImage;
+    }
+
+    public void setPanCardImage(byte[] panCardImage) {
+        this.panCardImage = panCardImage;
+    }
+
+    public String getPanCardImageContentType() {
+        return panCardImageContentType;
+    }
+
+    public void setPanCardImageContentType(String panCardImageContentType) {
+        this.panCardImageContentType = panCardImageContentType;
+    }
+
+    public byte[] getCancelledChequeImage() {
+        return cancelledChequeImage;
+    }
+
+    public void setCancelledChequeImage(byte[] cancelledChequeImage) {
+        this.cancelledChequeImage = cancelledChequeImage;
+    }
+
+    public String getCancelledChequeImageContentType() {
+        return cancelledChequeImageContentType;
+    }
+
+    public void setCancelledChequeImageContentType(String cancelledChequeImageContentType) {
+        this.cancelledChequeImageContentType = cancelledChequeImageContentType;
+    }
+
+    public byte[] getUdYogAadharImage() {
+        return udYogAadharImage;
+    }
+
+    public void setUdYogAadharImage(byte[] udYogAadharImage) {
+        this.udYogAadharImage = udYogAadharImage;
+    }
+
+    public String getUdYogAadharImageContentType() {
+        return udYogAadharImageContentType;
+    }
+
+    public void setUdYogAadharImageContentType(String udYogAadharImageContentType) {
+        this.udYogAadharImageContentType = udYogAadharImageContentType;
+    }
+
     public String getLastModified() {
         return lastModified;
     }
@@ -199,6 +345,16 @@ public class ClientDetailsDTO implements Serializable {
             ", clientType='" + getClientType() + "'" +
             ", isactivated='" + getIsactivated() + "'" +
             ", freeField1='" + getFreeField1() + "'" +
+            ", isApproved='" + getIsApproved() + "'" +
+            ", nameOfBeneficiary='" + getNameOfBeneficiary() + "'" +
+            ", accountNumber='" + getAccountNumber() + "'" +
+            ", bankName='" + getBankName() + "'" +
+            ", accountType='" + getAccountType() + "'" +
+            ", ifscCode='" + getIfscCode() + "'" +
+            ", gstCertificateImage='" + getGstCertificateImage() + "'" +
+            ", panCardImage='" + getPanCardImage() + "'" +
+            ", cancelledChequeImage='" + getCancelledChequeImage() + "'" +
+            ", udYogAadharImage='" + getUdYogAadharImage() + "'" +
             ", lastModified='" + getLastModified() + "'" +
             ", lastModifiedBy='" + getLastModifiedBy() + "'" +
             "}";

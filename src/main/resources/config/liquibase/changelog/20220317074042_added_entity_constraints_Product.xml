@@ -25,11 +25,5 @@
                                  constraintName="fk_product__security_user_id"
                                  referencedColumnNames="id"
                                  referencedTableName="security_user"/>
-
-        <addForeignKeyConstraint baseColumnNames="purchase_quotation_details_id"
-                                 baseTableName="product"
-                                 constraintName="fk_product__purchase_quotation_details_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="purchase_quotation_details"/>
     </changeSet>
 </databaseChangeLog>

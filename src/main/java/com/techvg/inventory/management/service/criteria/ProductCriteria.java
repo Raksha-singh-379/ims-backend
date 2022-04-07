@@ -98,8 +98,6 @@ public class ProductCriteria implements Serializable, Criteria {
 
     private LongFilter securityUserId;
 
-    private LongFilter purchaseQuotationDetailsId;
-
     private Boolean distinct;
 
     public ProductCriteria() {}
@@ -132,7 +130,6 @@ public class ProductCriteria implements Serializable, Criteria {
         this.categoriesId = other.categoriesId == null ? null : other.categoriesId.copy();
         this.unitId = other.unitId == null ? null : other.unitId.copy();
         this.securityUserId = other.securityUserId == null ? null : other.securityUserId.copy();
-        this.purchaseQuotationDetailsId = other.purchaseQuotationDetailsId == null ? null : other.purchaseQuotationDetailsId.copy();
         this.distinct = other.distinct;
     }
 
@@ -546,21 +543,6 @@ public class ProductCriteria implements Serializable, Criteria {
         this.securityUserId = securityUserId;
     }
 
-    public LongFilter getPurchaseQuotationDetailsId() {
-        return purchaseQuotationDetailsId;
-    }
-
-    public LongFilter purchaseQuotationDetailsId() {
-        if (purchaseQuotationDetailsId == null) {
-            purchaseQuotationDetailsId = new LongFilter();
-        }
-        return purchaseQuotationDetailsId;
-    }
-
-    public void setPurchaseQuotationDetailsId(LongFilter purchaseQuotationDetailsId) {
-        this.purchaseQuotationDetailsId = purchaseQuotationDetailsId;
-    }
-
     public Boolean getDistinct() {
         return distinct;
     }
@@ -606,7 +588,6 @@ public class ProductCriteria implements Serializable, Criteria {
             Objects.equals(categoriesId, that.categoriesId) &&
             Objects.equals(unitId, that.unitId) &&
             Objects.equals(securityUserId, that.securityUserId) &&
-            Objects.equals(purchaseQuotationDetailsId, that.purchaseQuotationDetailsId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
@@ -641,7 +622,6 @@ public class ProductCriteria implements Serializable, Criteria {
             categoriesId,
             unitId,
             securityUserId,
-            purchaseQuotationDetailsId,
             distinct
         );
     }
@@ -677,7 +657,6 @@ public class ProductCriteria implements Serializable, Criteria {
             (categoriesId != null ? "categoriesId=" + categoriesId + ", " : "") +
             (unitId != null ? "unitId=" + unitId + ", " : "") +
             (securityUserId != null ? "securityUserId=" + securityUserId + ", " : "") +
-            (purchaseQuotationDetailsId != null ? "purchaseQuotationDetailsId=" + purchaseQuotationDetailsId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }
