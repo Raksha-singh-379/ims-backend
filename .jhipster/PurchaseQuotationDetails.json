@@ -52,7 +52,7 @@
       "otherEntityName": "product",
       "otherEntityRelationshipName": "purchaseQuotationDetails",
       "relationshipName": "product",
-      "relationshipType": "one-to-many"
+      "relationshipType": "many-to-one"
     },
     {
       "otherEntityName": "purchaseQuotation",

@@ -113,10 +113,6 @@ public class Product implements Serializable {
     @JsonIgnoreProperties(value = { "securityPermissions", "securityRoles", "wareHouses" }, allowSetters = true)
     private SecurityUser securityUser;
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = { "products", "purchaseQuotation" }, allowSetters = true)
-    private PurchaseQuotationDetails purchaseQuotationDetails;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -511,19 +507,6 @@ public class Product implements Serializable {
 
     public Product securityUser(SecurityUser securityUser) {
         this.setSecurityUser(securityUser);
-        return this;
-    }
-
-    public PurchaseQuotationDetails getPurchaseQuotationDetails() {
-        return this.purchaseQuotationDetails;
-    }
-
-    public void setPurchaseQuotationDetails(PurchaseQuotationDetails purchaseQuotationDetails) {
-        this.purchaseQuotationDetails = purchaseQuotationDetails;
-    }
-
-    public Product purchaseQuotationDetails(PurchaseQuotationDetails purchaseQuotationDetails) {
-        this.setPurchaseQuotationDetails(purchaseQuotationDetails);
         return this;
     }
 

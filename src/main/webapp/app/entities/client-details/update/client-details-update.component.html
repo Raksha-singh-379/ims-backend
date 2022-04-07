@@ -109,9 +109,15 @@
             data-cy="gstinNumber"
             formControlName="gstinNumber"
           />
-          <div
-            *ngIf="editForm.get('gstinNumber')!.invalid && (editForm.get('gstinNumber')!.dirty || editForm.get('gstinNumber')!.touched)"
-          ></div>
+          <div *ngIf="editForm.get('gstinNumber')!.invalid && (editForm.get('gstinNumber')!.dirty || editForm.get('gstinNumber')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('gstinNumber')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
         </div>
 
         <div class="row mb-3">
@@ -165,6 +171,284 @@
             id="field_freeField1"
             data-cy="freeField1"
             formControlName="freeField1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.isApproved" for="field_isApproved"
+            >Is Approved</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isApproved"
+            id="field_isApproved"
+            data-cy="isApproved"
+            formControlName="isApproved"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.nameOfBeneficiary" for="field_nameOfBeneficiary"
+            >Name Of Beneficiary</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="nameOfBeneficiary"
+            id="field_nameOfBeneficiary"
+            data-cy="nameOfBeneficiary"
+            formControlName="nameOfBeneficiary"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.accountNumber" for="field_accountNumber"
+            >Account Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="accountNumber"
+            id="field_accountNumber"
+            data-cy="accountNumber"
+            formControlName="accountNumber"
+          />
+          <div
+            *ngIf="
+              editForm.get('accountNumber')!.invalid && (editForm.get('accountNumber')!.dirty || editForm.get('accountNumber')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('accountNumber')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.bankName" for="field_bankName">Bank Name</label>
+          <input type="text" class="form-control" name="bankName" id="field_bankName" data-cy="bankName" formControlName="bankName" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.accountType" for="field_accountType"
+            >Account Type</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="accountType"
+            id="field_accountType"
+            data-cy="accountType"
+            formControlName="accountType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.ifscCode" for="field_ifscCode">Ifsc Code</label>
+          <input type="text" class="form-control" name="ifscCode" id="field_ifscCode" data-cy="ifscCode" formControlName="ifscCode" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.gstCertificateImage" for="field_gstCertificateImage"
+            >Gst Certificate Image</label
+          >
+          <div>
+            <div *ngIf="editForm.get('gstCertificateImage')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('gstCertificateImage')!.value, editForm.get('gstCertificateImageContentType')!.value)"
+                jhiTranslate="entity.action.open"
+                >open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('gstCertificateImageContentType')!.value }},
+                {{ byteSize(editForm.get('gstCertificateImage')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ gstCertificateImage: null }); editForm.patchValue({ gstCertificateImageContentType: null })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_gstCertificateImage"
+              data-cy="gstCertificateImage"
+              (change)="setFileData($event, 'gstCertificateImage', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="gstCertificateImage"
+            id="field_gstCertificateImage"
+            data-cy="gstCertificateImage"
+            formControlName="gstCertificateImage"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="gstCertificateImageContentType"
+            id="field_gstCertificateImageContentType"
+            formControlName="gstCertificateImageContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.panCardImage" for="field_panCardImage"
+            >Pan Card Image</label
+          >
+          <div>
+            <div *ngIf="editForm.get('panCardImage')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('panCardImage')!.value, editForm.get('panCardImageContentType')!.value)"
+                jhiTranslate="entity.action.open"
+                >open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('panCardImageContentType')!.value }}, {{ byteSize(editForm.get('panCardImage')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ panCardImage: null }); editForm.patchValue({ panCardImageContentType: null })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_panCardImage"
+              data-cy="panCardImage"
+              (change)="setFileData($event, 'panCardImage', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="panCardImage"
+            id="field_panCardImage"
+            data-cy="panCardImage"
+            formControlName="panCardImage"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="panCardImageContentType"
+            id="field_panCardImageContentType"
+            formControlName="panCardImageContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="inventoryManagementApp.clientDetails.cancelledChequeImage"
+            for="field_cancelledChequeImage"
+            >Cancelled Cheque Image</label
+          >
+          <div>
+            <div *ngIf="editForm.get('cancelledChequeImage')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('cancelledChequeImage')!.value, editForm.get('cancelledChequeImageContentType')!.value)"
+                jhiTranslate="entity.action.open"
+                >open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('cancelledChequeImageContentType')!.value }},
+                {{ byteSize(editForm.get('cancelledChequeImage')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="
+                  editForm.patchValue({ cancelledChequeImage: null }); editForm.patchValue({ cancelledChequeImageContentType: null })
+                "
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_cancelledChequeImage"
+              data-cy="cancelledChequeImage"
+              (change)="setFileData($event, 'cancelledChequeImage', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="cancelledChequeImage"
+            id="field_cancelledChequeImage"
+            data-cy="cancelledChequeImage"
+            formControlName="cancelledChequeImage"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="cancelledChequeImageContentType"
+            id="field_cancelledChequeImageContentType"
+            formControlName="cancelledChequeImageContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventoryManagementApp.clientDetails.udYogAadharImage" for="field_udYogAadharImage"
+            >Ud Yog Aadhar Image</label
+          >
+          <div>
+            <div *ngIf="editForm.get('udYogAadharImage')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('udYogAadharImage')!.value, editForm.get('udYogAadharImageContentType')!.value)"
+                jhiTranslate="entity.action.open"
+                >open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('udYogAadharImageContentType')!.value }}, {{ byteSize(editForm.get('udYogAadharImage')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ udYogAadharImage: null }); editForm.patchValue({ udYogAadharImageContentType: null })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_udYogAadharImage"
+              data-cy="udYogAadharImage"
+              (change)="setFileData($event, 'udYogAadharImage', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="udYogAadharImage"
+            id="field_udYogAadharImage"
+            data-cy="udYogAadharImage"
+            formControlName="udYogAadharImage"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="udYogAadharImageContentType"
+            id="field_udYogAadharImageContentType"
+            formControlName="udYogAadharImageContentType"
           />
         </div>
 

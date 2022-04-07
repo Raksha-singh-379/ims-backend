@@ -34,6 +34,20 @@ describe('ClientDetails Service', () => {
       clientType: ClientType.SUPPLIER,
       isactivated: false,
       freeField1: 'AAAAAAA',
+      isApproved: false,
+      nameOfBeneficiary: 'AAAAAAA',
+      accountNumber: 'AAAAAAA',
+      bankName: 'AAAAAAA',
+      accountType: 'AAAAAAA',
+      ifscCode: 'AAAAAAA',
+      gstCertificateImageContentType: 'image/png',
+      gstCertificateImage: 'AAAAAAA',
+      panCardImageContentType: 'image/png',
+      panCardImage: 'AAAAAAA',
+      cancelledChequeImageContentType: 'image/png',
+      cancelledChequeImage: 'AAAAAAA',
+      udYogAadharImageContentType: 'image/png',
+      udYogAadharImage: 'AAAAAAA',
       lastModified: 'AAAAAAA',
       lastModifiedBy: 'AAAAAAA',
     };
@@ -83,6 +97,16 @@ describe('ClientDetails Service', () => {
           clientType: 'BBBBBB',
           isactivated: true,
           freeField1: 'BBBBBB',
+          isApproved: true,
+          nameOfBeneficiary: 'BBBBBB',
+          accountNumber: 'BBBBBB',
+          bankName: 'BBBBBB',
+          accountType: 'BBBBBB',
+          ifscCode: 'BBBBBB',
+          gstCertificateImage: 'BBBBBB',
+          panCardImage: 'BBBBBB',
+          cancelledChequeImage: 'BBBBBB',
+          udYogAadharImage: 'BBBBBB',
           lastModified: 'BBBBBB',
           lastModifiedBy: 'BBBBBB',
         },
@@ -107,6 +131,13 @@ describe('ClientDetails Service', () => {
           companyContactNo: 'BBBBBB',
           description: 'BBBBBB',
           freeField1: 'BBBBBB',
+          accountNumber: 'BBBBBB',
+          accountType: 'BBBBBB',
+          ifscCode: 'BBBBBB',
+          panCardImage: 'BBBBBB',
+          cancelledChequeImage: 'BBBBBB',
+          lastModified: 'BBBBBB',
+          lastModifiedBy: 'BBBBBB',
         },
         new ClientDetails()
       );
@@ -138,6 +169,16 @@ describe('ClientDetails Service', () => {
           clientType: 'BBBBBB',
           isactivated: true,
           freeField1: 'BBBBBB',
+          isApproved: true,
+          nameOfBeneficiary: 'BBBBBB',
+          accountNumber: 'BBBBBB',
+          bankName: 'BBBBBB',
+          accountType: 'BBBBBB',
+          ifscCode: 'BBBBBB',
+          gstCertificateImage: 'BBBBBB',
+          panCardImage: 'BBBBBB',
+          cancelledChequeImage: 'BBBBBB',
+          udYogAadharImage: 'BBBBBB',
           lastModified: 'BBBBBB',
           lastModifiedBy: 'BBBBBB',
         },
@@ -191,7 +232,7 @@ describe('ClientDetails Service', () => {
       });
 
       it('should add only unique ClientDetails to an array', () => {
-        const clientDetailsArray: IClientDetails[] = [{ id: 123 }, { id: 456 }, { id: 56249 }];
+        const clientDetailsArray: IClientDetails[] = [{ id: 123 }, { id: 456 }, { id: 12373 }];
         const clientDetailsCollection: IClientDetails[] = [{ id: 123 }];
         expectedResult = service.addClientDetailsToCollectionIfMissing(clientDetailsCollection, ...clientDetailsArray);
         expect(expectedResult).toHaveLength(3);

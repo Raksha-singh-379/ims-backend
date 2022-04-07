@@ -10,7 +10,7 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = { SecurityUserMapper.class, ProjectMapper.class, ProductInventoryMapper.class })
 public interface ConsumptionDetailsMapper extends EntityMapper<ConsumptionDetailsDTO, ConsumptionDetails> {
     @Mapping(target = "securityUser", source = "securityUser", qualifiedByName = "login")
-    @Mapping(target = "project", source = "project", qualifiedByName = "name")
+    @Mapping(target = "project", source = "project", qualifiedByName = "projectName")
     @Mapping(target = "productInventory", source = "productInventory", qualifiedByName = "id")
     ConsumptionDetailsDTO toDto(ConsumptionDetails s);
 }

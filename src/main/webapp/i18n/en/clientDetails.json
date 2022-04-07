@@ -30,6 +30,16 @@
       "clientType": "Client Type",
       "isactivated": "Isactivated",
       "freeField1": "Free Field 1",
+      "isApproved": "Is Approved",
+      "nameOfBeneficiary": "Name Of Beneficiary",
+      "accountNumber": "Account Number",
+      "bankName": "Bank Name",
+      "accountType": "Account Type",
+      "ifscCode": "Ifsc Code",
+      "gstCertificateImage": "Gst Certificate Image",
+      "panCardImage": "Pan Card Image",
+      "cancelledChequeImage": "Cancelled Cheque Image",
+      "udYogAadharImage": "Ud Yog Aadhar Image",
       "lastModified": "Last Modified",
       "lastModifiedBy": "Last Modified By"
     }

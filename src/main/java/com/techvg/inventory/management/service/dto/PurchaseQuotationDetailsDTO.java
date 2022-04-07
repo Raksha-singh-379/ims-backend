@@ -28,6 +28,8 @@ public class PurchaseQuotationDetailsDTO implements Serializable {
 
     private String freeField2;
 
+    private ProductDTO product;
+
     private PurchaseQuotationDTO purchaseQuotation;
 
     public Long getId() {
@@ -110,6 +112,14 @@ public class PurchaseQuotationDetailsDTO implements Serializable {
         this.freeField2 = freeField2;
     }
 
+    public ProductDTO getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductDTO product) {
+        this.product = product;
+    }
+
     public PurchaseQuotationDTO getPurchaseQuotation() {
         return purchaseQuotation;
     }
@@ -153,6 +163,7 @@ public class PurchaseQuotationDetailsDTO implements Serializable {
             ", lastModifiedBy='" + getLastModifiedBy() + "'" +
             ", freeField1='" + getFreeField1() + "'" +
             ", freeField2='" + getFreeField2() + "'" +
+            ", product=" + getProduct() +
             ", purchaseQuotation=" + getPurchaseQuotation() +
             "}";
     }

@@ -44,7 +44,8 @@ public class ClientDetails implements Serializable {
     @Column(name = "website")
     private String website;
 
-    @Column(name = "gstin_number", unique = true)
+    @NotNull
+    @Column(name = "gstin_number", nullable = false, unique = true)
     private String gstinNumber;
 
     @Column(name = "description")
@@ -59,6 +60,53 @@ public class ClientDetails implements Serializable {
 
     @Column(name = "free_field_1")
     private String freeField1;
+
+    @Column(name = "is_approved")
+    private Boolean isApproved;
+
+    @Column(name = "name_of_beneficiary")
+    private String nameOfBeneficiary;
+
+    @NotNull
+    @Column(name = "account_number", nullable = false, unique = true)
+    private String accountNumber;
+
+    @Column(name = "bank_name")
+    private String bankName;
+
+    @Column(name = "account_type")
+    private String accountType;
+
+    @Column(name = "ifsc_code")
+    private String ifscCode;
+
+    @Lob
+    @Column(name = "gst_certificate_image")
+    private byte[] gstCertificateImage;
+
+    @Column(name = "gst_certificate_image_content_type")
+    private String gstCertificateImageContentType;
+
+    @Lob
+    @Column(name = "pan_card_image")
+    private byte[] panCardImage;
+
+    @Column(name = "pan_card_image_content_type")
+    private String panCardImageContentType;
+
+    @Lob
+    @Column(name = "cancelled_cheque_image")
+    private byte[] cancelledChequeImage;
+
+    @Column(name = "cancelled_cheque_image_content_type")
+    private String cancelledChequeImageContentType;
+
+    @Lob
+    @Column(name = "ud_yog_aadhar_image")
+    private byte[] udYogAadharImage;
+
+    @Column(name = "ud_yog_aadhar_image_content_type")
+    private String udYogAadharImageContentType;
 
     @Column(name = "last_modified")
     private String lastModified;
@@ -237,6 +285,188 @@ public class ClientDetails implements Serializable {
         this.freeField1 = freeField1;
     }
 
+    public Boolean getIsApproved() {
+        return this.isApproved;
+    }
+
+    public ClientDetails isApproved(Boolean isApproved) {
+        this.setIsApproved(isApproved);
+        return this;
+    }
+
+    public void setIsApproved(Boolean isApproved) {
+        this.isApproved = isApproved;
+    }
+
+    public String getNameOfBeneficiary() {
+        return this.nameOfBeneficiary;
+    }
+
+    public ClientDetails nameOfBeneficiary(String nameOfBeneficiary) {
+        this.setNameOfBeneficiary(nameOfBeneficiary);
+        return this;
+    }
+
+    public void setNameOfBeneficiary(String nameOfBeneficiary) {
+        this.nameOfBeneficiary = nameOfBeneficiary;
+    }
+
+    public String getAccountNumber() {
+        return this.accountNumber;
+    }
+
+    public ClientDetails accountNumber(String accountNumber) {
+        this.setAccountNumber(accountNumber);
+        return this;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public String getBankName() {
+        return this.bankName;
+    }
+
+    public ClientDetails bankName(String bankName) {
+        this.setBankName(bankName);
+        return this;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public String getAccountType() {
+        return this.accountType;
+    }
+
+    public ClientDetails accountType(String accountType) {
+        this.setAccountType(accountType);
+        return this;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
+    public String getIfscCode() {
+        return this.ifscCode;
+    }
+
+    public ClientDetails ifscCode(String ifscCode) {
+        this.setIfscCode(ifscCode);
+        return this;
+    }
+
+    public void setIfscCode(String ifscCode) {
+        this.ifscCode = ifscCode;
+    }
+
+    public byte[] getGstCertificateImage() {
+        return this.gstCertificateImage;
+    }
+
+    public ClientDetails gstCertificateImage(byte[] gstCertificateImage) {
+        this.setGstCertificateImage(gstCertificateImage);
+        return this;
+    }
+
+    public void setGstCertificateImage(byte[] gstCertificateImage) {
+        this.gstCertificateImage = gstCertificateImage;
+    }
+
+    public String getGstCertificateImageContentType() {
+        return this.gstCertificateImageContentType;
+    }
+
+    public ClientDetails gstCertificateImageContentType(String gstCertificateImageContentType) {
+        this.gstCertificateImageContentType = gstCertificateImageContentType;
+        return this;
+    }
+
+    public void setGstCertificateImageContentType(String gstCertificateImageContentType) {
+        this.gstCertificateImageContentType = gstCertificateImageContentType;
+    }
+
+    public byte[] getPanCardImage() {
+        return this.panCardImage;
+    }
+
+    public ClientDetails panCardImage(byte[] panCardImage) {
+        this.setPanCardImage(panCardImage);
+        return this;
+    }
+
+    public void setPanCardImage(byte[] panCardImage) {
+        this.panCardImage = panCardImage;
+    }
+
+    public String getPanCardImageContentType() {
+        return this.panCardImageContentType;
+    }
+
+    public ClientDetails panCardImageContentType(String panCardImageContentType) {
+        this.panCardImageContentType = panCardImageContentType;
+        return this;
+    }
+
+    public void setPanCardImageContentType(String panCardImageContentType) {
+        this.panCardImageContentType = panCardImageContentType;
+    }
+
+    public byte[] getCancelledChequeImage() {
+        return this.cancelledChequeImage;
+    }
+
+    public ClientDetails cancelledChequeImage(byte[] cancelledChequeImage) {
+        this.setCancelledChequeImage(cancelledChequeImage);
+        return this;
+    }
+
+    public void setCancelledChequeImage(byte[] cancelledChequeImage) {
+        this.cancelledChequeImage = cancelledChequeImage;
+    }
+
+    public String getCancelledChequeImageContentType() {
+        return this.cancelledChequeImageContentType;
+    }
+
+    public ClientDetails cancelledChequeImageContentType(String cancelledChequeImageContentType) {
+        this.cancelledChequeImageContentType = cancelledChequeImageContentType;
+        return this;
+    }
+
+    public void setCancelledChequeImageContentType(String cancelledChequeImageContentType) {
+        this.cancelledChequeImageContentType = cancelledChequeImageContentType;
+    }
+
+    public byte[] getUdYogAadharImage() {
+        return this.udYogAadharImage;
+    }
+
+    public ClientDetails udYogAadharImage(byte[] udYogAadharImage) {
+        this.setUdYogAadharImage(udYogAadharImage);
+        return this;
+    }
+
+    public void setUdYogAadharImage(byte[] udYogAadharImage) {
+        this.udYogAadharImage = udYogAadharImage;
+    }
+
+    public String getUdYogAadharImageContentType() {
+        return this.udYogAadharImageContentType;
+    }
+
+    public ClientDetails udYogAadharImageContentType(String udYogAadharImageContentType) {
+        this.udYogAadharImageContentType = udYogAadharImageContentType;
+        return this;
+    }
+
+    public void setUdYogAadharImageContentType(String udYogAadharImageContentType) {
+        this.udYogAadharImageContentType = udYogAadharImageContentType;
+    }
+
     public String getLastModified() {
         return this.lastModified;
     }
@@ -299,6 +529,20 @@ public class ClientDetails implements Serializable {
             ", clientType='" + getClientType() + "'" +
             ", isactivated='" + getIsactivated() + "'" +
             ", freeField1='" + getFreeField1() + "'" +
+            ", isApproved='" + getIsApproved() + "'" +
+            ", nameOfBeneficiary='" + getNameOfBeneficiary() + "'" +
+            ", accountNumber='" + getAccountNumber() + "'" +
+            ", bankName='" + getBankName() + "'" +
+            ", accountType='" + getAccountType() + "'" +
+            ", ifscCode='" + getIfscCode() + "'" +
+            ", gstCertificateImage='" + getGstCertificateImage() + "'" +
+            ", gstCertificateImageContentType='" + getGstCertificateImageContentType() + "'" +
+            ", panCardImage='" + getPanCardImage() + "'" +
+            ", panCardImageContentType='" + getPanCardImageContentType() + "'" +
+            ", cancelledChequeImage='" + getCancelledChequeImage() + "'" +
+            ", cancelledChequeImageContentType='" + getCancelledChequeImageContentType() + "'" +
+            ", udYogAadharImage='" + getUdYogAadharImage() + "'" +
+            ", udYogAadharImageContentType='" + getUdYogAadharImageContentType() + "'" +
             ", lastModified='" + getLastModified() + "'" +
             ", lastModifiedBy='" + getLastModifiedBy() + "'" +
             "}";

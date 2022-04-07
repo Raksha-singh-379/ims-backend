@@ -24,6 +24,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 
 /**
  * Integration tests for the {@link ClientDetailsResource} REST controller.
@@ -68,6 +69,44 @@ class ClientDetailsResourceIT {
 
     private static final String DEFAULT_FREE_FIELD_1 = "AAAAAAAAAA";
     private static final String UPDATED_FREE_FIELD_1 = "BBBBBBBBBB";
+
+    private static final Boolean DEFAULT_IS_APPROVED = false;
+    private static final Boolean UPDATED_IS_APPROVED = true;
+
+    private static final String DEFAULT_NAME_OF_BENEFICIARY = "AAAAAAAAAA";
+    private static final String UPDATED_NAME_OF_BENEFICIARY = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ACCOUNT_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_ACCOUNT_NUMBER = "BBBBBBBBBB";
+
+    private static final String DEFAULT_BANK_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_BANK_NAME = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ACCOUNT_TYPE = "AAAAAAAAAA";
+    private static final String UPDATED_ACCOUNT_TYPE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_IFSC_CODE = "AAAAAAAAAA";
+    private static final String UPDATED_IFSC_CODE = "BBBBBBBBBB";
+
+    private static final byte[] DEFAULT_GST_CERTIFICATE_IMAGE = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_GST_CERTIFICATE_IMAGE = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_GST_CERTIFICATE_IMAGE_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_GST_CERTIFICATE_IMAGE_CONTENT_TYPE = "image/png";
+
+    private static final byte[] DEFAULT_PAN_CARD_IMAGE = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_PAN_CARD_IMAGE = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_PAN_CARD_IMAGE_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_PAN_CARD_IMAGE_CONTENT_TYPE = "image/png";
+
+    private static final byte[] DEFAULT_CANCELLED_CHEQUE_IMAGE = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_CANCELLED_CHEQUE_IMAGE = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_CANCELLED_CHEQUE_IMAGE_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_CANCELLED_CHEQUE_IMAGE_CONTENT_TYPE = "image/png";
+
+    private static final byte[] DEFAULT_UD_YOG_AADHAR_IMAGE = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_UD_YOG_AADHAR_IMAGE = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_UD_YOG_AADHAR_IMAGE_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_UD_YOG_AADHAR_IMAGE_CONTENT_TYPE = "image/png";
 
     private static final String DEFAULT_LAST_MODIFIED = "AAAAAAAAAA";
     private static final String UPDATED_LAST_MODIFIED = "BBBBBBBBBB";
@@ -115,6 +154,20 @@ class ClientDetailsResourceIT {
             .clientType(DEFAULT_CLIENT_TYPE)
             .isactivated(DEFAULT_ISACTIVATED)
             .freeField1(DEFAULT_FREE_FIELD_1)
+            .isApproved(DEFAULT_IS_APPROVED)
+            .nameOfBeneficiary(DEFAULT_NAME_OF_BENEFICIARY)
+            .accountNumber(DEFAULT_ACCOUNT_NUMBER)
+            .bankName(DEFAULT_BANK_NAME)
+            .accountType(DEFAULT_ACCOUNT_TYPE)
+            .ifscCode(DEFAULT_IFSC_CODE)
+            .gstCertificateImage(DEFAULT_GST_CERTIFICATE_IMAGE)
+            .gstCertificateImageContentType(DEFAULT_GST_CERTIFICATE_IMAGE_CONTENT_TYPE)
+            .panCardImage(DEFAULT_PAN_CARD_IMAGE)
+            .panCardImageContentType(DEFAULT_PAN_CARD_IMAGE_CONTENT_TYPE)
+            .cancelledChequeImage(DEFAULT_CANCELLED_CHEQUE_IMAGE)
+            .cancelledChequeImageContentType(DEFAULT_CANCELLED_CHEQUE_IMAGE_CONTENT_TYPE)
+            .udYogAadharImage(DEFAULT_UD_YOG_AADHAR_IMAGE)
+            .udYogAadharImageContentType(DEFAULT_UD_YOG_AADHAR_IMAGE_CONTENT_TYPE)
             .lastModified(DEFAULT_LAST_MODIFIED)
             .lastModifiedBy(DEFAULT_LAST_MODIFIED_BY);
         return clientDetails;
@@ -140,6 +193,20 @@ class ClientDetailsResourceIT {
             .clientType(UPDATED_CLIENT_TYPE)
             .isactivated(UPDATED_ISACTIVATED)
             .freeField1(UPDATED_FREE_FIELD_1)
+            .isApproved(UPDATED_IS_APPROVED)
+            .nameOfBeneficiary(UPDATED_NAME_OF_BENEFICIARY)
+            .accountNumber(UPDATED_ACCOUNT_NUMBER)
+            .bankName(UPDATED_BANK_NAME)
+            .accountType(UPDATED_ACCOUNT_TYPE)
+            .ifscCode(UPDATED_IFSC_CODE)
+            .gstCertificateImage(UPDATED_GST_CERTIFICATE_IMAGE)
+            .gstCertificateImageContentType(UPDATED_GST_CERTIFICATE_IMAGE_CONTENT_TYPE)
+            .panCardImage(UPDATED_PAN_CARD_IMAGE)
+            .panCardImageContentType(UPDATED_PAN_CARD_IMAGE_CONTENT_TYPE)
+            .cancelledChequeImage(UPDATED_CANCELLED_CHEQUE_IMAGE)
+            .cancelledChequeImageContentType(UPDATED_CANCELLED_CHEQUE_IMAGE_CONTENT_TYPE)
+            .udYogAadharImage(UPDATED_UD_YOG_AADHAR_IMAGE)
+            .udYogAadharImageContentType(UPDATED_UD_YOG_AADHAR_IMAGE_CONTENT_TYPE)
             .lastModified(UPDATED_LAST_MODIFIED)
             .lastModifiedBy(UPDATED_LAST_MODIFIED_BY);
         return clientDetails;
@@ -178,6 +245,20 @@ class ClientDetailsResourceIT {
         assertThat(testClientDetails.getClientType()).isEqualTo(DEFAULT_CLIENT_TYPE);
         assertThat(testClientDetails.getIsactivated()).isEqualTo(DEFAULT_ISACTIVATED);
         assertThat(testClientDetails.getFreeField1()).isEqualTo(DEFAULT_FREE_FIELD_1);
+        assertThat(testClientDetails.getIsApproved()).isEqualTo(DEFAULT_IS_APPROVED);
+        assertThat(testClientDetails.getNameOfBeneficiary()).isEqualTo(DEFAULT_NAME_OF_BENEFICIARY);
+        assertThat(testClientDetails.getAccountNumber()).isEqualTo(DEFAULT_ACCOUNT_NUMBER);
+        assertThat(testClientDetails.getBankName()).isEqualTo(DEFAULT_BANK_NAME);
+        assertThat(testClientDetails.getAccountType()).isEqualTo(DEFAULT_ACCOUNT_TYPE);
+        assertThat(testClientDetails.getIfscCode()).isEqualTo(DEFAULT_IFSC_CODE);
+        assertThat(testClientDetails.getGstCertificateImage()).isEqualTo(DEFAULT_GST_CERTIFICATE_IMAGE);
+        assertThat(testClientDetails.getGstCertificateImageContentType()).isEqualTo(DEFAULT_GST_CERTIFICATE_IMAGE_CONTENT_TYPE);
+        assertThat(testClientDetails.getPanCardImage()).isEqualTo(DEFAULT_PAN_CARD_IMAGE);
+        assertThat(testClientDetails.getPanCardImageContentType()).isEqualTo(DEFAULT_PAN_CARD_IMAGE_CONTENT_TYPE);
+        assertThat(testClientDetails.getCancelledChequeImage()).isEqualTo(DEFAULT_CANCELLED_CHEQUE_IMAGE);
+        assertThat(testClientDetails.getCancelledChequeImageContentType()).isEqualTo(DEFAULT_CANCELLED_CHEQUE_IMAGE_CONTENT_TYPE);
+        assertThat(testClientDetails.getUdYogAadharImage()).isEqualTo(DEFAULT_UD_YOG_AADHAR_IMAGE);
+        assertThat(testClientDetails.getUdYogAadharImageContentType()).isEqualTo(DEFAULT_UD_YOG_AADHAR_IMAGE_CONTENT_TYPE);
         assertThat(testClientDetails.getLastModified()).isEqualTo(DEFAULT_LAST_MODIFIED);
         assertThat(testClientDetails.getLastModifiedBy()).isEqualTo(DEFAULT_LAST_MODIFIED_BY);
     }
@@ -225,6 +306,46 @@ class ClientDetailsResourceIT {
 
     @Test
     @Transactional
+    void checkGstinNumberIsRequired() throws Exception {
+        int databaseSizeBeforeTest = clientDetailsRepository.findAll().size();
+        // set the field null
+        clientDetails.setGstinNumber(null);
+
+        // Create the ClientDetails, which fails.
+        ClientDetailsDTO clientDetailsDTO = clientDetailsMapper.toDto(clientDetails);
+
+        restClientDetailsMockMvc
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(clientDetailsDTO))
+            )
+            .andExpect(status().isBadRequest());
+
+        List<ClientDetails> clientDetailsList = clientDetailsRepository.findAll();
+        assertThat(clientDetailsList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    void checkAccountNumberIsRequired() throws Exception {
+        int databaseSizeBeforeTest = clientDetailsRepository.findAll().size();
+        // set the field null
+        clientDetails.setAccountNumber(null);
+
+        // Create the ClientDetails, which fails.
+        ClientDetailsDTO clientDetailsDTO = clientDetailsMapper.toDto(clientDetails);
+
+        restClientDetailsMockMvc
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(clientDetailsDTO))
+            )
+            .andExpect(status().isBadRequest());
+
+        List<ClientDetails> clientDetailsList = clientDetailsRepository.findAll();
+        assertThat(clientDetailsList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void getAllClientDetails() throws Exception {
         // Initialize the database
         clientDetailsRepository.saveAndFlush(clientDetails);
@@ -247,6 +368,20 @@ class ClientDetailsResourceIT {
             .andExpect(jsonPath("$.[*].clientType").value(hasItem(DEFAULT_CLIENT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].isactivated").value(hasItem(DEFAULT_ISACTIVATED.booleanValue())))
             .andExpect(jsonPath("$.[*].freeField1").value(hasItem(DEFAULT_FREE_FIELD_1)))
+            .andExpect(jsonPath("$.[*].isApproved").value(hasItem(DEFAULT_IS_APPROVED.booleanValue())))
+            .andExpect(jsonPath("$.[*].nameOfBeneficiary").value(hasItem(DEFAULT_NAME_OF_BENEFICIARY)))
+            .andExpect(jsonPath("$.[*].accountNumber").value(hasItem(DEFAULT_ACCOUNT_NUMBER)))
+            .andExpect(jsonPath("$.[*].bankName").value(hasItem(DEFAULT_BANK_NAME)))
+            .andExpect(jsonPath("$.[*].accountType").value(hasItem(DEFAULT_ACCOUNT_TYPE)))
+            .andExpect(jsonPath("$.[*].ifscCode").value(hasItem(DEFAULT_IFSC_CODE)))
+            .andExpect(jsonPath("$.[*].gstCertificateImageContentType").value(hasItem(DEFAULT_GST_CERTIFICATE_IMAGE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].gstCertificateImage").value(hasItem(Base64Utils.encodeToString(DEFAULT_GST_CERTIFICATE_IMAGE))))
+            .andExpect(jsonPath("$.[*].panCardImageContentType").value(hasItem(DEFAULT_PAN_CARD_IMAGE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].panCardImage").value(hasItem(Base64Utils.encodeToString(DEFAULT_PAN_CARD_IMAGE))))
+            .andExpect(jsonPath("$.[*].cancelledChequeImageContentType").value(hasItem(DEFAULT_CANCELLED_CHEQUE_IMAGE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].cancelledChequeImage").value(hasItem(Base64Utils.encodeToString(DEFAULT_CANCELLED_CHEQUE_IMAGE))))
+            .andExpect(jsonPath("$.[*].udYogAadharImageContentType").value(hasItem(DEFAULT_UD_YOG_AADHAR_IMAGE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].udYogAadharImage").value(hasItem(Base64Utils.encodeToString(DEFAULT_UD_YOG_AADHAR_IMAGE))))
             .andExpect(jsonPath("$.[*].lastModified").value(hasItem(DEFAULT_LAST_MODIFIED)))
             .andExpect(jsonPath("$.[*].lastModifiedBy").value(hasItem(DEFAULT_LAST_MODIFIED_BY)));
     }
@@ -275,6 +410,20 @@ class ClientDetailsResourceIT {
             .andExpect(jsonPath("$.clientType").value(DEFAULT_CLIENT_TYPE.toString()))
             .andExpect(jsonPath("$.isactivated").value(DEFAULT_ISACTIVATED.booleanValue()))
             .andExpect(jsonPath("$.freeField1").value(DEFAULT_FREE_FIELD_1))
+            .andExpect(jsonPath("$.isApproved").value(DEFAULT_IS_APPROVED.booleanValue()))
+            .andExpect(jsonPath("$.nameOfBeneficiary").value(DEFAULT_NAME_OF_BENEFICIARY))
+            .andExpect(jsonPath("$.accountNumber").value(DEFAULT_ACCOUNT_NUMBER))
+            .andExpect(jsonPath("$.bankName").value(DEFAULT_BANK_NAME))
+            .andExpect(jsonPath("$.accountType").value(DEFAULT_ACCOUNT_TYPE))
+            .andExpect(jsonPath("$.ifscCode").value(DEFAULT_IFSC_CODE))
+            .andExpect(jsonPath("$.gstCertificateImageContentType").value(DEFAULT_GST_CERTIFICATE_IMAGE_CONTENT_TYPE))
+            .andExpect(jsonPath("$.gstCertificateImage").value(Base64Utils.encodeToString(DEFAULT_GST_CERTIFICATE_IMAGE)))
+            .andExpect(jsonPath("$.panCardImageContentType").value(DEFAULT_PAN_CARD_IMAGE_CONTENT_TYPE))
+            .andExpect(jsonPath("$.panCardImage").value(Base64Utils.encodeToString(DEFAULT_PAN_CARD_IMAGE)))
+            .andExpect(jsonPath("$.cancelledChequeImageContentType").value(DEFAULT_CANCELLED_CHEQUE_IMAGE_CONTENT_TYPE))
+            .andExpect(jsonPath("$.cancelledChequeImage").value(Base64Utils.encodeToString(DEFAULT_CANCELLED_CHEQUE_IMAGE)))
+            .andExpect(jsonPath("$.udYogAadharImageContentType").value(DEFAULT_UD_YOG_AADHAR_IMAGE_CONTENT_TYPE))
+            .andExpect(jsonPath("$.udYogAadharImage").value(Base64Utils.encodeToString(DEFAULT_UD_YOG_AADHAR_IMAGE)))
             .andExpect(jsonPath("$.lastModified").value(DEFAULT_LAST_MODIFIED))
             .andExpect(jsonPath("$.lastModifiedBy").value(DEFAULT_LAST_MODIFIED_BY));
     }
@@ -1183,6 +1332,448 @@ class ClientDetailsResourceIT {
 
     @Test
     @Transactional
+    void getAllClientDetailsByIsApprovedIsEqualToSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where isApproved equals to DEFAULT_IS_APPROVED
+        defaultClientDetailsShouldBeFound("isApproved.equals=" + DEFAULT_IS_APPROVED);
+
+        // Get all the clientDetailsList where isApproved equals to UPDATED_IS_APPROVED
+        defaultClientDetailsShouldNotBeFound("isApproved.equals=" + UPDATED_IS_APPROVED);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByIsApprovedIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where isApproved not equals to DEFAULT_IS_APPROVED
+        defaultClientDetailsShouldNotBeFound("isApproved.notEquals=" + DEFAULT_IS_APPROVED);
+
+        // Get all the clientDetailsList where isApproved not equals to UPDATED_IS_APPROVED
+        defaultClientDetailsShouldBeFound("isApproved.notEquals=" + UPDATED_IS_APPROVED);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByIsApprovedIsInShouldWork() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where isApproved in DEFAULT_IS_APPROVED or UPDATED_IS_APPROVED
+        defaultClientDetailsShouldBeFound("isApproved.in=" + DEFAULT_IS_APPROVED + "," + UPDATED_IS_APPROVED);
+
+        // Get all the clientDetailsList where isApproved equals to UPDATED_IS_APPROVED
+        defaultClientDetailsShouldNotBeFound("isApproved.in=" + UPDATED_IS_APPROVED);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByIsApprovedIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where isApproved is not null
+        defaultClientDetailsShouldBeFound("isApproved.specified=true");
+
+        // Get all the clientDetailsList where isApproved is null
+        defaultClientDetailsShouldNotBeFound("isApproved.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByNameOfBeneficiaryIsEqualToSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where nameOfBeneficiary equals to DEFAULT_NAME_OF_BENEFICIARY
+        defaultClientDetailsShouldBeFound("nameOfBeneficiary.equals=" + DEFAULT_NAME_OF_BENEFICIARY);
+
+        // Get all the clientDetailsList where nameOfBeneficiary equals to UPDATED_NAME_OF_BENEFICIARY
+        defaultClientDetailsShouldNotBeFound("nameOfBeneficiary.equals=" + UPDATED_NAME_OF_BENEFICIARY);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByNameOfBeneficiaryIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where nameOfBeneficiary not equals to DEFAULT_NAME_OF_BENEFICIARY
+        defaultClientDetailsShouldNotBeFound("nameOfBeneficiary.notEquals=" + DEFAULT_NAME_OF_BENEFICIARY);
+
+        // Get all the clientDetailsList where nameOfBeneficiary not equals to UPDATED_NAME_OF_BENEFICIARY
+        defaultClientDetailsShouldBeFound("nameOfBeneficiary.notEquals=" + UPDATED_NAME_OF_BENEFICIARY);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByNameOfBeneficiaryIsInShouldWork() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where nameOfBeneficiary in DEFAULT_NAME_OF_BENEFICIARY or UPDATED_NAME_OF_BENEFICIARY
+        defaultClientDetailsShouldBeFound("nameOfBeneficiary.in=" + DEFAULT_NAME_OF_BENEFICIARY + "," + UPDATED_NAME_OF_BENEFICIARY);
+
+        // Get all the clientDetailsList where nameOfBeneficiary equals to UPDATED_NAME_OF_BENEFICIARY
+        defaultClientDetailsShouldNotBeFound("nameOfBeneficiary.in=" + UPDATED_NAME_OF_BENEFICIARY);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByNameOfBeneficiaryIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where nameOfBeneficiary is not null
+        defaultClientDetailsShouldBeFound("nameOfBeneficiary.specified=true");
+
+        // Get all the clientDetailsList where nameOfBeneficiary is null
+        defaultClientDetailsShouldNotBeFound("nameOfBeneficiary.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByNameOfBeneficiaryContainsSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where nameOfBeneficiary contains DEFAULT_NAME_OF_BENEFICIARY
+        defaultClientDetailsShouldBeFound("nameOfBeneficiary.contains=" + DEFAULT_NAME_OF_BENEFICIARY);
+
+        // Get all the clientDetailsList where nameOfBeneficiary contains UPDATED_NAME_OF_BENEFICIARY
+        defaultClientDetailsShouldNotBeFound("nameOfBeneficiary.contains=" + UPDATED_NAME_OF_BENEFICIARY);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByNameOfBeneficiaryNotContainsSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where nameOfBeneficiary does not contain DEFAULT_NAME_OF_BENEFICIARY
+        defaultClientDetailsShouldNotBeFound("nameOfBeneficiary.doesNotContain=" + DEFAULT_NAME_OF_BENEFICIARY);
+
+        // Get all the clientDetailsList where nameOfBeneficiary does not contain UPDATED_NAME_OF_BENEFICIARY
+        defaultClientDetailsShouldBeFound("nameOfBeneficiary.doesNotContain=" + UPDATED_NAME_OF_BENEFICIARY);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByAccountNumberIsEqualToSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where accountNumber equals to DEFAULT_ACCOUNT_NUMBER
+        defaultClientDetailsShouldBeFound("accountNumber.equals=" + DEFAULT_ACCOUNT_NUMBER);
+
+        // Get all the clientDetailsList where accountNumber equals to UPDATED_ACCOUNT_NUMBER
+        defaultClientDetailsShouldNotBeFound("accountNumber.equals=" + UPDATED_ACCOUNT_NUMBER);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByAccountNumberIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where accountNumber not equals to DEFAULT_ACCOUNT_NUMBER
+        defaultClientDetailsShouldNotBeFound("accountNumber.notEquals=" + DEFAULT_ACCOUNT_NUMBER);
+
+        // Get all the clientDetailsList where accountNumber not equals to UPDATED_ACCOUNT_NUMBER
+        defaultClientDetailsShouldBeFound("accountNumber.notEquals=" + UPDATED_ACCOUNT_NUMBER);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByAccountNumberIsInShouldWork() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where accountNumber in DEFAULT_ACCOUNT_NUMBER or UPDATED_ACCOUNT_NUMBER
+        defaultClientDetailsShouldBeFound("accountNumber.in=" + DEFAULT_ACCOUNT_NUMBER + "," + UPDATED_ACCOUNT_NUMBER);
+
+        // Get all the clientDetailsList where accountNumber equals to UPDATED_ACCOUNT_NUMBER
+        defaultClientDetailsShouldNotBeFound("accountNumber.in=" + UPDATED_ACCOUNT_NUMBER);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByAccountNumberIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where accountNumber is not null
+        defaultClientDetailsShouldBeFound("accountNumber.specified=true");
+
+        // Get all the clientDetailsList where accountNumber is null
+        defaultClientDetailsShouldNotBeFound("accountNumber.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByAccountNumberContainsSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where accountNumber contains DEFAULT_ACCOUNT_NUMBER
+        defaultClientDetailsShouldBeFound("accountNumber.contains=" + DEFAULT_ACCOUNT_NUMBER);
+
+        // Get all the clientDetailsList where accountNumber contains UPDATED_ACCOUNT_NUMBER
+        defaultClientDetailsShouldNotBeFound("accountNumber.contains=" + UPDATED_ACCOUNT_NUMBER);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByAccountNumberNotContainsSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where accountNumber does not contain DEFAULT_ACCOUNT_NUMBER
+        defaultClientDetailsShouldNotBeFound("accountNumber.doesNotContain=" + DEFAULT_ACCOUNT_NUMBER);
+
+        // Get all the clientDetailsList where accountNumber does not contain UPDATED_ACCOUNT_NUMBER
+        defaultClientDetailsShouldBeFound("accountNumber.doesNotContain=" + UPDATED_ACCOUNT_NUMBER);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByBankNameIsEqualToSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where bankName equals to DEFAULT_BANK_NAME
+        defaultClientDetailsShouldBeFound("bankName.equals=" + DEFAULT_BANK_NAME);
+
+        // Get all the clientDetailsList where bankName equals to UPDATED_BANK_NAME
+        defaultClientDetailsShouldNotBeFound("bankName.equals=" + UPDATED_BANK_NAME);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByBankNameIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where bankName not equals to DEFAULT_BANK_NAME
+        defaultClientDetailsShouldNotBeFound("bankName.notEquals=" + DEFAULT_BANK_NAME);
+
+        // Get all the clientDetailsList where bankName not equals to UPDATED_BANK_NAME
+        defaultClientDetailsShouldBeFound("bankName.notEquals=" + UPDATED_BANK_NAME);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByBankNameIsInShouldWork() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where bankName in DEFAULT_BANK_NAME or UPDATED_BANK_NAME
+        defaultClientDetailsShouldBeFound("bankName.in=" + DEFAULT_BANK_NAME + "," + UPDATED_BANK_NAME);
+
+        // Get all the clientDetailsList where bankName equals to UPDATED_BANK_NAME
+        defaultClientDetailsShouldNotBeFound("bankName.in=" + UPDATED_BANK_NAME);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByBankNameIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where bankName is not null
+        defaultClientDetailsShouldBeFound("bankName.specified=true");
+
+        // Get all the clientDetailsList where bankName is null
+        defaultClientDetailsShouldNotBeFound("bankName.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByBankNameContainsSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where bankName contains DEFAULT_BANK_NAME
+        defaultClientDetailsShouldBeFound("bankName.contains=" + DEFAULT_BANK_NAME);
+
+        // Get all the clientDetailsList where bankName contains UPDATED_BANK_NAME
+        defaultClientDetailsShouldNotBeFound("bankName.contains=" + UPDATED_BANK_NAME);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByBankNameNotContainsSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where bankName does not contain DEFAULT_BANK_NAME
+        defaultClientDetailsShouldNotBeFound("bankName.doesNotContain=" + DEFAULT_BANK_NAME);
+
+        // Get all the clientDetailsList where bankName does not contain UPDATED_BANK_NAME
+        defaultClientDetailsShouldBeFound("bankName.doesNotContain=" + UPDATED_BANK_NAME);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByAccountTypeIsEqualToSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where accountType equals to DEFAULT_ACCOUNT_TYPE
+        defaultClientDetailsShouldBeFound("accountType.equals=" + DEFAULT_ACCOUNT_TYPE);
+
+        // Get all the clientDetailsList where accountType equals to UPDATED_ACCOUNT_TYPE
+        defaultClientDetailsShouldNotBeFound("accountType.equals=" + UPDATED_ACCOUNT_TYPE);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByAccountTypeIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where accountType not equals to DEFAULT_ACCOUNT_TYPE
+        defaultClientDetailsShouldNotBeFound("accountType.notEquals=" + DEFAULT_ACCOUNT_TYPE);
+
+        // Get all the clientDetailsList where accountType not equals to UPDATED_ACCOUNT_TYPE
+        defaultClientDetailsShouldBeFound("accountType.notEquals=" + UPDATED_ACCOUNT_TYPE);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByAccountTypeIsInShouldWork() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where accountType in DEFAULT_ACCOUNT_TYPE or UPDATED_ACCOUNT_TYPE
+        defaultClientDetailsShouldBeFound("accountType.in=" + DEFAULT_ACCOUNT_TYPE + "," + UPDATED_ACCOUNT_TYPE);
+
+        // Get all the clientDetailsList where accountType equals to UPDATED_ACCOUNT_TYPE
+        defaultClientDetailsShouldNotBeFound("accountType.in=" + UPDATED_ACCOUNT_TYPE);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByAccountTypeIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where accountType is not null
+        defaultClientDetailsShouldBeFound("accountType.specified=true");
+
+        // Get all the clientDetailsList where accountType is null
+        defaultClientDetailsShouldNotBeFound("accountType.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByAccountTypeContainsSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where accountType contains DEFAULT_ACCOUNT_TYPE
+        defaultClientDetailsShouldBeFound("accountType.contains=" + DEFAULT_ACCOUNT_TYPE);
+
+        // Get all the clientDetailsList where accountType contains UPDATED_ACCOUNT_TYPE
+        defaultClientDetailsShouldNotBeFound("accountType.contains=" + UPDATED_ACCOUNT_TYPE);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByAccountTypeNotContainsSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where accountType does not contain DEFAULT_ACCOUNT_TYPE
+        defaultClientDetailsShouldNotBeFound("accountType.doesNotContain=" + DEFAULT_ACCOUNT_TYPE);
+
+        // Get all the clientDetailsList where accountType does not contain UPDATED_ACCOUNT_TYPE
+        defaultClientDetailsShouldBeFound("accountType.doesNotContain=" + UPDATED_ACCOUNT_TYPE);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByIfscCodeIsEqualToSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where ifscCode equals to DEFAULT_IFSC_CODE
+        defaultClientDetailsShouldBeFound("ifscCode.equals=" + DEFAULT_IFSC_CODE);
+
+        // Get all the clientDetailsList where ifscCode equals to UPDATED_IFSC_CODE
+        defaultClientDetailsShouldNotBeFound("ifscCode.equals=" + UPDATED_IFSC_CODE);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByIfscCodeIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where ifscCode not equals to DEFAULT_IFSC_CODE
+        defaultClientDetailsShouldNotBeFound("ifscCode.notEquals=" + DEFAULT_IFSC_CODE);
+
+        // Get all the clientDetailsList where ifscCode not equals to UPDATED_IFSC_CODE
+        defaultClientDetailsShouldBeFound("ifscCode.notEquals=" + UPDATED_IFSC_CODE);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByIfscCodeIsInShouldWork() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where ifscCode in DEFAULT_IFSC_CODE or UPDATED_IFSC_CODE
+        defaultClientDetailsShouldBeFound("ifscCode.in=" + DEFAULT_IFSC_CODE + "," + UPDATED_IFSC_CODE);
+
+        // Get all the clientDetailsList where ifscCode equals to UPDATED_IFSC_CODE
+        defaultClientDetailsShouldNotBeFound("ifscCode.in=" + UPDATED_IFSC_CODE);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByIfscCodeIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where ifscCode is not null
+        defaultClientDetailsShouldBeFound("ifscCode.specified=true");
+
+        // Get all the clientDetailsList where ifscCode is null
+        defaultClientDetailsShouldNotBeFound("ifscCode.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByIfscCodeContainsSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where ifscCode contains DEFAULT_IFSC_CODE
+        defaultClientDetailsShouldBeFound("ifscCode.contains=" + DEFAULT_IFSC_CODE);
+
+        // Get all the clientDetailsList where ifscCode contains UPDATED_IFSC_CODE
+        defaultClientDetailsShouldNotBeFound("ifscCode.contains=" + UPDATED_IFSC_CODE);
+    }
+
+    @Test
+    @Transactional
+    void getAllClientDetailsByIfscCodeNotContainsSomething() throws Exception {
+        // Initialize the database
+        clientDetailsRepository.saveAndFlush(clientDetails);
+
+        // Get all the clientDetailsList where ifscCode does not contain DEFAULT_IFSC_CODE
+        defaultClientDetailsShouldNotBeFound("ifscCode.doesNotContain=" + DEFAULT_IFSC_CODE);
+
+        // Get all the clientDetailsList where ifscCode does not contain UPDATED_IFSC_CODE
+        defaultClientDetailsShouldBeFound("ifscCode.doesNotContain=" + UPDATED_IFSC_CODE);
+    }
+
+    @Test
+    @Transactional
     void getAllClientDetailsByLastModifiedIsEqualToSomething() throws Exception {
         // Initialize the database
         clientDetailsRepository.saveAndFlush(clientDetails);
@@ -1358,6 +1949,20 @@ class ClientDetailsResourceIT {
             .andExpect(jsonPath("$.[*].clientType").value(hasItem(DEFAULT_CLIENT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].isactivated").value(hasItem(DEFAULT_ISACTIVATED.booleanValue())))
             .andExpect(jsonPath("$.[*].freeField1").value(hasItem(DEFAULT_FREE_FIELD_1)))
+            .andExpect(jsonPath("$.[*].isApproved").value(hasItem(DEFAULT_IS_APPROVED.booleanValue())))
+            .andExpect(jsonPath("$.[*].nameOfBeneficiary").value(hasItem(DEFAULT_NAME_OF_BENEFICIARY)))
+            .andExpect(jsonPath("$.[*].accountNumber").value(hasItem(DEFAULT_ACCOUNT_NUMBER)))
+            .andExpect(jsonPath("$.[*].bankName").value(hasItem(DEFAULT_BANK_NAME)))
+            .andExpect(jsonPath("$.[*].accountType").value(hasItem(DEFAULT_ACCOUNT_TYPE)))
+            .andExpect(jsonPath("$.[*].ifscCode").value(hasItem(DEFAULT_IFSC_CODE)))
+            .andExpect(jsonPath("$.[*].gstCertificateImageContentType").value(hasItem(DEFAULT_GST_CERTIFICATE_IMAGE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].gstCertificateImage").value(hasItem(Base64Utils.encodeToString(DEFAULT_GST_CERTIFICATE_IMAGE))))
+            .andExpect(jsonPath("$.[*].panCardImageContentType").value(hasItem(DEFAULT_PAN_CARD_IMAGE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].panCardImage").value(hasItem(Base64Utils.encodeToString(DEFAULT_PAN_CARD_IMAGE))))
+            .andExpect(jsonPath("$.[*].cancelledChequeImageContentType").value(hasItem(DEFAULT_CANCELLED_CHEQUE_IMAGE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].cancelledChequeImage").value(hasItem(Base64Utils.encodeToString(DEFAULT_CANCELLED_CHEQUE_IMAGE))))
+            .andExpect(jsonPath("$.[*].udYogAadharImageContentType").value(hasItem(DEFAULT_UD_YOG_AADHAR_IMAGE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].udYogAadharImage").value(hasItem(Base64Utils.encodeToString(DEFAULT_UD_YOG_AADHAR_IMAGE))))
             .andExpect(jsonPath("$.[*].lastModified").value(hasItem(DEFAULT_LAST_MODIFIED)))
             .andExpect(jsonPath("$.[*].lastModifiedBy").value(hasItem(DEFAULT_LAST_MODIFIED_BY)));
 
@@ -1420,6 +2025,20 @@ class ClientDetailsResourceIT {
             .clientType(UPDATED_CLIENT_TYPE)
             .isactivated(UPDATED_ISACTIVATED)
             .freeField1(UPDATED_FREE_FIELD_1)
+            .isApproved(UPDATED_IS_APPROVED)
+            .nameOfBeneficiary(UPDATED_NAME_OF_BENEFICIARY)
+            .accountNumber(UPDATED_ACCOUNT_NUMBER)
+            .bankName(UPDATED_BANK_NAME)
+            .accountType(UPDATED_ACCOUNT_TYPE)
+            .ifscCode(UPDATED_IFSC_CODE)
+            .gstCertificateImage(UPDATED_GST_CERTIFICATE_IMAGE)
+            .gstCertificateImageContentType(UPDATED_GST_CERTIFICATE_IMAGE_CONTENT_TYPE)
+            .panCardImage(UPDATED_PAN_CARD_IMAGE)
+            .panCardImageContentType(UPDATED_PAN_CARD_IMAGE_CONTENT_TYPE)
+            .cancelledChequeImage(UPDATED_CANCELLED_CHEQUE_IMAGE)
+            .cancelledChequeImageContentType(UPDATED_CANCELLED_CHEQUE_IMAGE_CONTENT_TYPE)
+            .udYogAadharImage(UPDATED_UD_YOG_AADHAR_IMAGE)
+            .udYogAadharImageContentType(UPDATED_UD_YOG_AADHAR_IMAGE_CONTENT_TYPE)
             .lastModified(UPDATED_LAST_MODIFIED)
             .lastModifiedBy(UPDATED_LAST_MODIFIED_BY);
         ClientDetailsDTO clientDetailsDTO = clientDetailsMapper.toDto(updatedClientDetails);
@@ -1448,6 +2067,20 @@ class ClientDetailsResourceIT {
         assertThat(testClientDetails.getClientType()).isEqualTo(UPDATED_CLIENT_TYPE);
         assertThat(testClientDetails.getIsactivated()).isEqualTo(UPDATED_ISACTIVATED);
         assertThat(testClientDetails.getFreeField1()).isEqualTo(UPDATED_FREE_FIELD_1);
+        assertThat(testClientDetails.getIsApproved()).isEqualTo(UPDATED_IS_APPROVED);
+        assertThat(testClientDetails.getNameOfBeneficiary()).isEqualTo(UPDATED_NAME_OF_BENEFICIARY);
+        assertThat(testClientDetails.getAccountNumber()).isEqualTo(UPDATED_ACCOUNT_NUMBER);
+        assertThat(testClientDetails.getBankName()).isEqualTo(UPDATED_BANK_NAME);
+        assertThat(testClientDetails.getAccountType()).isEqualTo(UPDATED_ACCOUNT_TYPE);
+        assertThat(testClientDetails.getIfscCode()).isEqualTo(UPDATED_IFSC_CODE);
+        assertThat(testClientDetails.getGstCertificateImage()).isEqualTo(UPDATED_GST_CERTIFICATE_IMAGE);
+        assertThat(testClientDetails.getGstCertificateImageContentType()).isEqualTo(UPDATED_GST_CERTIFICATE_IMAGE_CONTENT_TYPE);
+        assertThat(testClientDetails.getPanCardImage()).isEqualTo(UPDATED_PAN_CARD_IMAGE);
+        assertThat(testClientDetails.getPanCardImageContentType()).isEqualTo(UPDATED_PAN_CARD_IMAGE_CONTENT_TYPE);
+        assertThat(testClientDetails.getCancelledChequeImage()).isEqualTo(UPDATED_CANCELLED_CHEQUE_IMAGE);
+        assertThat(testClientDetails.getCancelledChequeImageContentType()).isEqualTo(UPDATED_CANCELLED_CHEQUE_IMAGE_CONTENT_TYPE);
+        assertThat(testClientDetails.getUdYogAadharImage()).isEqualTo(UPDATED_UD_YOG_AADHAR_IMAGE);
+        assertThat(testClientDetails.getUdYogAadharImageContentType()).isEqualTo(UPDATED_UD_YOG_AADHAR_IMAGE_CONTENT_TYPE);
         assertThat(testClientDetails.getLastModified()).isEqualTo(UPDATED_LAST_MODIFIED);
         assertThat(testClientDetails.getLastModifiedBy()).isEqualTo(UPDATED_LAST_MODIFIED_BY);
     }
@@ -1537,7 +2170,11 @@ class ClientDetailsResourceIT {
             .website(UPDATED_WEBSITE)
             .description(UPDATED_DESCRIPTION)
             .clientType(UPDATED_CLIENT_TYPE)
-            .freeField1(UPDATED_FREE_FIELD_1);
+            .freeField1(UPDATED_FREE_FIELD_1)
+            .accountType(UPDATED_ACCOUNT_TYPE)
+            .ifscCode(UPDATED_IFSC_CODE)
+            .udYogAadharImage(UPDATED_UD_YOG_AADHAR_IMAGE)
+            .udYogAadharImageContentType(UPDATED_UD_YOG_AADHAR_IMAGE_CONTENT_TYPE);
 
         restClientDetailsMockMvc
             .perform(
@@ -1563,6 +2200,20 @@ class ClientDetailsResourceIT {
         assertThat(testClientDetails.getClientType()).isEqualTo(UPDATED_CLIENT_TYPE);
         assertThat(testClientDetails.getIsactivated()).isEqualTo(DEFAULT_ISACTIVATED);
         assertThat(testClientDetails.getFreeField1()).isEqualTo(UPDATED_FREE_FIELD_1);
+        assertThat(testClientDetails.getIsApproved()).isEqualTo(DEFAULT_IS_APPROVED);
+        assertThat(testClientDetails.getNameOfBeneficiary()).isEqualTo(DEFAULT_NAME_OF_BENEFICIARY);
+        assertThat(testClientDetails.getAccountNumber()).isEqualTo(DEFAULT_ACCOUNT_NUMBER);
+        assertThat(testClientDetails.getBankName()).isEqualTo(DEFAULT_BANK_NAME);
+        assertThat(testClientDetails.getAccountType()).isEqualTo(UPDATED_ACCOUNT_TYPE);
+        assertThat(testClientDetails.getIfscCode()).isEqualTo(UPDATED_IFSC_CODE);
+        assertThat(testClientDetails.getGstCertificateImage()).isEqualTo(DEFAULT_GST_CERTIFICATE_IMAGE);
+        assertThat(testClientDetails.getGstCertificateImageContentType()).isEqualTo(DEFAULT_GST_CERTIFICATE_IMAGE_CONTENT_TYPE);
+        assertThat(testClientDetails.getPanCardImage()).isEqualTo(DEFAULT_PAN_CARD_IMAGE);
+        assertThat(testClientDetails.getPanCardImageContentType()).isEqualTo(DEFAULT_PAN_CARD_IMAGE_CONTENT_TYPE);
+        assertThat(testClientDetails.getCancelledChequeImage()).isEqualTo(DEFAULT_CANCELLED_CHEQUE_IMAGE);
+        assertThat(testClientDetails.getCancelledChequeImageContentType()).isEqualTo(DEFAULT_CANCELLED_CHEQUE_IMAGE_CONTENT_TYPE);
+        assertThat(testClientDetails.getUdYogAadharImage()).isEqualTo(UPDATED_UD_YOG_AADHAR_IMAGE);
+        assertThat(testClientDetails.getUdYogAadharImageContentType()).isEqualTo(UPDATED_UD_YOG_AADHAR_IMAGE_CONTENT_TYPE);
         assertThat(testClientDetails.getLastModified()).isEqualTo(DEFAULT_LAST_MODIFIED);
         assertThat(testClientDetails.getLastModifiedBy()).isEqualTo(DEFAULT_LAST_MODIFIED_BY);
     }
@@ -1592,6 +2243,20 @@ class ClientDetailsResourceIT {
             .clientType(UPDATED_CLIENT_TYPE)
             .isactivated(UPDATED_ISACTIVATED)
             .freeField1(UPDATED_FREE_FIELD_1)
+            .isApproved(UPDATED_IS_APPROVED)
+            .nameOfBeneficiary(UPDATED_NAME_OF_BENEFICIARY)
+            .accountNumber(UPDATED_ACCOUNT_NUMBER)
+            .bankName(UPDATED_BANK_NAME)
+            .accountType(UPDATED_ACCOUNT_TYPE)
+            .ifscCode(UPDATED_IFSC_CODE)
+            .gstCertificateImage(UPDATED_GST_CERTIFICATE_IMAGE)
+            .gstCertificateImageContentType(UPDATED_GST_CERTIFICATE_IMAGE_CONTENT_TYPE)
+            .panCardImage(UPDATED_PAN_CARD_IMAGE)
+            .panCardImageContentType(UPDATED_PAN_CARD_IMAGE_CONTENT_TYPE)
+            .cancelledChequeImage(UPDATED_CANCELLED_CHEQUE_IMAGE)
+            .cancelledChequeImageContentType(UPDATED_CANCELLED_CHEQUE_IMAGE_CONTENT_TYPE)
+            .udYogAadharImage(UPDATED_UD_YOG_AADHAR_IMAGE)
+            .udYogAadharImageContentType(UPDATED_UD_YOG_AADHAR_IMAGE_CONTENT_TYPE)
             .lastModified(UPDATED_LAST_MODIFIED)
             .lastModifiedBy(UPDATED_LAST_MODIFIED_BY);
 
@@ -1619,6 +2284,20 @@ class ClientDetailsResourceIT {
         assertThat(testClientDetails.getClientType()).isEqualTo(UPDATED_CLIENT_TYPE);
         assertThat(testClientDetails.getIsactivated()).isEqualTo(UPDATED_ISACTIVATED);
         assertThat(testClientDetails.getFreeField1()).isEqualTo(UPDATED_FREE_FIELD_1);
+        assertThat(testClientDetails.getIsApproved()).isEqualTo(UPDATED_IS_APPROVED);
+        assertThat(testClientDetails.getNameOfBeneficiary()).isEqualTo(UPDATED_NAME_OF_BENEFICIARY);
+        assertThat(testClientDetails.getAccountNumber()).isEqualTo(UPDATED_ACCOUNT_NUMBER);
+        assertThat(testClientDetails.getBankName()).isEqualTo(UPDATED_BANK_NAME);
+        assertThat(testClientDetails.getAccountType()).isEqualTo(UPDATED_ACCOUNT_TYPE);
+        assertThat(testClientDetails.getIfscCode()).isEqualTo(UPDATED_IFSC_CODE);
+        assertThat(testClientDetails.getGstCertificateImage()).isEqualTo(UPDATED_GST_CERTIFICATE_IMAGE);
+        assertThat(testClientDetails.getGstCertificateImageContentType()).isEqualTo(UPDATED_GST_CERTIFICATE_IMAGE_CONTENT_TYPE);
+        assertThat(testClientDetails.getPanCardImage()).isEqualTo(UPDATED_PAN_CARD_IMAGE);
+        assertThat(testClientDetails.getPanCardImageContentType()).isEqualTo(UPDATED_PAN_CARD_IMAGE_CONTENT_TYPE);
+        assertThat(testClientDetails.getCancelledChequeImage()).isEqualTo(UPDATED_CANCELLED_CHEQUE_IMAGE);
+        assertThat(testClientDetails.getCancelledChequeImageContentType()).isEqualTo(UPDATED_CANCELLED_CHEQUE_IMAGE_CONTENT_TYPE);
+        assertThat(testClientDetails.getUdYogAadharImage()).isEqualTo(UPDATED_UD_YOG_AADHAR_IMAGE);
+        assertThat(testClientDetails.getUdYogAadharImageContentType()).isEqualTo(UPDATED_UD_YOG_AADHAR_IMAGE_CONTENT_TYPE);
         assertThat(testClientDetails.getLastModified()).isEqualTo(UPDATED_LAST_MODIFIED);
         assertThat(testClientDetails.getLastModifiedBy()).isEqualTo(UPDATED_LAST_MODIFIED_BY);
     }
